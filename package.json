@@ -1,0 +1,16 @@
+{
+  "name": "mern_app",
+  "version": "1.0.0",
+  "description": "Application using MERN stack for final CoderAcademy assignment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hayden Fuller, Jo Dunham, Ewe Lin Loo",
+  "license": "ISC",
+  "dependencies": {
+    "concurrency": "^0.1.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12"
+  }
+}
