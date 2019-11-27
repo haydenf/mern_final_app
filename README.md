@@ -86,4 +86,4 @@ The second group of people are those who would like to start a business and may 
 
 ### 27/11/2019
 
-![trello_01](/Users/ewelinloo/Documents/Studies/EweLinLoo_T1A3/mern_final_app/docs/trello_01.png)
+![Trello 01](./docs/trello_01.png)
