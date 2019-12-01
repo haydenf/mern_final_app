@@ -84,6 +84,8 @@ The second group of people are those who would like to start a business and may 
 
 ## Trello
 
-### 27/11/2019
+27/11/2019
 
 ![Trello 01](./docs/trello_01.png)
+
+[2/12/2019](./docs/trello_02.png)
