@@ -90,4 +90,5 @@ The second group of people are those who would like to start a business and may 
 ![Trello 01](./docs/trello_01.png)
 
 [2/12/2019 - Morning](./docs/trello_02.png)
+
 [2/12/2019 - Afternoon](./docs/trello_03.png)
