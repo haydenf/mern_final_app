@@ -88,8 +88,12 @@ Our target audience fall into two main groups of people:
 ## Trello
 
 27/11/2019
-![Trello 01](./docs/trello_01.png)
+![Trello 01](./docs/Trello/trello_01.png)
 
-[2/12/2019 - Morning](./docs/trello_02.png)
+[2/12/2019 - Morning](./docs/Trello/trello_02.png)
 
-[2/12/2019 - Afternoon](./docs/trello_03.png)
+[2/12/2019 - Afternoon](./docs/Trello/trello_03.png)
+
+3/12/2019
+
+![Trello 04](./docs/Trello/trello_04.png)
