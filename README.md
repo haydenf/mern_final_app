@@ -101,7 +101,7 @@ Our target audience fall into two main groups of people:
 
 <img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png">
 
-**Sign up **
+**Sign up**
 
 <img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png">
 
