@@ -93,27 +93,27 @@ Our target audience fall into two main groups of people:
 
 **Landing page**
 
-![Screen Shot 2019-12-04 at 11.39.55 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.39.55 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.39.55 am.png">
 
-![Screen Shot 2019-12-04 at 11.40.06 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.06 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.06 am.png">
 
 **Sign in**
 
-![Screen Shot 2019-12-04 at 11.40.14 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png">
 
 **Sign up **
 
-![Screen Shot 2019-12-04 at 11.40.33 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png">
 
 **Dashboard**
 
-![Screen Shot 2019-12-04 at 11.40.58 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.58 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.58 am.png">
 
-**Listings**![Screen Shot 2019-12-04 at 11.41.15 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.15 am.png)
+**Listings**<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.15 am.png">
 
 **Individual listings**
 
-![Screen Shot 2019-12-04 at 11.41.26 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.26 am.png)
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.26 am.png">
 
 
 
