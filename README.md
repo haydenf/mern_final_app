@@ -87,33 +87,33 @@ Our target audience fall into two main groups of people:
 
 **Desktop wireframes**
 
-<img src="/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 2.04.47 pm.png" alt="Screen Shot 2019-12-04 at 2.04.47 pm" style="zoom:50%;" />
+<img src="./docs/WireFrames/Screen Shot 2019-12-04 at 2.04.47 pm.png" alt="Screen Shot 2019-12-04 at 2.04.47 pm" style="zoom:50%;" />
 
 
 
 **Landing page**
 
-![Screen Shot 2019-12-04 at 11.39.55 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.39.55 am.png)
+![Screen Shot 2019-12-04 at 11.39.55 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.39.55 am.png)
 
-![Screen Shot 2019-12-04 at 11.40.06 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.40.06 am.png)
+![Screen Shot 2019-12-04 at 11.40.06 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.06 am.png)
 
 **Sign in**
 
-![Screen Shot 2019-12-04 at 11.40.14 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png)
+![Screen Shot 2019-12-04 at 11.40.14 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png)
 
 **Sign up **
 
-![Screen Shot 2019-12-04 at 11.40.33 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png)
+![Screen Shot 2019-12-04 at 11.40.33 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png)
 
 **Dashboard**
 
-![Screen Shot 2019-12-04 at 11.40.58 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.40.58 am.png)
+![Screen Shot 2019-12-04 at 11.40.58 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.58 am.png)
 
-**Listings**![Screen Shot 2019-12-04 at 11.41.15 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.41.15 am.png)
+**Listings**![Screen Shot 2019-12-04 at 11.41.15 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.15 am.png)
 
 **Individual listings**
 
-![Screen Shot 2019-12-04 at 11.41.26 am](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/Screen Shot 2019-12-04 at 11.41.26 am.png)
+![Screen Shot 2019-12-04 at 11.41.26 am](./docs/WireFrames/Screen Shot 2019-12-04 at 11.41.26 am.png)
 
 
 
@@ -123,27 +123,27 @@ ____
 
 **Welcome page** 
 
-![welcome](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/welcome.png)
+![welcome](./docs/WireFrames/welcome.png)
 
 **Signup**
 
-![signup](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/signup.png)
+![signup](./docs/WireFrames/signup.png)
 
 **Nav**
 
-![nav](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/nav.png)
+![nav](./docs/WireFrames/nav.png)
 
 **Dashboard**
 
-![dashboard](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/dashboard.png)
+![dashboard](./docs/WireFrames/dashboard.png)
 
 **Listing**
 
-![products](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/products.png)
+![products](./docs/WireFrames/products.png)
 
 **Single listing**
 
-![single products](/Users/haydenfuller/Documents/Hayden/Own Projects/mernApplication/docs/WireFrames/single products.png)
+![single products](./docs/WireFrames/single products.png)
 
 ## Trello
 
