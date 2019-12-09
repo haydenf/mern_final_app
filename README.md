@@ -10,7 +10,7 @@ We are creating a two sided marketplace for entrepreneurs called StartUp Again. 
 
 ### Functionality / Features
 
-We have 4 levels of features:
+We have 5 sprints of features:
 
 1. Our most basic MVP
 - Users may login and create a profile
@@ -101,7 +101,7 @@ Our target audience fall into two main groups of people:
 
 <img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.14 am.png">
 
-**Sign up **
+**Sign up**
 
 <img src="./docs/WireFrames/Screen Shot 2019-12-04 at 11.40.33 am.png">
 
