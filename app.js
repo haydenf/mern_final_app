@@ -6,12 +6,12 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 
 
-require("./models/User");
+require("./database/models/User");
 require("./config/passport")(passport);
 
 //// Loading routes ////
 const auth = require("./routes/auth");
-const blog = require("./routes/blog");
+const blog = require("./routes/listing");
 
 //// Loading mongoose keys ////
 const keys = require("./config/keys");
