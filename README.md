@@ -155,5 +155,7 @@ ____
 [2/12/2019 - Afternoon](./docs/Trello/trello_03.png)
 
 3/12/2019
-
 ![Trello 04](./docs/Trello/trello_04.png)
+
+9/12/2019
+![Trello 05](./docs/Trello/trello_05/png)
