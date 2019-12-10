@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Icon} from 'semantic-ui-react'
+import { Card, Image, Button, Icon, Modal} from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 
@@ -35,7 +35,7 @@ class Listing extends Component {
             description: this.state.description
         };
         axios
-            .put("/api/listings", listing)
+            .put("/api/listing", listing)
             .then(res => {
                 const updateListing = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {
@@ -45,13 +45,13 @@ class Listing extends Component {
                 });
                     this.props.listingHandler(updateListing)
             })
-                    .catch(err => console.log("this is an axios error" + err));
+                    .catch(err => console.log("this is an updated error" + err));
     };
 
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
-            .delete("/api/listings", { data: listing })
+            .delete("/api/listing", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
             .catch(err => console.log("this is the deletion function err" + err));
     };
@@ -67,13 +67,13 @@ class Listing extends Component {
                     <div>
                         <Card.Group itemsPerRow={6}>
                             <Card>
-                            <Image src='../../public/logo192.png' wrapped ui={false} />
+                            {/* <Image src='=' wrapped ui={false} /> */}
                             <Card.Content>
                             <Card.Header>{listing.title}</Card.Header>
                             <Card.Description>{listing.description}</Card.Description>
                             <div>
                                 <Button primary>Edit</Button>
-                                <Button secondary>Delete</Button>
+                                <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
                             </div>
                             </Card.Content>
                             </Card>
