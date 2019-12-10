@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import { Card, Image, Button, Icon} from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 
@@ -9,10 +10,11 @@ class Listing extends Component {
         this.state = { 
             _id: "",
             title: "",
-            description: ""
+            description: "",
+            image: ""
          }
    }
-   // change logger /
+   // change logger //
    logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         console.log("Logging change function console log" + this.state);
@@ -58,9 +60,26 @@ class Listing extends Component {
     componentDidMount() {this.grabListings();}
 
     render() { 
+        const {listings} = this.props
         return ( 
             <div>
-
+                {listings.map(listing => (
+                    <div>
+                        <Card.Group itemsPerRow={6}>
+                            <Card>
+                            <Image src='../../public/logo192.png' wrapped ui={false} />
+                            <Card.Content>
+                            <Card.Header>{listing.title}</Card.Header>
+                            <Card.Description>{listing.description}</Card.Description>
+                            <div>
+                                <Button primary>Edit</Button>
+                                <Button secondary>Delete</Button>
+                            </div>
+                            </Card.Content>
+                            </Card>
+                        </Card.Group>
+                    </div>
+                    ))}
             </div>
          );
     }
@@ -79,3 +98,5 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Listing)
+
+
