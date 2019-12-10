@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Listing from "./components/Listing";
+import Forms from "./components/Form";
+
 
 class App extends Component {
 
@@ -8,6 +10,7 @@ class App extends Component {
     return ( 
       <div className="App">
           <Listing />
+          <Forms />
       </div> 
     );
   }

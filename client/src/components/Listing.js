@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import axios from "axios"
-
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 
 class Listing extends Component {
@@ -20,7 +19,7 @@ class Listing extends Component {
     };
     // Fetching the listings from backend //
     grabListings = async () => {
-        let res = await axios.get('/api/listings')
+        let res = await axios.get('/api/listing')
         let listings = res.data
         this.props.listingHandler(listings)
     }
@@ -59,7 +58,6 @@ class Listing extends Component {
     componentDidMount() {this.grabListings();}
 
     render() { 
-        const {listings} = this.props
         return ( 
             <div>
 
