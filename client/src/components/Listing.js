@@ -10,8 +10,7 @@ class Listing extends Component {
         this.state = { 
             _id: "",
             title: "",
-            description: "",
-            visible: false
+            description: ""
          }
    }
    // change logger /
@@ -63,7 +62,7 @@ class Listing extends Component {
         const {listings} = this.props
         return ( 
             <div>
-                
+
             </div>
          );
     }
