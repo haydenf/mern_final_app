@@ -16,4 +16,4 @@ const ListingSchema = new Schema({
   },
   
 });
-mongoose.model("lisitings", ListingSchema);
+mongoose.model("listings", ListingSchema);
