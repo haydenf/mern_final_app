@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 require("../database/models/Listing")
-const Listing = mongoose.model("lisitings")
+const Listing = mongoose.model("listings")
 
 // Read listing api //
 router.get("/", (req, res) =>{
@@ -12,7 +12,6 @@ router.get("/", (req, res) =>{
         .then(listings => {console.log(listings);
             res.json(listings)})
         .catch(err => console.log(err))
-        res.send("reading listing post success");
 });
 
 // create listing //
@@ -27,7 +26,6 @@ router.post("/", (req, res) => {
             console.log("logging creation of" + listing)
         })
         .catch(err => console.log("Logging the error on save listing is" +err))
-        res.send("post successfully posted to db");
 });
 
 // Editing listing by ID //
