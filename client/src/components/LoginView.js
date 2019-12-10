@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Form } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 
 export default class LoginView extends Component {
     render(){
@@ -14,7 +15,7 @@ export default class LoginView extends Component {
               <input placeholder='Password' />
             </Form.Field>
             <Button type='submit'>Submit</Button>
-            <p>Not signed up? <span onClick={() => {this.props.changeLocation("createUser")}}>Create user</span></p>
+            <p>Not signed up? <Link to="/createUser">Create user</Link></p>
           </Form>
         )
     }
