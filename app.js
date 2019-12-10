@@ -11,7 +11,7 @@ require("./database/models/User");
 
 //// Loading routes ////
 // const auth = require("./routes/auth");
-// const listing = require("./routes/listing");
+const listing = require("./routes/listing");
 
 //// Loading mongoose keys ////
 const keys = require("./config/keys");
@@ -26,7 +26,7 @@ mongoose
     }
   ) 
   .then(() => console.log("MongoDb connection"))
-  .catch(err => console.log(err));
+  .catch(err => console.log("mongodb error is " + err));
 
 const app = express();
 
@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
 });
 
 // app.use("/auth", auth);
-// app.use("/api/listing", listing);
+app.use("/api/listing", listing);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
