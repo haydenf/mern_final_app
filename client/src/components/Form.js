@@ -52,6 +52,7 @@ class Forms extends Component{
                 name="description"
                 onChange={this.onChange}/>
             </Form.Field>
+            <br />
             <Button 
                 onClick={this.onSubmit}
                 type='submit'
