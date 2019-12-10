@@ -1,34 +1,20 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Menu } from "semantic-ui-react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import DashboardView from "./DashboardView"
 import HomeView from "./HomeView"
 import LoginView from "./LoginView"
+import CreateUserView from "./CreateUserView"
+import ProductsView from "./ProductsView"
 
 export default class App extends Component {
   state = {
     loggedIn: false,
-    location: "home"
-  }
-
-  getView = () => {
-    const { location } = this.state;
-    switch(location){
-      case "home":
-        return <HomeView />
-      case "Login":
-        return <LoginView />
-      default:
-        return null;
-    }
-  }
-
-  changeLocation = (location) => {
-    this.setState({ location });
   }
 
   handleItemClick = (e, { name }) => {
     this.setState({activeItem: name})
-    this.changeLocation(name)
     if (name === "Login" || name === "Logout"){
       this.setState({loggedIn: !this.state.loggedIn})
     }
@@ -40,6 +26,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
+        <BrowserRouter>
           <Menu color="grey" inverted>
             <Menu.Item
               name='dashboard'
@@ -47,7 +34,7 @@ export default class App extends Component {
               onClick={this.handleItemClick}
               float="right"
             >
-              Dashboard
+            <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
 
             <Menu.Item
@@ -55,7 +42,7 @@ export default class App extends Component {
               active={activeItem === 'Products'}
               onClick={this.handleItemClick}
             >
-              Products
+              <Link to="/products">Products</Link>
             </Menu.Item>
 
             <Menu.Item
@@ -63,10 +50,13 @@ export default class App extends Component {
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
             > 
-              {this.state.loggedIn ? "Login" : "Logout"}
+              {this.state.loggedIn ? <Link to="/login">Login</Link> : "Logout"}
             </Menu.Item>
           </Menu>
-          {this.getView()}
+          <Route exact path="/dashboard" component={DashboardView} />
+          <Route exact path="/products" component={ProductsView} />
+          <Route exact path="/login" component={LoginView} />
+        </BrowserRouter>
       </div>
     )
   }
