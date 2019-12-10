@@ -7,11 +7,11 @@ const bodyParser = require("body-parser");
 
 
 require("./database/models/User");
-require("./config/passport")(passport);
+// require("./config/passport")(passport);
 
 //// Loading routes ////
-const auth = require("./routes/auth");
-const blog = require("./routes/listing");
+// const auth = require("./routes/auth");
+// const listing = require("./routes/listing");
 
 //// Loading mongoose keys ////
 const keys = require("./config/keys");
@@ -56,8 +56,8 @@ app.get("/", (req, res) => {
   res.send("HOME");
 });
 
-app.use("/auth", auth);
-app.use("/api/blogs", blog);
+// app.use("/auth", auth);
+// app.use("/api/listing", listing);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

@@ -4,7 +4,10 @@
   "description": "Application using MERN stack for final CoderAcademy assignment",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Hayden Fuller, Jo Dunham, Ewe Lin Loo",
   "license": "ISC",
@@ -22,6 +25,7 @@
     "mongoose": "^5.7.14",
     "mongoose-bcrypt": "^1.6.0",
     "passport": "^0.4.0",
+    "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "socket.io": "^2.3.0"
   }
