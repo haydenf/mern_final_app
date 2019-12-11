@@ -6,54 +6,54 @@ async function index(req, res) {
     res.json(users);
 }
 
-// function make(req, res) {
-//     //shows the form to create the resource
-//     res.render("author/new");
-// }
+//shows form to make new user
+function make(req, res) {
+    res.render("CreateUserView");
+}
 
-// async function create(req, res) {
-//     let { name, bio, gender } = req.body;
-//     let author = await AuthorModel.create({ name, bio, gender })
-//         .catch(err => res.status(500).send(err));
-//     res.redirect("/authors");
-// }
+async function create(req, res) {
+    let { googleID, email, password, firstName, lastName, image } = req.body;
+    let user = await UserModel.create({ googleID, email, password, firstName, lastName, image })
+        .catch(err => res.status(500).send(err));
+    res.redirect("/users");
+}
 
 // const show = async (req, res) => {
 //     // get the author specific data from the author model
 //     let { id } = req.params
-//     let author = await AuthorModel.findById(id) //any mongoose specific interaction returns a promise
+//     let user = await UserModel.findById(id) //any mongoose specific interaction returns a promise
 //         .catch(err => res.status(500).send(err))
-//     res.render("author/show", {author});
+//     res.render("user/show", {user});
 // }
 
 // const edit = async (req, res) => {
 //     let { id } = req.params
-//     let author = await AuthorModel.findById(id)
+//     let user = await UserModel.findById(id)
 //         .catch(err => res.status(500).send(err))
-//     res.render("author/edit", {author});
+//     res.render("user/edit", {user});
 // }
 
 // const update = async (req, res) => {
 //     let { id } = req.params
 //     let { name, bio, gender } = req.body
-//     await AuthorModel.findByIdAndUpdate(id, {name, bio, gender})
+//     await UserModel.findByIdAndUpdate(id, {name, bio, gender})
 //         .catch(err => res.status(500).send(err));
-//     res.redirect(`/authors/${id}`)
+//     res.redirect(`/users/${id}`)
 // }
 
 // const destroy = async (req, res) => {
 //     let { id } = req.params
-//     await AuthorModel.findByIdAndDelete(id)
+//     await UserModel.findByIdAndDelete(id)
 //         .catch(err => res.status(500).send(err));
-//     res.redirect('/authors');
+//     res.redirect('/users');
 // }
 
 module.exports = {
-//     create,
-     index
-//     make,
+    index,
+    create,
+    make
 //     show,
 //     edit,
 //     update,
 //     destroy
- }
+}
