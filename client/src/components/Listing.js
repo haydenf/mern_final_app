@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Icon, Modal} from 'semantic-ui-react'
+import { Card, Image, Button, Icon, Modal, Input, TextArea} from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 
@@ -11,9 +11,18 @@ class Listing extends Component {
             _id: "",
             title: "",
             description: "",
-            image: ""
+            image: "",
+            open: false
          }
    }
+
+   // modal for edit function //
+    closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
+        this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
+    }
+
+    close = () => this.setState({ open: false })
+
    // change logger //
    logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -37,13 +46,15 @@ class Listing extends Component {
         axios
             .put("/api/listing", listing)
             .then(res => {
-                const updateListing = this.props.listings.map(listing => {
+                const updateListings = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {
                         return res.data;
                     }
+                    console.log(res.data)
                     return listing
                 });
-                    this.props.listingHandler(updateListing)
+                    this.close();
+                    this.props.listingHandler(updateListings)
             })
                     .catch(err => console.log("this is an updated error" + err));
     };
@@ -61,6 +72,8 @@ class Listing extends Component {
 
     render() { 
         const {listings} = this.props
+        const { open, closeOnEscape, closeOnDimmerClick } = this.state
+
         return ( 
             <div>
                 {listings.map(listing => (
@@ -72,7 +85,49 @@ class Listing extends Component {
                             <Card.Header>{listing.title}</Card.Header>
                             <Card.Description>{listing.description}</Card.Description>
                             <div>
-                                <Button primary>Edit</Button>
+
+
+                            <Button onClick={this.closeConfigShow(false, true)}> 
+                            Edit
+                            </Button>
+                            <Modal
+                                    open={open}
+                                    closeOnEscape={closeOnEscape}
+                                    closeOnDimmerClick={closeOnDimmerClick}
+                                    onClose={this.close}
+                                    >
+                                    <Modal.Header>Edit information</Modal.Header>
+                                    <Modal.Content>
+                                <form method="POST">
+                                <Input
+                                    placeholder="Title"
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.logChange}
+                                />
+                                <br />
+                                <br />
+                                <TextArea
+                                    placeholder="Description"
+                                    name="description"
+                                    value={this.state.description}
+                                    onChange={this.logChange}
+                                />
+                                </form>
+                                    </Modal.Content>
+                                    <Modal.Actions>
+                                        <Button
+                                        onClick={this.editHandler}
+                                        positive
+                                        labelPosition='right'
+                                        icon='checkmark'
+                                        content='Yes'
+                                        />
+                                    </Modal.Actions>
+                                    </Modal>
+
+
+
                                 <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
                             </div>
                             </Card.Content>
