@@ -12,16 +12,21 @@ class Listing extends Component {
             title: "",
             description: "",
             image: "",
-            open: false
+            modalOpen: false
          }
    }
 
    // modal for edit function //
-    closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
-        this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
-    }
 
-    close = () => this.setState({ open: false })
+    handleOpen = listings => {this.setState({ 
+        modalOpen: true,
+        _id: listings._id,
+        title: listings.title,
+        description: listings.description
+     });
+    };
+    
+    handleClose = () => this.setState({ modalOpen: false })
 
    // change logger //
    logChange = (e) => {
@@ -38,7 +43,7 @@ class Listing extends Component {
     // editing function to edit the state and the backend //
     editHandler = (e) => {
         e.preventDefault();
-        let listing = {
+        var listing = {
             _id: this.state._id,
             title: this.state.title,
             description: this.state.description
@@ -53,7 +58,7 @@ class Listing extends Component {
                     console.log(res.data)
                     return listing
                 });
-                    this.close();
+                    this.handleClose();
                     this.props.listingHandler(updateListings)
             })
                     .catch(err => console.log("this is an updated error" + err));
@@ -72,8 +77,6 @@ class Listing extends Component {
 
     render() { 
         const {listings} = this.props
-        const { open, closeOnEscape, closeOnDimmerClick } = this.state
-
         return ( 
             <div>
                 {listings.map(listing => (
@@ -86,16 +89,13 @@ class Listing extends Component {
                             <Card.Description>{listing.description}</Card.Description>
                             <div>
 
-
-                            <Button onClick={this.closeConfigShow(false, true)}> 
-                            Edit
-                            </Button>
-                            <Modal
-                                    open={open}
-                                    closeOnEscape={closeOnEscape}
-                                    closeOnDimmerClick={closeOnDimmerClick}
-                                    onClose={this.close}
-                                    >
+                                <Modal
+                                    trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    open={this.state.modalOpen}
+                                    onClose={this.handleClose}
+                                    basic
+                                    allowClear
+                                    size='small'>
                                     <Modal.Header>Edit information</Modal.Header>
                                     <Modal.Content>
                                 <form method="POST">
@@ -114,20 +114,9 @@ class Listing extends Component {
                                     onChange={this.logChange}
                                 />
                                 </form>
+                                <Button color='green' onClick={this.editHandler} inverted> edit </Button>
                                     </Modal.Content>
-                                    <Modal.Actions>
-                                        <Button
-                                        onClick={this.editHandler}
-                                        positive
-                                        labelPosition='right'
-                                        icon='checkmark'
-                                        content='Yes'
-                                        />
-                                    </Modal.Actions>
                                     </Modal>
-
-
-
                                 <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
                             </div>
                             </Card.Content>

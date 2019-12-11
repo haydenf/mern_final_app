@@ -2,7 +2,7 @@ import {NEW_LISTING, SET_LISTINGS, DELETE_LISTING} from '../actions/types';
 
 const initialState = {
     listings: []
-}
+};
 
 const listingReducer = (state = initialState, action) => {
      // copied state //
