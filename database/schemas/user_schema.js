@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const UserSchema = new Schema({
     googleID: {
         type: String,
@@ -30,4 +29,4 @@ const UserSchema = new Schema({
 });
 
 UserSchema.plugin(require('mongoose-bcrypt'));
-mongoose.model('users', UserSchema);
+module.exports = UserSchema;
