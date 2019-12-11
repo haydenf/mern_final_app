@@ -81,50 +81,50 @@ class Listing extends Component {
             <div>
                 {listings.map(listing => (
                     <div>
-                        <Card.Group itemsPerRow={6}>
-                            <Card>
-                            {/* <Image src='=' wrapped ui={false} /> */}
-                            <Card.Content>
-                            <Card.Header>{listing.title}</Card.Header>
-                            <Card.Description>{listing.description}</Card.Description>
-                            <div>
+                    <Card.Group itemsPerRow={6}>
+                        <Card>
+                        {/* <Image src='=' wrapped ui={false} /> */}
+                        <Card.Content>
+                        <Card.Header>{listing.title}</Card.Header>
+                        <Card.Description>{listing.description}</Card.Description>
+                        <div>
 
-                                <Modal
-                                    trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
-                                    open={this.state.modalOpen}
-                                    onClose={this.handleClose}
-                                    basic
-                                    allowClear
-                                    size='small'>
-                                    <Modal.Header>Edit information</Modal.Header>
-                                    <Modal.Content>
-                                <form method="POST">
-                                <Input
-                                    placeholder="Title"
-                                    name="title"
-                                    value={this.state.title}
-                                    onChange={this.logChange}
-                                />
-                                <br />
-                                <br />
-                                <TextArea
-                                    placeholder="Description"
-                                    name="description"
-                                    value={this.state.description}
-                                    onChange={this.logChange}
-                                />
-                                </form>
-                                <Button color='green' onClick={this.editHandler} inverted> edit </Button>
-                                    </Modal.Content>
-                                    </Modal>
-                                <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
-                            </div>
-                            </Card.Content>
-                            </Card>
-                        </Card.Group>
-                    </div>
-                    ))}
-            </div>
+                            <Modal
+                                trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                open={this.state.modalOpen}
+                                onClose={this.handleClose}
+                                basic
+                                allowClear
+                                size='small'>
+                                <Modal.Header>Edit information</Modal.Header>
+                                <Modal.Content>
+                            <form method="POST">
+                            <Input
+                                placeholder="Title"
+                                name="title"
+                                value={this.state.title}
+                                onChange={this.logChange}
+                            />
+                            <br />
+                            <br />
+                            <TextArea
+                                placeholder="Description"
+                                name="description"
+                                value={this.state.description}
+                                onChange={this.logChange}
+                            />
+                            </form>
+                            <Button color='green' onClick={this.editHandler} inverted> edit </Button>
+                                </Modal.Content>
+                                </Modal>
+                            <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
+                        </div>
+                        </Card.Content>
+                        </Card>
+                    </Card.Group>
+                </div>
+                ))}
+        </div>
          );
     }
 }
