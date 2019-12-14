@@ -6,7 +6,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 
 
-require("./database/models/User");
+require("./database/models/user_model");
 // require("./config/passport")(passport);
 
 //// Loading routes ////
