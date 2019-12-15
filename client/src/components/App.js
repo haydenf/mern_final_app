@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import {connect} from "react-redux";
+
+import {deletedListingHandler, listingHandler} from "../actions/listingAction"
+
 import DashboardView from "./DashboardView"
 import HomeView from "./HomeView"
 import LoginView from "./LoginView"
 import CreateUserView from "./CreateUserView"
 import ProductsView from "./ProductsView"
 import Listing from './Listing'
+import Form from './Form'
 
-export default class App extends Component {
+ class App extends Component {
   state = {
     loggedIn: false,
   }
@@ -54,14 +59,28 @@ export default class App extends Component {
               {this.state.loggedIn ? <Link to="/login">Login</Link> : "Logout"}
             </Menu.Item>
           </Menu>
-          <Route exact path="/dashboard" component={DashboardView} />
-          <Route exact path="/products" component={ProductsView} />
+         
+          <Route exact path="/dashboard" component={DashboardView, Listing} />
+          <Route exact path="/products" component={ProductsView, Form} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/createUser" component={CreateUserView} />
           <Route exact path="/" component={HomeView} />
-          <Route exact path="/listing" component={Listing} />
         </BrowserRouter>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  listings: state.listings
+})
+const mapDispatchToProps = (dispatch) => ({
+  listingHandler: listings => dispatch(listingHandler(listings)),
+  deletedListingHandler: id => dispatch(deletedListingHandler(id))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
