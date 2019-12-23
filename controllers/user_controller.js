@@ -18,42 +18,41 @@ async function create(req, res) {
     res.redirect("/users");
 }
 
-// const show = async (req, res) => {
-//     // get the author specific data from the author model
-//     let { id } = req.params
-//     let user = await UserModel.findById(id) //any mongoose specific interaction returns a promise
-//         .catch(err => res.status(500).send(err))
-//     res.render("user/show", {user});
-// }
+const show = async (req, res) => {
+    let { id } = req.params
+    let user = await UserModel.findById(id)
+        .catch(err => res.status(500).send(err))
+    res.render("user/show", {user});
+}
 
-// const edit = async (req, res) => {
-//     let { id } = req.params
-//     let user = await UserModel.findById(id)
-//         .catch(err => res.status(500).send(err))
-//     res.render("user/edit", {user});
-// }
+const edit = async (req, res) => {
+    let { id } = req.params
+    let user = await UserModel.findById(id)
+        .catch(err => res.status(500).send(err))
+    res.render("user/edit", {user});
+}
 
-// const update = async (req, res) => {
-//     let { id } = req.params
-//     let { name, bio, gender } = req.body
-//     await UserModel.findByIdAndUpdate(id, {name, bio, gender})
-//         .catch(err => res.status(500).send(err));
-//     res.redirect(`/users/${id}`)
-// }
+const update = async (req, res) => {
+    let { id } = req.params
+    let { googleID, email, password, firstName, lastName, image } = req.body
+    await UserModel.findByIdAndUpdate(id, {googleID, email, password, firstName, lastName, image})
+        .catch(err => res.status(500).send(err));
+    res.redirect(`/users/${id}`)
+}
 
-// const destroy = async (req, res) => {
-//     let { id } = req.params
-//     await UserModel.findByIdAndDelete(id)
-//         .catch(err => res.status(500).send(err));
-//     res.redirect('/users');
-// }
+const destroy = async (req, res) => {
+    let { id } = req.params
+    await UserModel.findByIdAndDelete(id)
+        .catch(err => res.status(500).send(err));
+    res.redirect('/users');
+}
 
 module.exports = {
     index,
     create,
-    make
-//     show,
-//     edit,
-//     update,
-//     destroy
+    make,
+    show,
+    edit,
+    update,
+    destroy
 }

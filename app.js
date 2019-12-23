@@ -54,13 +54,8 @@ app.use((req, res, next) => {
 });
 
 
-
-// app.use("/auth", auth);
 app.use("/api/listing", listing);
-
 app.use("/users", user);
-
-
 app.get("/", (req, res) => {
   res.send("HOME");
 });
