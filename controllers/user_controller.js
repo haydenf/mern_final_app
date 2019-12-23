@@ -25,6 +25,7 @@ const show = async (req, res) => {
     res.render("user/show", {user});
 }
 
+//finds user to edit
 const edit = async (req, res) => {
     let { id } = req.params
     let user = await UserModel.findById(id)
@@ -32,6 +33,7 @@ const edit = async (req, res) => {
     res.render("user/edit", {user});
 }
 
+//saves updated info on user
 const update = async (req, res) => {
     let { id } = req.params
     let { googleID, email, password, firstName, lastName, image } = req.body
