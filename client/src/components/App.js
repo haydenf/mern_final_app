@@ -56,7 +56,8 @@ export default class App extends Component {
           <Route exact path="/dashboard" component={DashboardView} />
           <Route exact path="/products" component={ProductsView} />
           <Route exact path="/login" component={LoginView} />
-          <Route exact path="/createUser" component={CreateUserView} />
+          <Route exact path="/users" component={CreateUserView} />
+          <Route exact path="/listings" component={CreateListingView} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
       </div>
