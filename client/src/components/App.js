@@ -6,6 +6,7 @@ import DashboardView from "./DashboardView"
 import HomeView from "./HomeView"
 import LoginView from "./LoginView"
 import CreateUserView from "./CreateUserView"
+import CreateListingView from "./CreateListingView"
 import ProductsView from "./ProductsView"
 
 export default class App extends Component {
@@ -56,7 +57,7 @@ export default class App extends Component {
           <Route exact path="/dashboard" component={DashboardView} />
           <Route exact path="/products" component={ProductsView} />
           <Route exact path="/login" component={LoginView} />
-          <Route exact path="/users" component={CreateUserView} />
+          <Route exact path="/users/new" component={CreateUserView} />
           <Route exact path="/listings" component={CreateListingView} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
