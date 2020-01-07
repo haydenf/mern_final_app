@@ -11,7 +11,8 @@ require("./database/models/user_model");
 
 //// Loading routes ////
 // const auth = require("./routes/auth");
-const listing = require("./routes/listing");
+const listing = require("./routes/listing_routes");
+const user = require("./routes/user_routes");
 
 //// Loading mongoose keys ////
 const keys = require("./config/keys");
@@ -58,6 +59,7 @@ app.get("/", (req, res) => {
 
 // app.use("/auth", auth);
 app.use("/api/listing", listing);
+app.use("/api/users", user);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
