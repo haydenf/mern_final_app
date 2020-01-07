@@ -1,19 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const ListingSchema = require("./../schemas/listing_schema");
 
-//create Schema
-const ListingSchema = new Schema({
-  title: {
-    type: String,
-    required: true 
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  image: {
-      type: String
-  },
-  
-});
-mongoose.model("listings", ListingSchema);
+const ListingModel = mongoose.model("listings", ListingSchema);
+module.exports = ListingModel;
