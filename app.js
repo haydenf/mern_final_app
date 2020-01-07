@@ -53,13 +53,11 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use("/api/listing", listing);
 app.use("/users", user);
 app.get("/", (req, res) => {
   res.send("HOME");
 });
-
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
