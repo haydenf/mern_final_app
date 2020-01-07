@@ -15,6 +15,12 @@ function make(req, res) {
 async function create(req, res) {
     let { googleID, email, password, firstName, lastName, image } = req.body;
     let user = await UserModel.create({ googleID, email, password, firstName, lastName, image })
+    new User(user)
+        .save()
+        .then(user => {
+            console.log(user);
+            res.json(user);
+          })
         .catch(err => res.status(500).send(err));
     res.redirect("/users");
 }

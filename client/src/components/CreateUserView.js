@@ -19,7 +19,7 @@ export default class CreateUserView extends Component {
     e.preventDefault();
     console.log("You hit submit", e);
   //make a post request to the server
-    axios.post("api/users", {
+    axios.post("/api/users", {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
