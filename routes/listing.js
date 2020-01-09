@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-require("../database/models/Listing")
+require("../database/models/listing_model")
 const Listing = mongoose.model("listings")
 
 // Read listing api //

@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 
 require("./database/models/user_model");
+require("./database/models/listing_model");
 // require("./config/passport")(passport);
 
 //// Loading routes ////
