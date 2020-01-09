@@ -1,7 +1,41 @@
 import React, {Component} from "react"
 import { Button, Checkbox, Form } from 'semantic-ui-react'
+import axios from "axios";
 
 export default class CreateUserView extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    }
+  }
+
+
+  //---------------------------------------------------------------------------------
+  onSubmit = e => {
+    e.preventDefault();
+    console.log("You hit submit", e);
+  //make a post request to the server
+    axios.post("api/users", {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    })
+    // console.log(this.state);
+    .then((response) => {
+      console.log("xxxxxx", response)
+      //call the function passed by the parent (not yet created) to take a local copy of the user
+      this.props.handleNewUser(response.data)
+      console.log(".......", this.state)
+    })
+    .catch(err => (console.log(err)))
+  }
+//---------------------------------------------------------------------------------
+
     render(){
         return(
             <Form>
@@ -32,7 +66,7 @@ export default class CreateUserView extends Component {
             <Form.Field>
               <Checkbox label='I agree to the Terms and Conditions' />
             </Form.Field>
-            <Button type='submit'>Submit</Button>
+            <Button onClick={this.onSubmit} type='submit'>Submit</Button>
           </Form>
         )
     }

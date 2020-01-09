@@ -48,6 +48,14 @@ const destroy = async (req, res) => {
     res.redirect('/users');
 }
 
+async function create(req, res) {
+    //logic for creating a resource
+    let { firstName, lastName, email, password } = req.body;
+    let user = await UserModel.create({ firstName, lastName, email, password  })
+        .catch(err => res.status(500).send(err));
+    res.redirect("/");
+}
+
 module.exports = {
     index,
     create,

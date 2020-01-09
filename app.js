@@ -60,6 +60,10 @@ app.get("/", (req, res) => {
   res.send("HOME");
 });
 
+// app.use("/auth", auth);
+app.use("/api/listing", listing);
+app.use("/api/users", user);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   const path = require("path");
