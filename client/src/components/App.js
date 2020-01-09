@@ -10,6 +10,7 @@ import DashboardView from "./DashboardView"
 import HomeView from "./HomeView"
 import LoginView from "./LoginView"
 import CreateUserView from "./CreateUserView"
+import CreateListingView from "./CreateListingView"
 import ProductsView from "./ProductsView"
 import Listing from './Listing'
 import Form from './Form'
@@ -63,7 +64,8 @@ import Form from './Form'
           <Route exact path="/dashboard" component={DashboardView, Listing} />
           <Route exact path="/products" component={ProductsView, Form} />
           <Route exact path="/login" component={LoginView} />
-          <Route exact path="/createUser" component={CreateUserView} />
+          <Route exact path="/users/new" component={CreateUserView} />
+          <Route exact path="/listings" component={CreateListingView} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
       </div>
