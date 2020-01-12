@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
         .catch(err => console.log("Logging the error on save listing is" +err))
 });
 
-// Editing listing by ID //
+// update listing by ID //
 
 router.put("/", (req, res) => {
     // finding listing by id attached
