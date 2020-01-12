@@ -21,6 +21,12 @@ export default class App extends Component {
     }
   }
 
+  handleNewUser = (user) => {
+    this.setState({
+      users: [...this.state.users, user]
+    })
+  }
+
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
@@ -51,7 +57,7 @@ export default class App extends Component {
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
             > 
-              {this.state.loggedIn ? <Link to="/login">Login</Link> : "Logout"}
+              {this.state.loggedIn ? <Link to="/login" handleNewUser={this.handleNewUser}>Login</Link> : "Logout"}
             </Menu.Item>
           </Menu>
           <Route exact path="/dashboard" component={DashboardView} />
