@@ -9,17 +9,17 @@ export default class CreateUserView extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        error: ""
     }
   }
-
 
   //---------------------------------------------------------------------------------
   onSubmit = e => {
     e.preventDefault();
     console.log("You hit submit", e);
-  //make a post request to the server
-    axios.post("api/users", {
+  //want to save data for props if needed but should save on backend for more security
+    axios.post("/api/users", {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,

@@ -1,13 +1,16 @@
-const ListingModel = require("../database/models/listing_model");
+const mongoose = require("mongoose");
 
-// require("../database/models/listing_model")
-// const Listing = mongoose.model("listings")
+const ListingModel = require("../database/models/listing_model");
+require("../database/models/listing_model")
+const Listing = mongoose.model("listings")
 
 
 //showing a list of all listings
 async function index(req, res) {
-    let users = await ListingModel.find();
-    res.json(users);
+    Listing.find()
+        .then(listings => {console.log(listings);
+            res.json(listings)})
+        .catch(err => console.log(err))
 }
 
 //shows form to make new listing
