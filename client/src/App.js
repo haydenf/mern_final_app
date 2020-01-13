@@ -1,31 +1,4 @@
-// import React, {Component, Fragment, Container} from 'react';
-// import './App.css';
-// import Listing from "./components/Listing";
-// import Forms from "./components/Form";
-// import LoginView from "./components/LoginView";
-// import Menu from './components/Menu';
-
-// class App extends Component {
-
-//   render() { 
-//     return ( 
-//       <div className="App">
-//           <Fragment>
-//         <Menu />
-//         <Container>
-//           <LoginView />
-//           <Forms />
-//           <Listing />
-//         </ Container>
-//         </Fragment>
-//       </div> 
-//     );
-//   }
-// }
- 
-// export default App;
-
-import React, { Component } from 'react';
+import React, { Component, Fragment, Container } from 'react';
 import './App.css';
 import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -61,6 +34,15 @@ import Form from './components/Form'
 
     return (
       <div className="App">
+           <Fragment>
+//         <Menu />
+//         <Container>
+//           <LoginView />
+//           <Form />
+//           <Listing />
+//         </ Container>
+//         </Fragment>
+
         <BrowserRouter>
         
           <Menu color="grey" inverted>
