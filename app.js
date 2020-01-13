@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 
 require("./database/models/user_model");
+require("./database/models/listing_model");
 // require("./config/passport")(passport);
 
 //// Loading routes ////
@@ -59,7 +60,7 @@ app.get("/", (req, res) => {
   res.send("HOME");
 });
 
-// app.use("/auth", auth);
+
 app.use("/api/users", user);
 
 if (process.env.NODE_ENV === "production") {

@@ -18,6 +18,7 @@ const create = async (req, res) => {
     console.log(req.body);
     let user = await UserModel.create({ firstName, lastName, email, password, image })
     new UserModel(user)
+
         .save()
         .then(user => {
             console.log("WE CREATED A USER: ", user);
@@ -37,6 +38,7 @@ const show = async (req, res) => {
     res.render("user/show", {user});
 }
 
+//finds user to edit
 const edit = async (req, res) => {
     let { id } = req.params
     let user = await UserModel.findById(id)
@@ -44,6 +46,7 @@ const edit = async (req, res) => {
     res.render("user/edit", {user});
 }
 
+//saves updated info on user
 const update = async (req, res) => {
     let { id } = req.params
     let { googleID, email, password, firstName, lastName, image } = req.body
@@ -57,6 +60,14 @@ const destroy = async (req, res) => {
     await UserModel.findByIdAndDelete(id)
         .catch(err => res.status(500).send(err));
     res.redirect('/users');
+}
+
+async function create(req, res) {
+    //logic for creating a resource
+    let { firstName, lastName, email, password } = req.body;
+    let user = await UserModel.create({ firstName, lastName, email, password  })
+        .catch(err => res.status(500).send(err));
+    res.redirect("/");
 }
 
 module.exports = {
