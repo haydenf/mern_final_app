@@ -9,6 +9,8 @@ router.post("/", UserController.create);
 
 router.get("/users/new", UserController.make);
 
+router.post("/users", UserController.create);
+
 router.get("/users/:id", UserController.show);
 
 router.get("/users/edit/:id", UserController.edit);

@@ -13,7 +13,7 @@ function make(req, res) {
 }
 
 async function create(req, res) {
-    console.log("create method")
+    console.log("................create method")
     let { googleID, email, password, firstName, lastName, image } = req.body;
     let user = await UserModel.create({ googleID, email, password, firstName, lastName, image })
     new User(user)
@@ -47,6 +47,7 @@ const show = async (req, res) => {
     res.render("user/show", {user});
 }
 
+//finds user to edit
 const edit = async (req, res) => {
     let { id } = req.params
     let user = await UserModel.findById(id)
@@ -54,6 +55,7 @@ const edit = async (req, res) => {
     res.render("user/edit", {user});
 }
 
+//saves updated info on user
 const update = async (req, res) => {
     let { id } = req.params
     let { googleID, email, password, firstName, lastName, image } = req.body
@@ -67,6 +69,14 @@ const destroy = async (req, res) => {
     await UserModel.findByIdAndDelete(id)
         .catch(err => res.status(500).send(err));
     res.redirect('/users');
+}
+
+async function create(req, res) {
+    //logic for creating a resource
+    let { firstName, lastName, email, password } = req.body;
+    let user = await UserModel.create({ firstName, lastName, email, password  })
+        .catch(err => res.status(500).send(err));
+    res.redirect("/");
 }
 
 module.exports = {
