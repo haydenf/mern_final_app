@@ -23,7 +23,7 @@ export default class LoginView extends Component {
               <input placeholder='Password' type="password"/>
             </Form.Field>
             <Button type='submit'>Submit</Button>
-            <p>Not signed up? <Link to="/users/new" handleNewUser={this.handleNewUser}>Create user</Link></p>
+            <p>Not signed up? <Link to="/users/new">Create user</Link></p>
           </Form>
         )
     }

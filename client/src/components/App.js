@@ -12,6 +12,7 @@ import ProductsView from "./ProductsView"
 export default class App extends Component {
   state = {
     loggedIn: false,
+    activeItem: 'home'
   }
 
   handleItemClick = (e, { name }) => {
@@ -21,12 +22,6 @@ export default class App extends Component {
     }
   }
 
-  handleNewUser = (user) => {
-    this.setState({
-      users: [...this.state.users, user]
-    })
-  }
-
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
@@ -34,30 +29,35 @@ export default class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
+        
           <Menu color="grey" inverted>
+            <div>
             <Menu.Item
+              as={Link} to='/dashboard' 
               name='dashboard'
               active={activeItem === 'Dashboard'}
               onClick={this.handleItemClick}
               float="right"
             >
-            <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
+            </div>
 
             <Menu.Item
+              as={Link} to='/products'
               name='products'
               active={activeItem === 'Products'}
               onClick={this.handleItemClick}
             >
-              <Link to="/products">Products</Link>
             </Menu.Item>
 
             <Menu.Item
-              name={this.state.loggedIn ? "Login" : "Logout"}
+              as={Link} to='/login' 
+              name={this.state.loggedIn ? "Logout" : "Login"}
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
             > 
-              {this.state.loggedIn ? "Logout" : <Link to="/login" handleNewUser={this.handleNewUser}>Login</Link>}
+              {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
+
             </Menu.Item>
           </Menu>
           <Route exact path="/dashboard" component={DashboardView} />
