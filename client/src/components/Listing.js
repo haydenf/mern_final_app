@@ -35,7 +35,7 @@ class Listing extends Component {
     };
     // Fetching the listings from backend //
     grabListings = async () => {
-        let res = await axios.get('/api/listings')
+        let res = await axios.get('/api/listing')
         let listings = res.data
         this.props.listingHandler(listings)
     }
@@ -49,7 +49,7 @@ class Listing extends Component {
             description: this.state.description
         };
         axios
-            .put("/api/listings", listing)
+            .put("/api/listing", listing)
             .then(res => {
                 const updateListings = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {

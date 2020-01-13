@@ -32,34 +32,38 @@ async function create(req, res) {
 };
 
 const show = async (req, res) => {
-    let { id } = req.params
+    let { _id } = req.params
     let listing = await ListingModel.findById(id)
         .then(listings => {console.log(listings);
             res.json(listings)})
         .catch(err => res.status(500).send(err))
-    res.render("listing/show", {listing});
 }
 
 const edit = async (req, res) => {
-    let { id } = req.params
-    let listing = await ListingModel.findById(id)
-        .catch(err => res.status(500).send(err))
-    res.render("listing/edit", {listing});
+    Listing.find()
+    .then(listings => {console.log(listings);
+        res.json(listings)})
+    .catch(err => console.log(err))
 }
 
+
 const update = async (req, res) => {
-    let { id } = req.params
-    let { title, description, image } = req.body
-    await ListingModel.findByIdAndUpdate(id, {title, description, image})
-        .catch(err => res.status(500).send(err));
-    res.redirect(`/listing/${id}`)
+     // finding listing by id attached
+     Listing.findById({_id: req.body._id})
+     // checking if each = the other than saving changes to database
+       .then(listing => {
+         (listing.title = req.body.title), (listing.description = req.body.description);
+         listing.save().then(listing => {
+           res.json(listing);
+         });
+       })
+       .catch(err => console.log("Editing error is"+err));
 }
 
 const destroy = async (req, res) => {
-    let { id } = req.params
-    await ListingModel.findByIdAndDelete(id)
-        .catch(err => res.status(500).send(err));
-    res.redirect('/listing');
+    Listing.remove({_id: req.body._id})
+    .then(() => {res.send("You've deleted the listing from db");})
+    .catch(err => console.log("Error with deleting from db is" +err));
 }
 
   module.exports = {

@@ -8,12 +8,12 @@ router.post("/", ListingController.create);
 
 router.get("/new", ListingController.make);
 
-router.get("/:id", ListingController.show);
+router.get("/", ListingController.show);
 
-router.get("/edit/:id", ListingController.edit);
+router.get("/", ListingController.edit);
 
-router.put("/:id", ListingController.update);
+router.put("/", ListingController.update);
 
-router.delete("/:id", ListingController.destroy);
+router.delete("/", ListingController.destroy);
 
 module.exports = router;
