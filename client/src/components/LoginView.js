@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
 
 export default class LoginView extends Component {
@@ -13,18 +13,37 @@ export default class LoginView extends Component {
 
     render(){
         return (
-            <Form>
-            <Form.Field>
-              <label>Email</label>
-              <input placeholder='Email' />
-            </Form.Field>
-            <Form.Field>
-              <label>Password</label>
-              <input placeholder='Password' type="password"/>
-            </Form.Field>
-            <Button type='submit'>Submit</Button>
-            <p>Not signed up? <Link to="/users/new">Create user</Link></p>
-          </Form>
+            <Grid centered columns={2}>
+              <Grid.Column>
+                <Header as="h2" textAlign="center">
+                  Login
+                </Header>
+                <Segment>
+                  <Form size="large">
+                    <Form.Input
+                      fluid
+                      icon="user"
+                      iconPosition="left"
+                      placeholder="Email address"
+                    />
+                    <Form.Input
+                      fluid
+                      icon="lock"
+                      iconPosition="left"
+                      placeholder="Password"
+                      type="password"
+                    />
+                    <Button color="blue" fluid size="large">
+                      Login
+                    </Button>
+                  </Form>
+                </Segment>
+                <Message>
+                  Not registered yet? <a href="/users/new">Sign Up</a>
+                </Message>
+              </Grid.Column>
+            </Grid>
+          
         )
     }
 }
