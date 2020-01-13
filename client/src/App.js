@@ -34,15 +34,6 @@ import Form from './components/Form'
 
     return (
       <div className="App">
-           <Fragment>
-//         <Menu />
-//         <Container>
-//           <LoginView />
-//           <Form />
-//           <Listing />
-//         </ Container>
-//         </Fragment>
-
         <BrowserRouter>
         
           <Menu color="grey" inverted>
