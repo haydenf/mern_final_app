@@ -12,33 +12,24 @@ function make(req, res) {
     res.render("CreateUserView");
 }
 
-async function create(req, res) {
-    console.log("................create method")
-    let { googleID, email, password, firstName, lastName, image } = req.body;
-    let user = await UserModel.create({ googleID, email, password, firstName, lastName, image })
-    new User(user)
+const create = async (req, res) => {
+    console.log(".......create method")
+    let { firstName, lastName, email, password, image } = req.body;
+    console.log(req.body);
+    let user = await UserModel.create({ firstName, lastName, email, password, image })
+    new UserModel(user)
+
         .save()
         .then(user => {
             console.log("WE CREATED A USER: ", user);
             res.json(user);
           })
         .catch(err => res.status(500).send(err));
-    res.redirect("/users");
+    res.status(200).json({
+        message: "Successfully signed up!",
+        success: true
+    });
 }
-
-// const create = (req, res, next) => {
-//     const user = new User(req.body)
-//     user.save((err, result) => {
-//       if (err) {
-//         return res.status(500).json({
-//           error: errorHandler.getErrorMessage(err)
-//         })
-//       }
-//       res.status(200).json({
-//         message: "Successfully signed up!"
-//       })
-//     })
-// }
 
 const show = async (req, res) => {
     let { id } = req.params
@@ -71,13 +62,6 @@ const destroy = async (req, res) => {
     res.redirect('/users');
 }
 
-async function create(req, res) {
-    //logic for creating a resource
-    let { firstName, lastName, email, password } = req.body;
-    let user = await UserModel.create({ firstName, lastName, email, password  })
-        .catch(err => res.status(500).send(err));
-    res.redirect("/");
-}
 
 module.exports = {
     index,

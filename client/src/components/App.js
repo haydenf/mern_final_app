@@ -18,6 +18,7 @@ import Form from './Form'
  class App extends Component {
   state = {
     loggedIn: false,
+    activeItem: 'home'
   }
 
   handleItemClick = (e, { name }) => {
@@ -27,12 +28,6 @@ import Form from './Form'
     }
   }
 
-  handleNewUser = (user) => {
-    this.setState({
-      users: [...this.state.users, user]
-    })
-  }
-
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
@@ -40,30 +35,35 @@ import Form from './Form'
     return (
       <div className="App">
         <BrowserRouter>
+        
           <Menu color="grey" inverted>
+            <div>
             <Menu.Item
+              as={Link} to='/dashboard' 
               name='dashboard'
               active={activeItem === 'Dashboard'}
               onClick={this.handleItemClick}
               float="right"
             >
-            <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
+            </div>
 
             <Menu.Item
+              as={Link} to='/products'
               name='products'
               active={activeItem === 'Products'}
               onClick={this.handleItemClick}
             >
-              <Link to="/products">Products</Link>
             </Menu.Item>
 
             <Menu.Item
-              name={this.state.loggedIn ? "Login" : "Logout"}
+              as={Link} to='/login' 
+              name={this.state.loggedIn ? "Logout" : "Login"}
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
             > 
-              {this.state.loggedIn ? <Link to="/login" handleNewUser={this.handleNewUser}>Login</Link> : "Logout"}
+              {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
+
             </Menu.Item>
           </Menu>
          
@@ -74,6 +74,7 @@ import Form from './Form'
           <Route exact path="/listings" component={CreateListingView} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
+       
       </div>
     )
   }

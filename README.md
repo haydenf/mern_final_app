@@ -159,3 +159,6 @@ ____
 
 9/12/2019
 ![Trello 05](./docs/Trello/trello_05.png)
+
+13/01/2020
+![Trello 06](./docs/Trello/trello_06.png)
