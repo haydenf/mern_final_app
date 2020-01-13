@@ -60,6 +60,7 @@ app.get("/", (req, res) => {
   res.send("HOME");
 });
 
+app.use("/api/listings", listing);
 
 app.use("/api/users", user);
 

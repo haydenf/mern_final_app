@@ -4,7 +4,7 @@ const ListingController = require("./../controllers/listing_controller");
 
 router.get("/listings", ListingController.index);
 
-router.post("/listings", ListingController.create);
+router.post("/listing", ListingController.create);
 
 router.get("/listings/new", ListingController.make);
 

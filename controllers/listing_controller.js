@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const ListingModel = require("../database/models/listing_model");
 require("../database/models/listing_model")
 const Listing = mongoose.model("listings")
