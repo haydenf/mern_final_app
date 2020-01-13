@@ -57,7 +57,7 @@ export default class App extends Component {
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
             > 
-              {this.state.loggedIn ? <Link to="/login" handleNewUser={this.handleNewUser}>Login</Link> : "Logout"}
+              {this.state.loggedIn ? "Logout" : <Link to="/login" handleNewUser={this.handleNewUser}>Login</Link>}
             </Menu.Item>
           </Menu>
           <Route exact path="/dashboard" component={DashboardView} />
@@ -67,6 +67,7 @@ export default class App extends Component {
           <Route exact path="/listings" component={CreateListingView} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
+       
       </div>
     )
   }
