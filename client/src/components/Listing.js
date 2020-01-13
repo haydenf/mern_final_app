@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Input, TextArea, Form } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Input, TextArea, Form, Segment } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";
@@ -82,17 +82,15 @@ class Listing extends Component {
             <div>
                 {listings.map(listing => (
                     <div>
-                    <Card.Group itemsPerRow={6}>
+                    <Card.Group itemsPerRow={4}>
                         <Card>
                         <Card.Content>
                         <Card.Header>{listing.title}</Card.Header>
                         <Card.Description>{listing.description}</Card.Description>
-                        <div>
                             <Modal
                                 trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
                                 open={this.state.modalOpen}
                                 onClose={this.handleClose}
-                                // allowClear
                                 dimmer='blurring'
                                 size='small'>
                                 <Modal.Header>Edit information</Modal.Header>
@@ -130,7 +128,6 @@ class Listing extends Component {
                                 </Modal.Actions>
                             </Modal>
                             <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
-                        </div>
                         </Card.Content>
                         </Card>
                     </Card.Group>

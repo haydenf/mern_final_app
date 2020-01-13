@@ -10,10 +10,9 @@ import DashboardView from "./components/DashboardView"
 import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
 import CreateUserView from "./components/CreateUserView"
-import CreateListingView from "./components/CreateListingView"
 import ProductsView from "./components/ProductsView"
 import Listing from './components/Listing'
-import Form from './components/Form'
+import NewProductForm from './components/NewProductForm'
 
  class App extends Component {
   state = {
@@ -68,10 +67,10 @@ import Form from './components/Form'
           </Menu>
          
           <Route exact path="/dashboard" component={DashboardView, Listing} />
-          <Route exact path="/products" component={ProductsView, Form} />
+          <Route exact path="/products" component={ProductsView, NewProductForm} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users/new" component={CreateUserView} />
-          <Route exact path="/listings" component={CreateListingView} />
+          <Route exact path="/listings" component={Listing} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
        
