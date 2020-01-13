@@ -52,14 +52,14 @@ const update = async (req, res) => {
     let { title, description, image } = req.body
     await ListingModel.findByIdAndUpdate(id, {title, description, image})
         .catch(err => res.status(500).send(err));
-    res.redirect(`/listings/${id}`)
+    res.redirect(`/listing/${id}`)
 }
 
 const destroy = async (req, res) => {
     let { id } = req.params
     await ListingModel.findByIdAndDelete(id)
         .catch(err => res.status(500).send(err));
-    res.redirect('/listings');
+    res.redirect('/listing');
 }
 
   module.exports = {

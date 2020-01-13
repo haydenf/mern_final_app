@@ -67,7 +67,7 @@ class Listing extends Component {
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
-            .delete("/api/listings", { data: listing })
+            .delete("/api/listing", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
             .catch(err => console.log("this is the deletion function err" + err));
     };
