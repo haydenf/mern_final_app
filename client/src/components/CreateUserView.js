@@ -28,24 +28,15 @@ export default class CreateUserView extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    // console.log(this.state);
     .then((response) => {
-      console.log("xxxxxx", response)
-
       if(response.data.success){
-        // res.redirect("/")
-        console.log("###### WORKING #######")
         this.props.history.push('/')
       }
-      //call the function passed by the parent (not yet created) to take a local copy of the user
-      // this.props.handleNewUser(response.data)
-      console.log(".......", this.state)
     })
   }
 
   logChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   };
     
     
