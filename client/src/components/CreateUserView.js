@@ -31,11 +31,16 @@ export default class CreateUserView extends Component {
     // console.log(this.state);
     .then((response) => {
       console.log("xxxxxx", response)
+
+      if(response.data.success){
+        // res.redirect("/")
+        console.log("###### WORKING #######")
+        this.props.history.push('/')
+      }
       //call the function passed by the parent (not yet created) to take a local copy of the user
-      this.props.handleNewUser(response.data)
+      // this.props.handleNewUser(response.data)
       console.log(".......", this.state)
     })
-    .catch(err => (console.log(err)))
   }
 
   logChange = e => {

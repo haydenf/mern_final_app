@@ -17,14 +17,17 @@ const create = async (req, res) => {
     let { firstName, lastName, email, password, image } = req.body;
     console.log(req.body);
     let user = await UserModel.create({ firstName, lastName, email, password, image })
-    new User(user)
+    new UserModel(user)
         .save()
         .then(user => {
             console.log("WE CREATED A USER: ", user);
             res.json(user);
           })
         .catch(err => res.status(500).send(err));
-    res.redirect("/users");
+    res.status(200).json({
+        message: "Successfully signed up!",
+        success: true
+    });
 }
 
 const show = async (req, res) => {
