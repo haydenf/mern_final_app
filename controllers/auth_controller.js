@@ -1,2 +1,5 @@
-const User = require("../database/models/User");
-const jwt = require("jsonwebtoken");
+function loginCreate(req, res) {
+        console.log("LOGIN CREATE");
+        res.send("RES: LOGINCREATE");
+        res.redirect("/")
+    }
