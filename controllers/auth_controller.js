@@ -1,5 +1,4 @@
 function loginCreate(req, res) {
-        console.log("LOGIN CREATE");
-        res.send("RES: LOGINCREATE");
+        res.send("LOGIN CREATE");
         res.redirect("/")
     }

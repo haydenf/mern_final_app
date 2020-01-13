@@ -25,9 +25,9 @@ export default class LoginView extends Component {
             <Button type='submit'>Submit</Button>
             <p>Not signed up? <Link to="/users/new" handleNewUser={this.handleNewUser}>Create user</Link></p>
             <div>
-             <Link to="/oauth/google">
-              <button>Login via Google</button>
-            </Link>
+             <a href="/auth/google">Google
+          {/*     <button>Login via Google</button> */}
+            </a>
           </div>
           </Form>
         )
