@@ -4,10 +4,12 @@
   "description": "Application using MERN stack for final CoderAcademy assignment",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Hayden Fuller, Jo Dunham, Ewe Lin Loo",
   "license": "ISC",
