@@ -17,4 +17,9 @@ router.get(
   AuthenticationController.loginSuccess
 );
 
+router.get(
+  "/logout",
+  AuthenticationController.logout
+)
+
 module.exports = router;

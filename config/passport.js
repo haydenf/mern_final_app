@@ -1,5 +1,6 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
 const keys = require("./keys");
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
@@ -43,6 +44,31 @@ module.exports = function (passport){
       });
     }
   ));
+
+  passport.use(new JwtStrategy(
+        {
+            jwtFromRequest: (req) => {
+                let token = null;
+                
+                if (req && req.cookies) {
+                    token = req.cookies['jwt'];
+                }
+    
+                return token;
+            },
+            secretOrKey: keys.googleClientSecret
+        },
+        async (jwt_payload, done) => {
+            const user = await User.findById(jwt_payload.sub)
+                .catch(done);
+    
+            if (!user) {
+                return done(null, false);
+            }
+    
+            return done(null, user);
+         }
+    ));
 }
 
   passport.serializeUser(function(user, done) {
