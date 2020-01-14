@@ -21,8 +21,14 @@ import NewProductForm from './components/NewProductForm'
 
   handleItemClick = (e, { name }) => {
     this.setState({activeItem: name})
-    if (name === "Login" || name === "Logout"){
-      this.setState({loggedIn: !this.state.loggedIn})
+    if (document.cookie.includes("jwt=")){
+      this.setState({loggedIn: true})
+    }
+  }
+
+  componentDidMount = () => {
+    if (document.cookie.includes("jwt=")){
+      this.setState({loggedIn: true})
     }
   }
 
@@ -63,7 +69,8 @@ import NewProductForm from './components/NewProductForm'
             </Menu.Item>
 
             <Menu.Item
-              as={Link} to='/login' 
+//            as={Link} to='/login' 
+              as={Link} to={this.state.loggedIn ? "/auth/logout" : "/login" }
               name={this.state.loggedIn ? "Logout" : "Login"}
               active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
               onClick={this.handleItemClick}
