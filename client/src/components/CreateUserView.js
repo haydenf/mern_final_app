@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Container, Segment, Grid, Header } from 'semantic-ui-react'
 import axios from "axios";
 
 export default class CreateUserView extends Component {
@@ -49,56 +49,85 @@ export default class CreateUserView extends Component {
 
     render(){
         return(
-            <Form>
-            <Form.Input
-              placeholder="First Name"
-              allowClear
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.logChange}
-            />
-            <Form.Input
-              placeholder="Last Name"
-              allowClear
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.logChange}
-            />
-            <Form.Input
-              placeholder="Email"
-              allowClear
-              name="email"
-              value={this.state.email}
-              onChange={this.logChange}
-            />
-            <Form.Input
-              placeholder="Confirm Email"
-              allowClear
-              name="confirmEmail"
-//               value={this.state.confirmEmail}
-//               onChange={this.logChange}
-            />
-            <Form.Input
-              placeholder="Password"
-              allowClear
-              name="password"
-              value={this.state.password}
-              onChange={this.logChange}
-              type="password"
-            />
-            <Form.Input
-              placeholder="Confirm Password"
-              allowClear
-              name="confirmPassword"
-              type="password"
-//               value={this.state.password}
-//               onChange={this.logChange}
-            />
-            <Form.Field>
-              <Checkbox label='I agree to the Terms and Conditions' />
-            </Form.Field>
-            <Button onClick={this.onSubmit} type='submit'>Submit</Button>
-          </Form>
-        )
+          <Grid centered columns={2}>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">
+              Register
+            </Header>
+            <Segment>
+              <Form size="large">
+                <Form.Input
+                  placeholder="First Name"
+                  fluid
+                  allowclear
+                  icon="user"
+                  iconPosition="left"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.logChange}
+                />
+                <Form.Input
+                  placeholder="Last Name"
+                  fluid
+                  allowclear
+                  icon="user"
+                  iconPosition="left"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.logChange}
+                />
+                <Form.Input
+                  placeholder="Email"
+                  fluid
+                  allowclear
+                  icon="mail"
+                  iconPosition="left"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.logChange}
+                />
+                <Form.Input
+                  placeholder="Confirm Email"
+                  fluid
+                  allowclear
+                  icon="mail"
+                  iconPosition="left"
+                  name="confirmEmail"
+    //               value={this.state.confirmEmail}
+    //               onChange={this.logChange}
+                />
+                <Form.Input
+                  placeholder="Password"
+                  fluid
+                  allowclear
+                  icon="lock"
+                  iconPosition="left"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.logChange}
+                  type="password"
+                />
+                <Form.Input
+                  placeholder="Confirm Password"
+                  fluid
+                  allowclear
+                  icon="lock"
+                  iconPosition="left"
+                  name="confirmPassword"
+                  type="password"
+    //               value={this.state.password}
+    //               onChange={this.logChange}
+                />
+                <Form.Field>
+                  <Checkbox label='I agree to the Terms and Conditions' />
+                </Form.Field>
+                <Button className="button" onClick={this.onSubmit} type='submit' fluid>
+                      Submit
+                </Button>
+              </Form>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+       )
     }
 }

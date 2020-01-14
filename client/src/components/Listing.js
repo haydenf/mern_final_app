@@ -81,7 +81,7 @@ class Listing extends Component {
         return ( 
             <div>
                 <div className="card">
-                <Container>
+                <Container className="container">
                     <Card.Group itemsPerRow={2}>
                     {listings.map(listing => (
                         <Card>
@@ -89,7 +89,7 @@ class Listing extends Component {
                             <Card.Header>{listing.title}</Card.Header>
                             <Card.Description>{listing.description}</Card.Description>
                                 <Modal
-                                    trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    trigger={<Button className="button" basic onClick={() => this.handleOpen(listing)}>Edit</Button>}
                                     open={this.state.modalOpen}
                                     onClose={this.handleClose}
                                     dimmer='blurring'
@@ -123,12 +123,12 @@ class Listing extends Component {
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button color='green' icon='checkmark' onClick={this.editHandler} inverted> 
+                                        <Button className="button" icon='checkmark' onClick={this.editHandler}> 
                                             edit 
                                         </Button>  
                                     </Modal.Actions>
                                 </Modal>
-                                <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
+                                <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
                         </Card>
                         ))}

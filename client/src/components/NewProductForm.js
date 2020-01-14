@@ -55,6 +55,7 @@ class Forms extends Component{
                   onChange={this.onChange}
                 />
                 <Button 
+                  className="button"
                   onClick={this.onSubmit}
                   type='submit'
                   value="Add listing"

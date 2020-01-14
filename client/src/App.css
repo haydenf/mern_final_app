@@ -1,3 +1,7 @@
+:root{
+  --button: rgb(247, 198, 114);
+}
+
 .App {
   text-align: center;
 }
@@ -26,10 +30,14 @@ span:hover {
   cursor: pointer;
 }
 
-/* .card{
-  display: flex;
-  flex-direction: row;
-  width: 500px;
-  height: 500px;
-  border: red solid 2px;
-} */
+.container{
+  width: 95% !important;
+}
+
+body{
+  background-color: rgb(1, 65, 1) !important;
+}
+
+.button{
+  background-color: var(--button) !important;
+}
