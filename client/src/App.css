@@ -1,5 +1,7 @@
 :root{
-  --button: rgb(247, 198, 114);
+  --blue: rgb(19,128,253);
+  --orange: rgb(204, 85, 0);
+  --grey: rgb(244,244, 244);
 }
 
 .App {
@@ -35,9 +37,13 @@ span:hover {
 }
 
 body{
-  background-color: rgb(1, 65, 1) !important;
+  background-color: var(--grey) !important;
 }
 
 .button{
-  background-color: var(--button) !important;
+  background-color: var(--blue) !important;
+}
+
+.nav{
+  background-color: var(--orange) !important;
 }
