@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import axios from 'axios';
 
 export default class LoginView extends Component {
   constructor(props){
@@ -35,6 +36,7 @@ export default class LoginView extends Component {
                     <Button color="blue" fluid size="large">
                       Login
                     </Button>
+                    <Button fluid size="large"><a href="/auth/google">Login with Google</a></Button>
                   </Form>
                 </Segment>
                 <Message>
