@@ -10,6 +10,7 @@ module.exports = function (passport){
     proxy: true
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log("GOOGLE______")
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return done(err, user);
       });
