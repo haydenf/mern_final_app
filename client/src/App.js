@@ -10,7 +10,6 @@ import DashboardView from "./components/DashboardView"
 import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
 import CreateUserView from "./components/CreateUserView"
-import ProductsView from "./components/ProductsView"
 import Listing from './components/Listing'
 import NewProductForm from './components/NewProductForm'
 
@@ -35,7 +34,7 @@ import NewProductForm from './components/NewProductForm'
       <div className="App">
         <BrowserRouter>
         
-          <Menu color="grey" inverted>
+          <Menu className="nav" inverted>
             <div>
             <Menu.Item
               as={Link} to='/dashboard' 
@@ -49,8 +48,16 @@ import NewProductForm from './components/NewProductForm'
 
             <Menu.Item
               as={Link} to='/products'
-              name='products'
+              name='New product'
               active={activeItem === 'Products'}
+              onClick={this.handleItemClick}
+            >
+            </Menu.Item>
+
+            <Menu.Item
+              as={Link} to='/users/:id'
+              name='My Profile'
+              active={activeItem === 'Profile'}
               onClick={this.handleItemClick}
             >
             </Menu.Item>
@@ -67,10 +74,9 @@ import NewProductForm from './components/NewProductForm'
           </Menu>
          
           <Route exact path="/dashboard" component={DashboardView, Listing} />
-          <Route exact path="/products" component={ProductsView, NewProductForm} />
+          <Route exact path="/products" component={Listing, NewProductForm} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users/new" component={CreateUserView} />
-          <Route exact path="/listings" component={Listing} />
           <Route exact path="/" component={HomeView} />
         </BrowserRouter>
        

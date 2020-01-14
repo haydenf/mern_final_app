@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Input, TextArea, Form, Segment, Container } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Form, Container } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";
@@ -81,15 +81,17 @@ class Listing extends Component {
         return ( 
             <div>
                 <div className="card">
-                <Container>
-                    <Card.Group itemsPerRow={2}>
+                <Container className="container">
+                    <Card.Group itemsPerRow={4}>
                     {listings.map(listing => (
                         <Card>
                             <Card.Content>
+                            <Image className="cardPic" src='https://react.semantic-ui.com/images/avatar/large/elliot.jpg'/>
+                            <Card.Content className="cardPrice">{listing.price}</Card.Content>
                             <Card.Header>{listing.title}</Card.Header>
-                            <Card.Description>{listing.description}</Card.Description>
+                            <Card.Description>{listing.blurb}</Card.Description>
                                 <Modal
-                                    trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    trigger={<Button className="button" basic onClick={() => this.handleOpen(listing)}>Edit</Button>}
                                     open={this.state.modalOpen}
                                     onClose={this.handleClose}
                                     dimmer='blurring'
@@ -111,6 +113,14 @@ class Listing extends Component {
                                                 value={this.state.title}
                                                 onChange={this.logChange}
                                             />
+                                            <Modal.Header>Product Blurb</Modal.Header>
+                                            <Form.Input
+                                                fluid
+                                                placeholder="Product blurb"
+                                                name="blurb"
+                                                value={this.state.blurb}
+                                                onChange={this.logChange}
+                                            />
                                             <Modal.Header>Product Description</Modal.Header>
                                             <Form.TextArea
                                                 fluid 
@@ -119,16 +129,24 @@ class Listing extends Component {
                                                 value={this.state.description}
                                                 onChange={this.logChange}
                                             />
+                                            <Modal.Header>Price</Modal.Header>
+                                            <Form.Input
+                                                fluid
+                                                placeholder="Price"
+                                                name="price"
+                                                value={this.state.price}
+                                                onChange={this.logChange}
+                                            />
                                         </Form>
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button color='green' icon='checkmark' onClick={this.editHandler} inverted> 
+                                        <Button className="button" icon='checkmark' onClick={this.editHandler}> 
                                             edit 
                                         </Button>  
                                     </Modal.Actions>
                                 </Modal>
-                                <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
+                                <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
                         </Card>
                         ))}

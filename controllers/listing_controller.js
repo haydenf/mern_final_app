@@ -20,7 +20,9 @@ function make(req, res) {
 //create and save to db a new listing
 async function create(req, res) {
     let newListing = {title: req.body.title,
-        description: req.body.description};
+        description: req.body.description,
+        blurb: req.body.blurb,
+        price: req.body.price};
     // saving the listing to the database and logging
     new Listing(newListing)
         .save()
@@ -52,7 +54,10 @@ const update = async (req, res) => {
      Listing.findById({_id: req.body._id})
      // checking if each = the other than saving changes to database
        .then(listing => {
-         (listing.title = req.body.title), (listing.description = req.body.description);
+         (listing.title = req.body.title), 
+         (listing.description = req.body.description),
+         (listing.blurb = req.body.blurb),
+         (listing.price = req.body.price);
          listing.save().then(listing => {
            res.json(listing);
          });
