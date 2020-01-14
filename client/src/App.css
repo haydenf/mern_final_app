@@ -1,3 +1,9 @@
+:root{
+  --blue: rgb(19,128,253);
+  --orange: rgb(204, 85, 0);
+  --grey: rgb(244,244, 244);
+}
+
 .App {
   text-align: center;
 }
@@ -26,10 +32,35 @@ span:hover {
   cursor: pointer;
 }
 
-/* .card{
-  display: flex;
-  flex-direction: row;
-  width: 500px;
-  height: 500px;
-  border: red solid 2px;
-} */
+.container{
+  width: 95% !important;
+}
+
+body{
+  background-color: var(--grey) !important;
+}
+
+.button{
+  background-color: var(--blue) !important;
+}
+
+.nav{
+  background-color: var(--orange) !important;
+}
+
+.cardPrice{
+  position: relative;
+  margin: -20% 25% 20% -7.5%;
+  z-index: 2;
+  background-color: hsla(212, 98%, 53%, 0.6);
+  color: white;
+}
+
+.cardPic{
+  position: relative;
+  z-index: 1;
+}
+
+form.ui.form{
+  width: 100vw;
+}
