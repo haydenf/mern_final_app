@@ -6,14 +6,21 @@ const ListingSchema = new Schema({
       type: String,
       required: true 
     },
+    blurb: {
+      type: String,
+      required: true 
+    },
     description: {
+      type: String,
+      required: true
+    },
+    price: {
       type: String,
       required: true
     },
     image: {
         type: String
-    },
-    
+    }
   });
 
   module.exports = ListingSchema;

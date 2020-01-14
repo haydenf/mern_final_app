@@ -10,7 +10,9 @@ class Forms extends Component{
         super(props)
         this.state = {
             title: "",
-            description: ""
+            description: "",
+            blurb: "",
+            price: ""
         }
 
     }
@@ -23,7 +25,9 @@ class Forms extends Component{
        e.preventDefault()
          axios.post('/api/listing', {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            blurb: this.state.blurb,
+            price: this.state.price
         })
         .then((res) => {
             console.log(res)
@@ -34,8 +38,7 @@ class Forms extends Component{
 
     render(){
         return(
-
-            <Grid centered columns={2}>
+        <Grid centered columns={2}>
           <Grid.Column>
             <Header as="h2" textAlign="center">
               New Product
@@ -50,8 +53,20 @@ class Forms extends Component{
                 />
                 <Form.Input
                   fluid
-                  placeholder="Product Description"
+                  placeholder="Product blurb"
+                  name="blurb"
+                  onChange={this.onChange}
+                />
+                <Form.Input
+                  fluid
+                  placeholder="Product description"
                   name="description"
+                  onChange={this.onChange}
+                />
+                <Form.Input
+                  fluid
+                  placeholder="Asking price"
+                  name="price"
                   onChange={this.onChange}
                 />
                 <Button 
@@ -65,38 +80,8 @@ class Forms extends Component{
                   >Submit</Button>
               </Form>
             </Segment>
-            {/* <Form.Field>
-              <Checkbox label='I agree to the Terms and Conditions' />
-            </Form.Field> */}
           </Grid.Column>
         </Grid>
-
-
-        //     <Form>
-        //     <Form.Field>
-        //       <label>Company name</label>
-        //       <br />
-        //       <input 
-        //         placeholder='Company name'
-        //         name="title"
-        //         onChange={this.onChange} />
-        //     </Form.Field>
-        //       <br />
-        //     <Form.Field>
-        //       <label>Description</label>
-        //       <br />
-        //       <input 
-        //         placeholder='Description' 
-        //         name="description"
-        //         onChange={this.onChange}/>
-        //     </Form.Field>
-        //     <br />
-        //     <Button 
-        //         onClick={this.onSubmit}
-        //         type='submit'
-        //         value="Add listing"
-        //         >Submit</Button>
-        //   </Form>
         )
     }
 }

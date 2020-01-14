@@ -47,3 +47,19 @@ body{
 .nav{
   background-color: var(--orange) !important;
 }
+
+.cardPrice{
+  position: relative;
+  margin: -20% 25% 20% -7.5%;
+  z-index: 2;
+  background-color: hsla(212, 98%, 53%, 0.5);
+}
+
+.cardPic{
+  position: relative;
+  z-index: 1;
+}
+
+form.ui.form{
+  width: 100vw;
+}
