@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var findOrCreate = require('mongoose-findorcreate')
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -9,7 +10,7 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
         bcrypt: true
     },
     firstName: {
@@ -26,4 +27,5 @@ const UserSchema = new Schema({
 });
 
 UserSchema.plugin(require('mongoose-bcrypt'));
+UserSchema.plugin(findOrCreate);
 module.exports = UserSchema;

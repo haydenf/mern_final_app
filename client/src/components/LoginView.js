@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
-import axios from 'axios';
 
 export default class LoginView extends Component {
   constructor(props){
