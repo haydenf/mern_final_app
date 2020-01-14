@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Input, TextArea, Form, Segment } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Input, TextArea, Form, Segment, Container } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";
@@ -29,8 +29,8 @@ class Listing extends Component {
     
     handleClose = () => this.setState({ modalOpen: false })
 
-   // change logger //
-   logChange = (e) => {
+    // change logger //
+    logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         console.log("Logging change function console log" + this.state);
     };
@@ -80,61 +80,63 @@ class Listing extends Component {
         const {listings} = this.props
         return ( 
             <div>
-                {listings.map(listing => (
-                    <div>
-                    <Card.Group itemsPerRow={4}>
+                <div className="card">
+                <Container>
+                    <Card.Group itemsPerRow={2}>
+                    {listings.map(listing => (
                         <Card>
-                        <Card.Content>
-                        <Card.Header>{listing.title}</Card.Header>
-                        <Card.Description>{listing.description}</Card.Description>
-                            <Modal
-                                trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
-                                open={this.state.modalOpen}
-                                onClose={this.handleClose}
-                                dimmer='blurring'
-                                size='small'>
-                                <Modal.Header>Edit information</Modal.Header>
-                                <Modal.Content image>
-                                    <Image
-                                        wrapped
-                                        size="small"
-                                        src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
-                                    />
-                                <Modal.Description>
-                                    <Form method="POST">
-                                        <Modal.Header>Product Title</Modal.Header>
-                                        <Form.Input
-                                            fluid
-                                            placeholder="Product title"
-                                            name="title"
-                                            value={this.state.title}
-                                            onChange={this.logChange}
+                            <Card.Content>
+                            <Card.Header>{listing.title}</Card.Header>
+                            <Card.Description>{listing.description}</Card.Description>
+                                <Modal
+                                    trigger={<Button onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    open={this.state.modalOpen}
+                                    onClose={this.handleClose}
+                                    dimmer='blurring'
+                                    size='small'>
+                                    <Modal.Header>Edit information</Modal.Header>
+                                    <Modal.Content image>
+                                        <Image
+                                            wrapped
+                                            size="small"
+                                            src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
                                         />
-                                        <Modal.Header>Product Description</Modal.Header>
-                                        <Form.TextArea
-                                            fluid 
-                                            placeholder="Product description"
-                                            name="description"
-                                            value={this.state.description}
-                                            onChange={this.logChange}
-                                        />
-                                    </Form>
-                                    </Modal.Description>
-                                </Modal.Content>
-                                <Modal.Actions>
-                                    <Button color='green' icon='checkmark' onClick={this.editHandler} inverted> 
-                                        edit 
-                                    </Button>  
-                                </Modal.Actions>
-                            </Modal>
-                            <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
-                        </Card.Content>
+                                    <Modal.Description>
+                                        <Form method="POST">
+                                            <Modal.Header>Product Title</Modal.Header>
+                                            <Form.Input
+                                                fluid
+                                                placeholder="Product title"
+                                                name="title"
+                                                value={this.state.title}
+                                                onChange={this.logChange}
+                                            />
+                                            <Modal.Header>Product Description</Modal.Header>
+                                            <Form.TextArea
+                                                fluid 
+                                                placeholder="Product description"
+                                                name="description"
+                                                value={this.state.description}
+                                                onChange={this.logChange}
+                                            />
+                                        </Form>
+                                        </Modal.Description>
+                                    </Modal.Content>
+                                    <Modal.Actions>
+                                        <Button color='green' icon='checkmark' onClick={this.editHandler} inverted> 
+                                            edit 
+                                        </Button>  
+                                    </Modal.Actions>
+                                </Modal>
+                                <Button secondary onClick={() => this.deletion(listing)}>Delete</Button>
+                            </Card.Content>
                         </Card>
+                        ))}
                     </Card.Group>
-                </div>
-                ))}
+                </Container>
+            </div>
         </div>
-         );
+        );
     }
 }
  
