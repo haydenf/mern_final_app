@@ -42,7 +42,6 @@ export default class LoginView extends Component {
                 </Message>
               </Grid.Column>
             </Grid>
-          
         )
     }
 }

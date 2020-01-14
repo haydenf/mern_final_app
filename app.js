@@ -8,10 +8,10 @@ const bodyParser = require("body-parser");
 
 require("./database/models/user_model");
 require("./database/models/listing_model");
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
 //// Loading routes ////
-// const auth = require("./routes/auth");
+const auth = require("./routes/auth_routes");
 const listing = require("./routes/listing_routes");
 const user = require("./routes/user_routes");
 
@@ -55,6 +55,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/listing", listing);
+app.use("/api/auth", auth);
 app.use("/users", user);
 app.get("/", (req, res) => {
   res.send("HOME");
