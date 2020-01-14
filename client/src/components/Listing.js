@@ -113,12 +113,28 @@ class Listing extends Component {
                                                 value={this.state.title}
                                                 onChange={this.logChange}
                                             />
+                                            <Modal.Header>Product Blurb</Modal.Header>
+                                            <Form.Input
+                                                fluid
+                                                placeholder="Product blurb"
+                                                name="blurb"
+                                                value={this.state.blurb}
+                                                onChange={this.logChange}
+                                            />
                                             <Modal.Header>Product Description</Modal.Header>
                                             <Form.TextArea
                                                 fluid 
                                                 placeholder="Product description"
                                                 name="description"
                                                 value={this.state.description}
+                                                onChange={this.logChange}
+                                            />
+                                            <Modal.Header>Price</Modal.Header>
+                                            <Form.Input
+                                                fluid
+                                                placeholder="Price"
+                                                name="price"
+                                                value={this.state.price}
                                                 onChange={this.logChange}
                                             />
                                         </Form>

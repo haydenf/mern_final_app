@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { Button, Checkbox, Form, Container, Segment, Grid, Header } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Segment, Grid, Header } from 'semantic-ui-react'
 import axios from "axios";
 
 export default class CreateUserView extends Component {

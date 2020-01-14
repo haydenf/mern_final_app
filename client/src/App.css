@@ -52,7 +52,8 @@ body{
   position: relative;
   margin: -20% 25% 20% -7.5%;
   z-index: 2;
-  background-color: hsla(212, 98%, 53%, 0.5);
+  background-color: hsla(212, 98%, 53%, 0.6);
+  color: white;
 }
 
 .cardPic{

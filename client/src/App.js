@@ -48,8 +48,16 @@ import NewProductForm from './components/NewProductForm'
 
             <Menu.Item
               as={Link} to='/products'
-              name='products'
+              name='New product'
               active={activeItem === 'Products'}
+              onClick={this.handleItemClick}
+            >
+            </Menu.Item>
+
+            <Menu.Item
+              as={Link} to='/users/:id'
+              name='My Profile'
+              active={activeItem === 'Profile'}
               onClick={this.handleItemClick}
             >
             </Menu.Item>
