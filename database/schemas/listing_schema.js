@@ -21,9 +21,9 @@ const ListingSchema = new Schema({
     image: {
         type: String
     },
-    _id: {
-      type: String,
-      required: true
+    productOwner: {
+      type: Schema.Types.ObjectId,
+      ref: "users"
     }
   });
 
