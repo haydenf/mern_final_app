@@ -19,16 +19,12 @@ import NewProductForm from './components/NewProductForm'
     activeItem: 'home'
   }
 
-  handleItemClick = (e, { name }) => {
+  setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     if (document.cookie.includes("jwt=")){
       this.setState({loggedIn: true})
-    }
-  }
-
-  componentDidMount = () => {
-    if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: true})
+    } else {
+      this.setState({loggedIn: false})
     }
   }
 
@@ -46,7 +42,7 @@ import NewProductForm from './components/NewProductForm'
               as={Link} to='/dashboard' 
               name='dashboard'
               active={activeItem === 'Dashboard'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
               float="right"
             >
             </Menu.Item>
@@ -56,7 +52,7 @@ import NewProductForm from './components/NewProductForm'
               as={Link} to='/products'
               name='New product'
               active={activeItem === 'Products'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
             >
             </Menu.Item>
 
@@ -64,16 +60,15 @@ import NewProductForm from './components/NewProductForm'
               as={Link} to='/users/:id'
               name='My Profile'
               active={activeItem === 'Profile'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
             >
             </Menu.Item>
 
             <Menu.Item
-//            as={Link} to='/login' 
               as={Link} to={this.state.loggedIn ? "/auth/logout" : "/login" }
               name={this.state.loggedIn ? "Logout" : "Login"}
-              active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
-              onClick={this.handleItemClick}
+              active={activeItem === this.state.loggedIn}
+              onClick={this.setLoggedIn}
             > 
               {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
 
