@@ -19,16 +19,18 @@ function make(req, res) {
 
 //create and save to db a new listing
 async function create(req, res) {
-    let newListing = {title: req.body.title,
+    let newListing = {
+        title: req.body.title,
         description: req.body.description,
         blurb: req.body.blurb,
-        price: req.body.price};
+        price: req.body.price
+    };
     // saving the listing to the database and logging
     new Listing(newListing)
         .save()
         .then(listing => {
             res.json(listing)
-            console.log("logging creation of" + listing)
+            console.log("logging creation of " + listing)
         })
         .catch(err => console.log("Logging the error on save listing is" +err))
 };

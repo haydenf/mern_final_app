@@ -23,7 +23,9 @@ class Listing extends Component {
         modalOpen: true,
         _id: listings._id,
         title: listings.title,
-        description: listings.description
+        description: listings.description,
+        blurb: listings.blurb,
+        price: listings.price
      });
     };
     
@@ -32,7 +34,7 @@ class Listing extends Component {
     // change logger //
     logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("Logging change function console log" + this.state);
+        console.log("Logging change function console log " + this.state);
     };
     // Fetching the listings from backend //
     grabListings = async () => {
@@ -47,7 +49,9 @@ class Listing extends Component {
         var listing = {
             _id: this.state._id,
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            blurb: this.state.blurb,
+            price: this.state.price
         };
         axios
             .put("/api/listing", listing)
@@ -62,7 +66,7 @@ class Listing extends Component {
                     this.handleClose();
                     this.props.listingHandler(updateListings)
             })
-                    .catch(err => console.log("this is an updated error" + err));
+                    .catch(err => console.log("this is an updated error " + err));
     };
 
     // deleting function handling delete on state and for the backend
@@ -70,7 +74,7 @@ class Listing extends Component {
         axios
             .delete("/api/listing", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
-            .catch(err => console.log("this is the deletion function err" + err));
+            .catch(err => console.log("this is the deletion function err " + err));
     };
 
     // mounting the listings //
