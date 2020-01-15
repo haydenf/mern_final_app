@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function LoginMenu (props) {
 return <Menu.Item
-    as={Link} to={"login"}
+    as={Link} to={"/login"}
     name={"Login"}
     active={props.activeItem === "Login"}
     onClick={props.logout}
