@@ -21,9 +21,8 @@ const ListingSchema = new Schema({
     image: {
         type: String
     },
-    _id: {
-      type: String,
-      required: true
+    owner: {
+      type: String
     }
   });
 
