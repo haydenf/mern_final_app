@@ -10,7 +10,7 @@ const loginSuccess = (req, res) => {
 const logout = (req, res) => {
     req.logout();
     res.cookie("jwt", null, { maxAge: -1 });
-    res.redirect("/");
+    res.redirect("/dashboard");
 }
 
 module.exports = {
