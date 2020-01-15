@@ -14,28 +14,37 @@ function make(req, res) {
 
 const create = async (req, res) => {
     console.log(".......create method")
-    let { googleID, firstName, lastName, email, password, image } = req.body;
+    let { googleID, firstName, lastName, email, confirmEmail, password, confirmPW, image } = req.body;
     console.log(req.body);
-    let user = await UserModel.create({ googleID,firstName, lastName, email, password, image })
-    new UserModel(user)
+    // console.log("ID--------- ", req.body._id);
+    if(email != confirmEmail || password != confirmPW){
+        console.log("Email or password does not match, try again")
+        res.send("We have a problem");
+    } else {
+        let user = await UserModel.create({ googleID,firstName, lastName, email, password, image })
+        new UserModel(user)
 
-        .save()
-        .then(user => {
-            console.log("WE CREATED A USER: ", user);
-            res.json(user);
-          })
-        .catch(err => res.status(500).send(err));
-    res.status(200).json({
-        message: "Successfully signed up!",
-        success: true
-    });
+            .save()
+            .then(user => {
+                console.log("WE CREATED A USER: ", user);
+                console.log("ID--------- ", user._id);
+                res.json(user);
+            })
+            .catch(err => res.status(500).send(err));
+        res.status(200).json({
+            message: "Successfully signed up!",
+            success: true
+        });
+        // res.json('dashboard');
+    }
 }
 
 const show = async (req, res) => {
+    console.log("+++++++++++++++ ", req.params)
     let { id } = req.params
     let user = await UserModel.findById(id)
         .catch(err => res.status(500).send(err))
-    res.render("user/show", {user});
+    res.render("user/show/id", {user});
 }
 
 //finds user to edit

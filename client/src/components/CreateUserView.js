@@ -26,7 +26,9 @@ export default class CreateUserView extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password
+      confirmEmail: this.state.confirmEmail,
+      password: this.state.password,
+      confirmPW: this.state.confirmPW
     })
     .then((response) => {
       if(response.data.success){
@@ -93,8 +95,8 @@ export default class CreateUserView extends Component {
                   icon="mail"
                   iconPosition="left"
                   name="confirmEmail"
-    //               value={this.state.confirmEmail}
-    //               onChange={this.logChange}
+                  value={this.state.confirmEmail}
+                  onChange={this.logChange}
                 />
                 <Form.Input
                   placeholder="Password"
@@ -113,10 +115,10 @@ export default class CreateUserView extends Component {
                   allowclear
                   icon="lock"
                   iconPosition="left"
-                  name="confirmPassword"
+                  name="confirmPW"
                   type="password"
-    //               value={this.state.password}
-    //               onChange={this.logChange}
+                  value={this.state.confirmPW}
+                  onChange={this.logChange}
                 />
                 <Form.Field>
                   <Checkbox label='I agree to the Terms and Conditions' />

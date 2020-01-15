@@ -5,8 +5,6 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from "react-redux";
 
 import {deletedListingHandler, listingHandler} from "./actions/listingAction"
-
-import DashboardView from "./components/DashboardView"
 import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
 import CreateUserView from "./components/CreateUserView"
@@ -80,8 +78,8 @@ import NewProductForm from './components/NewProductForm'
             </Menu.Item>
           </Menu>
          
-          <Route exact path="/dashboard" component={DashboardView, Listing} />
-          <Route exact path="/products" component={Listing, NewProductForm} />
+          <Route exact path="/dashboard" component={Listing} />
+          <Route exact path="/products" component={NewProductForm} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users/new" component={CreateUserView} />
           <Route exact path="/" component={HomeView} />
