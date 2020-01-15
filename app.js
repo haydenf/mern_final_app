@@ -6,12 +6,14 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 
 
-require("./models/User");
+require("./database/models/user_model");
+require("./database/models/listing_model");
 require("./config/passport")(passport);
 
 //// Loading routes ////
-const auth = require("./routes/auth");
-const blog = require("./routes/blog");
+const auth = require("./routes/auth_routes");
+const listing = require("./routes/listing_routes");
+const user = require("./routes/user_routes");
 
 //// Loading mongoose keys ////
 const keys = require("./config/keys");
@@ -26,7 +28,7 @@ mongoose
     }
   ) 
   .then(() => console.log("MongoDb connection"))
-  .catch(err => console.log(err));
+  .catch(err => console.log("mongodb error is " + err));
 
 const app = express();
 
@@ -52,12 +54,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/api/listing", listing);
+app.use("/api/auth", auth);
+app.use("/users", user);
 app.get("/", (req, res) => {
   res.send("HOME");
 });
 
-app.use("/auth", auth);
-app.use("/api/blogs", blog);
+
+app.use("/api/users", user);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

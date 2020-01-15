@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* .card{
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  height: 500px;
+  border: red solid 2px;
+} */
