@@ -14,9 +14,9 @@ function make(req, res) {
 
 const create = async (req, res) => {
     console.log(".......create method")
-    let { firstName, lastName, email, password, image } = req.body;
+    let { googleID, firstName, lastName, email, password, image } = req.body;
     console.log(req.body);
-    let user = await UserModel.create({ firstName, lastName, email, password, image })
+    let user = await UserModel.create({ googleID,firstName, lastName, email, password, image })
     new UserModel(user)
 
         .save()
