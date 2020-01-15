@@ -58,7 +58,7 @@ app.use("/api/listing", listing);
 app.use("/auth", auth);
 app.use("/users", user);
 app.get("/", (req, res) => {
-  res.redirect("http://localhost:3000/dashboard");
+  res.send("HOME Diggity");
 });
 
 

@@ -20,6 +20,9 @@ const ListingSchema = new Schema({
     },
     image: {
         type: String
+    },
+    owner: {
+      type: String
     }
   });
 
