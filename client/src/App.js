@@ -70,7 +70,7 @@ import NewProductForm from './components/NewProductForm'
 //            as={Link} to='/login' 
               as={Link} to={this.state.loggedIn ? "/auth/logout" : "/login" }
               name={this.state.loggedIn ? "Logout" : "Login"}
-              active={activeItem === this.state.loggedIn ? "Login" : "Logout"}
+              active={activeItem === this.state.loggedIn}
               onClick={this.handleItemClick}
             > 
               {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
