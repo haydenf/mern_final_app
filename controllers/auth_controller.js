@@ -9,11 +9,9 @@ const loginSuccess = (req, res) => {
 }
 
 const logout = (req, res) => {
-    console.log("BEFORE LOGOUT: " + req.cookie)
     req.logout();
     res.cookie("jwt", null, { maxAge: -1 });
-    console.log("AFTER LOGOUT: " + req.cookie)
-    res.redirect("/");
+    res.redirect("/dashboard");
 }
 
 module.exports = {
