@@ -21,14 +21,9 @@ const ListingSchema = new Schema({
     image: {
         type: String
     },
-<<<<<<< HEAD
-    owner: {
-      type: String
-=======
     productOwner: {
       type: Schema.Types.ObjectId,
       ref: "users"
->>>>>>> ecdb24d100be9c73f9552e3cd2cd679e7e8efb5f
     }
   });
 
