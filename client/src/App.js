@@ -6,9 +6,9 @@ import {connect} from "react-redux";
 
 import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
-import DashboardView from "./components/DashboardView"
 import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
+import LoginSwitch from "./components/LoginSwitch"
 import CreateUserView from "./components/CreateUserView"
 import Listing from './components/Listing'
 import NewProductForm from './components/NewProductForm'
@@ -16,15 +16,23 @@ import NewProductForm from './components/NewProductForm'
  class App extends Component {
   state = {
     loggedIn: false,
-    activeItem: 'home'
+    activeItem: 'Dashboard'
   }
 
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
+    document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
+  }
+
+  logout = () => {
+    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.setState({loggedIn: false, activeItem: "Login"});
+    console.log("LOGOUT")
+  }
+
+  componentDidMount(){
     if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: true})
-    } else {
-      this.setState({loggedIn: false})
+      this.setState({loggedIn: false, activeItem: "Login"});
     }
   }
 
@@ -40,7 +48,7 @@ import NewProductForm from './components/NewProductForm'
             <div>
             <Menu.Item
               as={Link} to='/dashboard' 
-              name='dashboard'
+              name='Dashboard'
               active={activeItem === 'Dashboard'}
               onClick={this.setLoggedIn}
               float="right"
@@ -64,19 +72,14 @@ import NewProductForm from './components/NewProductForm'
             >
             </Menu.Item>
 
-            <Menu.Item
-              as={Link} to={this.state.loggedIn ? "/auth/logout" : "/login" }
-              name={this.state.loggedIn ? "Logout" : "Login"}
-              active={activeItem === this.state.loggedIn}
-              onClick={this.setLoggedIn}
-            > 
-              {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
-
-            </Menu.Item>
+            <LoginSwitch 
+              loggedIn={this.state.loggedIn} 
+              logout={this.logout} 
+              setLoggedIn={this.setLoggedIn}/>
           </Menu>
-         
-          <Route exact path="/dashboard" component={DashboardView, Listing} />
-          <Route exact path="/products" component={Listing, NewProductForm} />
+
+          <Route exact path="/dashboard" component={Listing} />
+          <Route exact path="/products" component={NewProductForm} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users/new" component={CreateUserView} />
           <Route exact path="/" component={HomeView} />
