@@ -70,11 +70,6 @@ class Listing extends Component {
                     .catch(err => console.log("this is an updated error " + err));
     };
 
-    // sellerHandler = (req, res) => {
-    //   console.log("SELLER------- ")
-    //   res.json("SellerProfile")
-    // }
-
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
@@ -152,8 +147,8 @@ class Listing extends Component {
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button className="button" onClick={this.editHandler}> 
-                                            edit 
+                                        <Button basic className="button" onClick={this.editHandler}> 
+                                            Edit 
                                         </Button>
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
