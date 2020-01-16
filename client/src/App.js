@@ -9,7 +9,7 @@ import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
 import ProfileView from "./components/MyProfileView"
-import Listing from './components/Listing'
+import DashboardView from './components/DashboardView'
 import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
 import CreateUserView from './components/CreateUserView'
@@ -72,12 +72,12 @@ import CreateUserView from './components/CreateUserView'
               setLoggedIn={this.setLoggedIn}/>
           </Menu>
 
-          <Route exact path="/dashboard" component={Listing} />
+          <Route exact path="/dashboard" component={DashboardView} />
           <Route exact path="/products" component={NewProductForm} />
           <Route exact path="/seller" component={SellerProfile} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users" component={ProfileView} />
-          <Route exact path="/" component={Listing} />
+          <Route exact path="/" component={DashboardView} />
           <Route exact path="/users/new" component={CreateUserView} />
         </BrowserRouter>
        

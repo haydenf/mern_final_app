@@ -47,7 +47,7 @@ export default class LoginView extends Component {
                   </Form>
                 </Segment>
                 <Message>
-                  Not registered yet? <a href="/users/new">Sign Up</a>
+                  Not registered yet? <a href="users/new">Sign Up</a>
                 </Message>
               </Grid.Column>
             </Grid>
