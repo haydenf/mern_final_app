@@ -32,6 +32,7 @@ class Forms extends Component{
         .then((res) => {
             console.log(res)
             this.props.newListingHandler(res.data)
+            this.props.history.push('/')
         })
             .catch(err =>  console.log("Error from submiting form ---"+err))
     }
