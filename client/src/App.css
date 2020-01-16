@@ -1,8 +1,13 @@
+/* GLOBAL VARS --------------------------------------------------------------------------------- */
+
 :root{
   --blue: rgb(19,128,253);
+  --lightBlue: rgb(164, 204, 250);
   --orange: rgb(204, 85, 0);
   --grey: rgb(244,244, 244);
 }
+
+/* APP ---------------------------------------------------------------------------------------- */
 
 .App {
   text-align: center;
@@ -27,25 +32,24 @@
   color: #09d3ac;
 }
 
-span:hover {
-  text-decoration: underline;
-  cursor: pointer;
+
+/* BUTTONS ----------------------------------------------------------------------------------- */
+
+button.ui.blue.large.fluid.button, button.ui.button{
+  background-color: var(--blue);
 }
 
-.container{
-  width: 95% !important;
+button.ui.blue.large.fluid.button:hover, button.ui.button:hover, a:hover{
+  color: var(--lightBlue);
 }
 
-body{
-  background-color: var(--grey) !important;
+a{
+  color: #ffffff;
 }
 
-.button{
-  background-color: var(--blue) !important;
-}
 
-.nav{
-  background-color: var(--orange) !important;
+div.ui.inverted.nav.menu{
+  background-color: var(--orange);
 }
 
 .cardPrice{
@@ -63,4 +67,18 @@ body{
 
 form.ui.form{
   width: 100vw;
+}
+
+
+span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.container{
+  width: 95% !important;
+}
+
+body{
+  background-color: var(--grey) !important;
 }

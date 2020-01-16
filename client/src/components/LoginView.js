@@ -36,7 +36,7 @@ export default class LoginView extends Component {
                       Login
                     </Button>
                     <br></br>
-                    <Button fluid size="large"><a href="/auth/google">Login with Google</a></Button>
+                    <Button color="blue" fluid size="large"><a href="/auth/google">Login with Google</a></Button>
                   </Form>
                 </Segment>
                 <Message>
