@@ -63,6 +63,7 @@ button.ui.basic.button:hover{
 
 div.ui.inverted.nav.menu{
   background-color: var(--orange);
+  border-radius: 0 0 .28571429rem .28571429rem;
 }
 
 

@@ -10,6 +10,13 @@ export default class LoginView extends Component {
     }
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+    console.log("You signed in!", e);
+    this.props.history.push('/')
+  }
+  
+
     render(){
         return (
             <Grid centered columns={2}>
@@ -32,7 +39,7 @@ export default class LoginView extends Component {
                       placeholder="Password"
                       type="password"
                     />
-                    <Button color="blue" fluid size="large">
+                    <Button color="blue" fluid size="large" onClick={this.onSubmit}>
                       Login
                     </Button>
                     <br></br>

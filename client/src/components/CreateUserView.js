@@ -18,15 +18,11 @@ export default class CreateUserView extends Component {
   onSubmit = e => {
     e.preventDefault();
     console.log("You hit submit", e);
-
-    // this.setState = e;
-  //want to save data for props if needed but should save on backend for more security
   
   axios.post("/api/users", {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      confirmEmail: this.state.confirmEmail,
       password: this.state.password,
       confirmPW: this.state.confirmPW
     })
@@ -86,16 +82,6 @@ export default class CreateUserView extends Component {
                   iconPosition="left"
                   name="email"
                   value={this.state.email}
-                  onChange={this.logChange}
-                />
-                <Form.Input
-                  placeholder="Confirm Email"
-                  fluid
-                  allowclear
-                  icon="mail"
-                  iconPosition="left"
-                  name="confirmEmail"
-                  value={this.state.confirmEmail}
                   onChange={this.logChange}
                 />
                 <Form.Input

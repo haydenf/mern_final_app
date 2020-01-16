@@ -6,10 +6,9 @@ import {connect} from "react-redux";
 
 import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
-import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
-import CreateUserView from "./components/CreateUserView"
+import ProfileView from "./components/ProfileView"
 import Listing from './components/Listing'
 import NewProductForm from './components/NewProductForm'
 
@@ -65,7 +64,7 @@ import NewProductForm from './components/NewProductForm'
             </Menu.Item>
 
             <Menu.Item
-              as={Link} to='/users/:id'
+              as={Link} to='/users'
               name='My Profile'
               active={activeItem === 'Profile'}
               onClick={this.setLoggedIn}
@@ -81,8 +80,8 @@ import NewProductForm from './components/NewProductForm'
           <Route exact path="/dashboard" component={Listing} />
           <Route exact path="/products" component={NewProductForm} />
           <Route exact path="/login" component={LoginView} />
-          <Route exact path="/users/new" component={CreateUserView} />
-          <Route exact path="/" component={HomeView} />
+          <Route exact path="/users" component={ProfileView} />
+          <Route exact path="/" component={Listing} />
         </BrowserRouter>
        
       </div>

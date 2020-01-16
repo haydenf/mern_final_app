@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Segment, Grid, Header, Item } from 'semantic-ui-react';
+import { Segment, Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
 
 export default class ProfileView extends Component {
     constructor(props){
@@ -13,37 +13,43 @@ export default class ProfileView extends Component {
 
     render(){
         return(
-            // <Grid centered columns={1}>
-            // <Grid.Column>
-            //     <Header as="h2" textAlign="center">
-            //         Profile
-            //     </Header>
-            //     <Item>
-
-      <Item.Image size='tiny' src='https://react.semantic-ui.com/images/avatar/large/stevie.jpg' />
-
-      <Item.Content>
-        <Item.Header>Stevie Feliciano</Item.Header>
-        <Item.Description>Blurb blurb blurb</Item.Description>
-      </Item.Content>
-    // </Item>
-
-        //         <Segment>
-        //         <Item size="large">
-        //             <Item.Content
-        //               fluid
-        //               name="fullName"
-        //               value={this.state.firstName}+ {this.state.lastName}
-        //             />
-        //             <Item.Content
-        //               fluid
-        //               value={this.state.email}
-        //               onChange={this.logChange}
-        //             />
-        //         </Item>
-        //         </Segment>
-        //     </Grid.Column>
-        //     </Grid>
+          <div>
+          <Container textAlign='justified'>
+            <Header as='h2'>
+              <Image circular verticalAlign='middle' size='medium' src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /> 
+              Patrick Starr
+            </Header>
+            <Divider />
+          </Container>
+           <Container textAlign='justified'>
+            <Grid celled divided>
+              <Grid.Row>
+                <Grid.Column verticalAlign='middle' width={4}>
+                <List animated>
+                  <List.Item bold content="Contact Me" />
+                  <Divider />
+                  <List.Item icon='users' content='Semantic UI' />
+                  <List.Item icon='marker' content='Sydney, AUS' />
+                  <List.Item
+                    icon='mail'
+                    content={<a href='mailto:pstarr@startupagain.com.au'>pstarr@startupagain.com.au</a>}
+                  />
+                  <List.Item
+                    icon='linkify'
+                    content={<a href='https://startupagain-mern.herokuapp.com/'>Start-up Again</a>}
+                  />
+                </List>
+                </Grid.Column>
+                <Grid.Column width={12}>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                </Grid.Column>
+                {/* <Grid.Column>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                </Grid.Column> */}
+              </Grid.Row>
+            </Grid>
+           </Container>
+          </div>
         )
     }
 }
