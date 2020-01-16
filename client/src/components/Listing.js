@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container, Responsive, Segment } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";

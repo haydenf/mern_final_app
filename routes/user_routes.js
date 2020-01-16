@@ -4,20 +4,20 @@ const passport = require("passport");
 const UserController = require("./../controllers/user_controller");
 
 
-router.get("/users", UserController.index);
+router.get("/", UserController.index);
 
 router.post("/", UserController.create);
 
-router.get("/users/new", UserController.make);
+router.get("/new", UserController.make);
 
-router.post("/users", UserController.create);
+router.post("/", UserController.create);
 
-router.get("/users/:id", passport.authenticate('jwt', {session: false}), UserController.show);
+router.get("/:id", passport.authenticate('jwt', {session: false}), UserController.show);
 
-router.get("/users/edit/:id", UserController.edit);
+router.get("/edit/:id", UserController.edit);
 
-router.put("/users/:id", UserController.update);
+router.put("/:id", UserController.update);
 
-router.delete("/users/:id", UserController.destroy);
+router.delete("/delete/:id", UserController.destroy);
 
 module.exports = router;

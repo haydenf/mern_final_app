@@ -14,11 +14,11 @@ function make(req, res) {
 
 const create = async (req, res) => {
     console.log(".......create method")
-    let { googleID, firstName, lastName, email, confirmEmail, password, confirmPW, image } = req.body;
+    let { googleID, firstName, lastName, email, password, confirmPW, image } = req.body;
     console.log(req.body);
     // console.log("ID--------- ", req.body._id);
-    if(email != confirmEmail || password != confirmPW){
-        console.log("Email or password does not match, try again")
+    if(password != confirmPW){
+        console.log("Password does not match, try again")
         res.send("We have a problem");
     } else {
         let user = await UserModel.create({ googleID,firstName, lastName, email, password, image })
@@ -43,8 +43,11 @@ const show = async (req, res) => {
     console.log("+++++++++++++++ ", req.params)
     let { id } = req.params
     let user = await UserModel.findById(id)
+        .then(users => {
+            console.log(users);
+            res.json(users)
+        })
         .catch(err => res.status(500).send(err))
-    res.render("user/show/id", {user});
 }
 
 //finds user to edit
