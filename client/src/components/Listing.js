@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Form, Container, Responsive, Segment } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";
@@ -86,9 +86,9 @@ class Listing extends Component {
             <div>
                 <div className="card">
                 <Container className="container">
-                    <Card.Group itemsPerRow={4}>
+                    <Card.Group centered>
                     {listings.map(listing => (
-                        <Card>
+                        <Responsive as={Card} minWidth={300} className="listingCard">
                             <Card.Content>
                             <Image className="cardPic" src='https://react.semantic-ui.com/images/avatar/large/elliot.jpg'/>
                             <Card.Content className="cardPrice">{listing.price}</Card.Content>
@@ -152,7 +152,7 @@ class Listing extends Component {
                                 </Modal>
                                 <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
-                        </Card>
+                        </Responsive>
                         ))}
                     </Card.Group>
                 </Container>
