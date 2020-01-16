@@ -23,12 +23,6 @@ import NewProductForm from './components/NewProductForm'
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
   }
 
-  logout = () => {
-    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    this.setState({loggedIn: false, activeItem: "Login"});
-    console.log("LOGOUT")
-  }
-
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
       this.setState({loggedIn: false, activeItem: "Login"});
@@ -73,7 +67,6 @@ import NewProductForm from './components/NewProductForm'
 
             <LoginSwitch 
               loggedIn={this.state.loggedIn} 
-              logout={this.logout} 
               setLoggedIn={this.setLoggedIn}/>
           </Menu>
 
