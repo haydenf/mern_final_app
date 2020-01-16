@@ -16,8 +16,8 @@ export default class MyProfileView extends Component {
           <div>
           <Container textAlign='justified'>
             <Header as='h2'>
-              <Image circular verticalAlign='middle' size='medium' src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /> 
-              Patrick Starr
+              <Image circular verticalAlign='middle' size='medium' src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' /> 
+              SpongeBob SquarePants
             </Header>
             <Divider />
           </Container>
