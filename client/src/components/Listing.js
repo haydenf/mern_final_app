@@ -89,7 +89,6 @@ class Listing extends Component {
                     <Card.Group centered>
                     {listings.map(listing => (
                         <Responsive as={Card} minWidth={300} className="listingCard">
-                        {/* <Card > */}
                             <Card.Content>
                             <Image className="cardPic" src='https://react.semantic-ui.com/images/avatar/large/elliot.jpg'/>
                             <Card.Content className="cardPrice">{listing.price}</Card.Content>
@@ -153,7 +152,6 @@ class Listing extends Component {
                                 </Modal>
                                 <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
-                        {/* </Card> */}
                         </Responsive>
                         ))}
                     </Card.Group>
