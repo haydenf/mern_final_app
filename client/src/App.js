@@ -12,6 +12,7 @@ import ProfileView from "./components/MyProfileView"
 import Listing from './components/Listing'
 import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
+import CreateUserView from './components/CreateUserView'
 
  class App extends Component {
   state = {
@@ -77,6 +78,7 @@ import NewProductForm from './components/NewProductForm'
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/users" component={ProfileView} />
           <Route exact path="/" component={Listing} />
+          <Route exact path="/users/new" component={CreateUserView} />
         </BrowserRouter>
        
       </div>
