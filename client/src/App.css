@@ -36,16 +36,16 @@
 
 /* BUTTONS ----------------------------------------------------------------------------------- */
 
-button.ui.blue.large.fluid.button, button.ui.button{
+button.ui.blue.large.fluid.button, button.ui.button, a.ui.button{
   background-color: var(--blue);
 }
 
-button.ui.blue.large.fluid.button:hover, button.ui.button:hover, button.ui.blue.large.fluid.button a:hover{
+button.ui.blue.large.fluid.button:hover, button.ui.button:hover, button.ui.blue.large.fluid.button a:hover, a.ui.button:hover{
   color: var(--lightBlue);
   background-color: var(--blue);
 }
 
-button.ui.blue.large.fluid.button a, button.ui.button{
+button.ui.blue.large.fluid.button a, button.ui.button, a.ui.button{
   color: #ffffff;
 }
 

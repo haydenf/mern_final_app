@@ -25,12 +25,14 @@ export default class ProfileView extends Component {
             <Grid celled divided>
               <Grid.Row>
                 <Grid.Column verticalAlign='middle' width={4}>
-                <List animated>
+                <List>
                   <List.Item content="Contact Me" />
                   <Divider />
                   <List.Item icon='users' content='Start-up Again' />
                   <List.Item icon='marker' content='Sydney, AUS' />
                   <List.Item icon='call' content='0402 123 456' />
+                </List>
+                <List animated>
                   <List.Item
                     icon='mail'
                     content={<a href='mailto:pstarr@startupagain.com.au'>pstarr@startupagain.com.au</a>}
