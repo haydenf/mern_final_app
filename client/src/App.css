@@ -64,3 +64,9 @@ body{
 form.ui.form{
   width: 100vw;
 }
+
+div.ui.card.listingCard{
+  /* width: 200px; */
+  /* max-width: 300px; */
+  /* min-width: 100px; */
+}

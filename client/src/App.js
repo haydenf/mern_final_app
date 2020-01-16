@@ -5,8 +5,10 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from "react-redux";
 
 import {deletedListingHandler, listingHandler} from "./actions/listingAction"
+
 import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
+import LoginSwitch from "./components/LoginSwitch"
 import CreateUserView from "./components/CreateUserView"
 import Listing from './components/Listing'
 import NewProductForm from './components/NewProductForm'
@@ -14,19 +16,23 @@ import NewProductForm from './components/NewProductForm'
  class App extends Component {
   state = {
     loggedIn: false,
-    activeItem: 'home'
+    activeItem: 'Dashboard'
   }
 
-  handleItemClick = (e, { name }) => {
+  setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
-    if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: true})
-    }
+    document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
   }
 
-  componentDidMount = () => {
+  logout = () => {
+    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.setState({loggedIn: false, activeItem: "Login"});
+    console.log("LOGOUT")
+  }
+
+  componentDidMount(){
     if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: true})
+      this.setState({loggedIn: false, activeItem: "Login"});
     }
   }
 
@@ -42,9 +48,9 @@ import NewProductForm from './components/NewProductForm'
             <div>
             <Menu.Item
               as={Link} to='/dashboard' 
-              name='dashboard'
+              name='Dashboard'
               active={activeItem === 'Dashboard'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
               float="right"
             >
             </Menu.Item>
@@ -54,7 +60,7 @@ import NewProductForm from './components/NewProductForm'
               as={Link} to='/products'
               name='New product'
               active={activeItem === 'Products'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
             >
             </Menu.Item>
 
@@ -62,22 +68,16 @@ import NewProductForm from './components/NewProductForm'
               as={Link} to='/users/:id'
               name='My Profile'
               active={activeItem === 'Profile'}
-              onClick={this.handleItemClick}
+              onClick={this.setLoggedIn}
             >
             </Menu.Item>
 
-            <Menu.Item
-//            as={Link} to='/login' 
-              as={Link} to={this.state.loggedIn ? "/auth/logout" : "/login" }
-              name={this.state.loggedIn ? "Logout" : "Login"}
-              active={activeItem === this.state.loggedIn}
-              onClick={this.handleItemClick}
-            > 
-              {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
-
-            </Menu.Item>
+            <LoginSwitch 
+              loggedIn={this.state.loggedIn} 
+              logout={this.logout} 
+              setLoggedIn={this.setLoggedIn}/>
           </Menu>
-         
+
           <Route exact path="/dashboard" component={Listing} />
           <Route exact path="/products" component={NewProductForm} />
           <Route exact path="/login" component={LoginView} />

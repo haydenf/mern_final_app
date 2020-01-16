@@ -31,7 +31,7 @@ async function create(req, res) {
         .save()
         .then(listing => {
             res.json(listing)
-            console.log("logging creation of" + listing)
+            console.log("logging creation of " + listing)
         })
         .catch(err => console.log("Logging the error on save listing is" +err))
 };

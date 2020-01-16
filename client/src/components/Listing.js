@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container } from 'semantic-ui-react'
+import { Card, Image, Button, Modal, Form, Container, Responsive, Segment } from 'semantic-ui-react'
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction"
 // import { Model } from "mongoose";
@@ -23,7 +23,9 @@ class Listing extends Component {
         modalOpen: true,
         _id: listings._id,
         title: listings.title,
-        description: listings.description
+        description: listings.description,
+        blurb: listings.blurb,
+        price: listings.price
      });
     };
     
@@ -32,7 +34,7 @@ class Listing extends Component {
     // change logger //
     logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("Logging change function console log" + this.state);
+        console.log("Logging change function console log " + this.state);
     };
     // Fetching the listings from backend //
     grabListings = async () => {
@@ -47,7 +49,9 @@ class Listing extends Component {
         var listing = {
             _id: this.state._id,
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            blurb: this.state.blurb,
+            price: this.state.price
         };
         axios
             .put("/api/listing", listing)
@@ -62,7 +66,7 @@ class Listing extends Component {
                     this.handleClose();
                     this.props.listingHandler(updateListings)
             })
-                    .catch(err => console.log("this is an updated error" + err));
+                    .catch(err => console.log("this is an updated error " + err));
     };
 
     // deleting function handling delete on state and for the backend
@@ -70,7 +74,7 @@ class Listing extends Component {
         axios
             .delete("/api/listing", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
-            .catch(err => console.log("this is the deletion function err" + err));
+            .catch(err => console.log("this is the deletion function err " + err));
     };
 
     // mounting the listings //
@@ -82,9 +86,10 @@ class Listing extends Component {
             <div>
                 <div className="card">
                 <Container className="container">
-                    <Card.Group itemsPerRow={4}>
+                    <Card.Group centered>
                     {listings.map(listing => (
-                        <Card>
+                        <Responsive as={Card} minWidth={300} className="listingCard">
+                        {/* <Card > */}
                             <Card.Content>
                             <Image className="cardPic" src='https://react.semantic-ui.com/images/avatar/large/elliot.jpg'/>
                             <Card.Content className="cardPrice">{listing.price}</Card.Content>
@@ -148,7 +153,8 @@ class Listing extends Component {
                                 </Modal>
                                 <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
-                        </Card>
+                        {/* </Card> */}
+                        </Responsive>
                         ))}
                     </Card.Group>
                 </Container>
