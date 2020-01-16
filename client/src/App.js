@@ -8,7 +8,7 @@ import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
-import ProfileView from "./components/ProfileView"
+import ProfileView from "./components/MyProfileView"
 import Listing from './components/Listing'
 import NewProductForm from './components/NewProductForm'
 

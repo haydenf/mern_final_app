@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Segment, Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
 
-export default class ProfileView extends Component {
+export default class MyProfileView extends Component {
     constructor(props){
       super(props)
       this.state = {
@@ -26,26 +26,15 @@ export default class ProfileView extends Component {
               <Grid.Row>
                 <Grid.Column verticalAlign='middle' width={4}>
                 <List animated>
-                  <List.Item bold content="Contact Me" />
-                  <Divider />
-                  <List.Item icon='users' content='Semantic UI' />
-                  <List.Item icon='marker' content='Sydney, AUS' />
-                  <List.Item
-                    icon='mail'
-                    content={<a href='mailto:pstarr@startupagain.com.au'>pstarr@startupagain.com.au</a>}
-                  />
-                  <List.Item
-                    icon='linkify'
-                    content={<a href='https://startupagain-mern.herokuapp.com/'>Start-up Again</a>}
-                  />
+                  <List.Item icon='idea' content='My Listings' />
+                  <List.Item icon='mail outline' content='Messages' />
+                  <List.Item icon='talk' content='Notifications'/>
+                  <List.Item icon='cog' content='Settings'/>
                 </List>
                 </Grid.Column>
                 <Grid.Column width={12}>
                   <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
                 </Grid.Column>
-                {/* <Grid.Column>
-                  <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-                </Grid.Column> */}
               </Grid.Row>
             </Grid>
            </Container>
