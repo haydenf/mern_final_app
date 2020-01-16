@@ -70,6 +70,11 @@ class Listing extends Component {
                     .catch(err => console.log("this is an updated error " + err));
     };
 
+    // sellerHandler = (req, res) => {
+    //   console.log("SELLER------- ")
+    //   res.json("SellerProfile")
+    // }
+
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
@@ -147,10 +152,10 @@ class Listing extends Component {
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button className="button" icon='checkmark' onClick={this.editHandler}> 
+                                        <Button className="button" onClick={this.editHandler}> 
                                             edit 
                                         </Button>
-                                        <Button className="button" icon='checkmark' as={Link} to='/users'> 
+                                        <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>   
                                     </Modal.Actions>
@@ -161,7 +166,7 @@ class Listing extends Component {
                         ))}
                     </Card.Group>
                 </Container>
-                <Route exact path="/user" component={SellerProfile} />
+                <Route exact path="/seller" component={SellerProfile} />
             </div>
         </div>
         );
