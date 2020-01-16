@@ -4,6 +4,7 @@
   --blue: rgb(19,128,253);
   --lightBlue: rgb(164, 204, 250);
   --orange: rgb(204, 85, 0);
+  --lightOrange: rgb(250, 184, 136);
   --grey: rgb(244,244, 244);
 }
 
@@ -39,18 +40,33 @@ button.ui.blue.large.fluid.button, button.ui.button{
   background-color: var(--blue);
 }
 
-button.ui.blue.large.fluid.button:hover, button.ui.button:hover, a:hover{
+button.ui.blue.large.fluid.button:hover, button.ui.button:hover, button.ui.blue.large.fluid.button a:hover{
   color: var(--lightBlue);
+  background-color: var(--blue);
 }
 
-a{
+button.ui.blue.large.fluid.button a, button.ui.button{
   color: #ffffff;
 }
 
+button.ui.basic.button{
+  color: var(--blue) !important;
+  box-shadow: 0 0 0 1px var(--orange) inset;
+}
+
+button.ui.basic.button:hover{
+  color: var(--lightBlue) !important;
+  box-shadow: 0 0 0 1px var(--lightOrange) inset;
+}
+
+/* NAV ----------------------------------------------------------------------------------- */
 
 div.ui.inverted.nav.menu{
   background-color: var(--orange);
 }
+
+
+/* CARDS ----------------------------------------------------------------------------------- */
 
 .cardPrice{
   position: relative;
@@ -64,6 +80,9 @@ div.ui.inverted.nav.menu{
   position: relative;
   z-index: 1;
 }
+
+
+/* OTHER ----------------------------------------------------------------------------------- */
 
 form.ui.form{
   width: 100vw;
