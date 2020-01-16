@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Segment, Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
+import { Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
 
 export default class MyProfileView extends Component {
     constructor(props){
