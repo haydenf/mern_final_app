@@ -63,6 +63,7 @@ export default class CreateUserView extends Component {
                   name="firstName"
                   value={this.state.firstName}
                   onChange={this.logChange}
+                 
                 />
                 <Form.Input
                   placeholder="Last Name"
