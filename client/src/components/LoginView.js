@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import axios from 'axios';
 
 export default class LoginView extends Component {
   constructor(props){
@@ -12,10 +13,12 @@ export default class LoginView extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    axios.post('/api/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
     console.log("You signed in!", e);
-    this.props.history.push('/')
   }
-  
 
     render(){
         return (
