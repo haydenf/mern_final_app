@@ -2,18 +2,16 @@ const express = require("express");
 const router = express.Router();
 const ListingController = require("./../controllers/listing_controller");
 
-router.get("/", ListingController.index);
+router.get("/show", ListingController.index);
 
-router.post("/", ListingController.create);
-
-router.get("/new", ListingController.make);
+router.post("/new", ListingController.create);
 
 router.get("/", ListingController.show);
 
-router.get("/", ListingController.edit);
+router.get("/update", ListingController.edit);
 
-router.put("/", ListingController.update);
+router.put("/update", ListingController.update);
 
-router.delete("/", ListingController.destroy);
+router.delete("/delete", ListingController.destroy);
 
 module.exports = router;

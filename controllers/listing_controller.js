@@ -12,10 +12,6 @@ async function index(req, res) {
         .catch(err => console.log(err))
 }
 
-//shows form to make new listing
-function make(req, res) {
-    res.render("CreateListingView");
-}
 
 //create and save to db a new listing
 async function create(req, res) {
@@ -24,7 +20,6 @@ async function create(req, res) {
         description: req.body.description,
         blurb: req.body.blurb,
         price: req.body.price
-        // productOwner: user._id
     };
     // saving the listing to the database and logging
     new Listing(newListing)
@@ -37,7 +32,7 @@ async function create(req, res) {
 };
 
 const show = async (req, res) => {
-    let { _id } = req.params
+    let { id } = req.params
     let listing = await ListingModel.findById(id)
         .then(listings => {console.log(listings);
             res.json(listings)})
