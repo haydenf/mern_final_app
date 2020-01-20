@@ -6,7 +6,7 @@ const Listing = mongoose.model("listings")
 
 //showing a list of all listings
 async function index(req, res) {
-    Listing.find()
+    Listing.find().populate('users')
         .then(listings => {console.log(listings);
             res.json(listings)})
         .catch(err => console.log(err))

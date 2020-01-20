@@ -7,6 +7,13 @@ async function index(req, res) {
     res.json(users);
 }
 
+// Gets the logged in user.
+const getUser = (req, res) => {
+    console.log(req.user)
+    if (req.user) res.json(req.user)
+    res.json('{"message": "No user logged in."}')
+}
+
 //shows form to make new user
 function make(req, res) {
     res.render("CreateUserView");
@@ -16,7 +23,6 @@ const create = async (req, res) => {
     console.log(".......create method")
     let { googleID, firstName, lastName, email, password, confirmPW, image } = req.body;
     console.log(req.body);
-    // console.log("ID--------- ", req.body._id);
     if(password != confirmPW){
         console.log("Password does not match, try again")
         res.send("We have a problem");
@@ -82,5 +88,6 @@ module.exports = {
     show,
     edit,
     update,
-    destroy
+    destroy,
+    getUser
 }

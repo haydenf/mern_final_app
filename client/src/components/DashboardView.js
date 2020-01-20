@@ -1,11 +1,20 @@
 import React, {Component} from "react"
 import Listing from './Listing'
 import { Header, Container, Divider, Grid, Image } from 'semantic-ui-react';
+import axios from "axios"
+
 
 export default class DashboardView extends Component {
+
+    getUser = async () => {
+        let res = await axios.get('/users/current')
+        let user = res.data
+        console.log(user)
+    }
+        
     render(){
         return(
-            <div>
+            <div onClick={this.getUser}>
                 <Container textAlign='center'>
                     <Header as='h2'>
                         Start-up Again

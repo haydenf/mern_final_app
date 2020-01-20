@@ -34,7 +34,7 @@ class Forms extends Component{
             this.props.newListingHandler(res.data)
             this.props.history.push('/')
         })
-            .catch(err =>  console.log("Error from submiting form ---"+err))
+            .catch(err =>  console.log("Error from submiting form --- "+err))
     }
 
     render(){

@@ -4,7 +4,6 @@ const AuthenticationController = require("./../controllers/auth_controller");
 const passport = require("passport");
 
 
-
 /* GET Google Authentication API. */
 router.get(
   "/google",
