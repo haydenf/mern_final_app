@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const ListingModel = require("../database/models/listing_model");
+const User = mongoose.model("users");
 require("../database/models/listing_model")
 const Listing = mongoose.model("listings")
 const jwt = require("jsonwebtoken");
@@ -8,8 +9,12 @@ const jwt = require("jsonwebtoken");
 //showing a list of all listings
 async function index(req, res) {
     console.log("LISTING", req.cookies['jwt'])
-    const result = jwt.verify(req.cookies['jwt'], 'secret')
-    console.log("DECODE VALUE", result.sub)
+    const jwt_payload = jwt.verify(req.cookies['jwt'], 'secret')
+    console.log("DECODE VALUE", jwt_payload.sub)
+    const user = await User.findById(jwt_payload.sub)
+    // console.log("USER", user)
+    req.user = user
+    console.log("requested user", req.user)
     Listing.find().populate('users')
         .then(listings => {console.log(listings);
             res.json(listings)})
