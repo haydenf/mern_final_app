@@ -11,13 +11,20 @@ export default class LoginView extends Component {
     }
   }
 
+  onChange = e => {
+    this.setState({
+        [e.target.name]: e.target.value
+    })
+  }
+
   onSubmit = e => {
     e.preventDefault();
-    axios.post('/auth/login', {
+    axios.get('/api/auth/login', {
       email: this.state.email,
       password: this.state.password
     })
-    console.log("You signed in!", e);
+    console.log("You signed in!");
+    
   }
 
     render(){
@@ -34,6 +41,8 @@ export default class LoginView extends Component {
                       icon="user"
                       iconPosition="left"
                       placeholder="Email address"
+                      name="email"
+                      onChange={this.onChange}
                     />
                     <Form.Input
                       fluid
@@ -41,8 +50,14 @@ export default class LoginView extends Component {
                       iconPosition="left"
                       placeholder="Password"
                       type="password"
+                      name="password"
+                      onChange={this.onChange}
                     />
-                    <Button color="blue" fluid size="large" onClick={this.onSubmit}>
+                    <Button 
+                    color="blue"
+                    fluid size="large"
+                    onClick={this.onSubmit}
+                    type='submit'>
                       Login
                     </Button>
                     <br></br>
