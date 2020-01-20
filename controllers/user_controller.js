@@ -10,8 +10,12 @@ async function index(req, res) {
 // Gets the logged in user.
 const getUser = (req, res) => {
     console.log(req.user)
-    if (req.user) res.json(req.user)
-    res.json('{"message": "No user logged in."}')
+    if (req.user) {
+        res.json(req.user)
+    } else {
+        res.json('{"message": "No user logged in."}')
+    }
+    
 }
 
 //shows form to make new user

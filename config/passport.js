@@ -56,16 +56,17 @@ module.exports = function (passport){
     
                 return token;
             },
-            secretOrKey: keys.googleClientSecret
+            secretOrKey: 'secret'
         },
         async (jwt_payload, done) => {
+            console.log("JWT STRATEGY______")
             const user = await User.findById(jwt_payload.sub)
                 .catch(done);
-    
+
             if (!user) {
                 return done(null, false);
             }
-    
+            console.log("JWT STRATEGY",user)
             return done(null, user);
          }
     ));

@@ -37,8 +37,25 @@ class Listing extends Component {
         this.setState({ [e.target.name]: e.target.value });
         console.log("Logging change function console log " + this.state);
     };
+    getCookie= (cname) =>{
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
     // Fetching the listings from backend //
     grabListings = async () => {
+        // READ THE COOKIE
+        console.log("cookie", this.getCookie("jwt"))
         let res = await axios.get('/api/listing')
         let listings = res.data
         this.props.listingHandler(listings)

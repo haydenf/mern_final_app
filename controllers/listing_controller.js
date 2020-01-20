@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const ListingModel = require("../database/models/listing_model");
 require("../database/models/listing_model")
 const Listing = mongoose.model("listings")
+const jwt = require("jsonwebtoken");
 
 
 //showing a list of all listings
 async function index(req, res) {
+    console.log("LISTING", req.cookies['jwt'])
+    const result = jwt.verify(req.cookies['jwt'], 'secret')
+    console.log("DECODE VALUE", result.sub)
     Listing.find().populate('users')
         .then(listings => {console.log(listings);
             res.json(listings)})
