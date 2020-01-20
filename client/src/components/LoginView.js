@@ -19,7 +19,7 @@ export default class LoginView extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    axios.get('/api/auth/login', {
+    axios.get('/users/login', {
       email: this.state.email,
       password: this.state.password
     })

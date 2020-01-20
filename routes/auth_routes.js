@@ -5,9 +5,9 @@ const passport = require("passport");
 
 
 
+
 router.get(
   "/login",
-  passport.authenticate(),
   AuthenticationController.loginSuccess
 )
 /* GET Google Authentication API. */

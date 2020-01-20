@@ -72,7 +72,6 @@ const destroy = async (req, res) => {
   module.exports = {
     index,
     create,
-    make,
     show,
     edit,
     update,
