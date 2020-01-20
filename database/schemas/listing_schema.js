@@ -20,10 +20,6 @@ const ListingSchema = new Schema({
     },
     image: {
         type: String
-    },
-    productOwner: {
-      type: Schema.Types.ObjectId,
-      ref: "users"
     }
   });
 

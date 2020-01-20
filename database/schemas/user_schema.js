@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var findOrCreate = require('mongoose-findorcreate')
 const Schema = mongoose.Schema;
+const ListingSchema = require('./listing_schema')
 
 const UserSchema = new Schema({
     googleID: {
@@ -25,7 +26,8 @@ const UserSchema = new Schema({
     },
     image: {
         type: String
-    }
+    },
+    listings: [ListingSchema]
 });
 
 UserSchema.plugin(require('mongoose-bcrypt'));

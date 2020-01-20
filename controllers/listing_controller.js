@@ -8,15 +8,9 @@ const jwt = require("jsonwebtoken");
 
 //showing a list of all listings
 async function index(req, res) {
-    console.log("LISTING", req.cookies['jwt'])
-    const jwt_payload = jwt.verify(req.cookies['jwt'], 'secret')
-    console.log("DECODE VALUE", jwt_payload.sub)
-    const user = await User.findById(jwt_payload.sub)
-    // console.log("USER", user)
-    req.user = user
-    console.log("requested user", req.user)
+    console.log("Listing by a specific user-----",req.user)
     Listing.find().populate('users')
-        .then(listings => {console.log(listings);
+        .then(listings => {console.log("LISTING---",listings);
             res.json(listings)})
         .catch(err => console.log(err))
 }
