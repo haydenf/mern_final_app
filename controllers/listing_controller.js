@@ -7,8 +7,7 @@ const Listing = mongoose.model("listings")
 //showing a list of all listings
 async function index(req, res) {
     Listing.find()
-        .then(listings => {console.log(listings);
-            res.json(listings)})
+        .then(listings => res.json(listings))
         .catch(err => console.log(err))
 }
 
@@ -23,8 +22,8 @@ async function create(req, res) {
         title: req.body.title,
         description: req.body.description,
         blurb: req.body.blurb,
-        price: req.body.price
-        // productOwner: user._id
+        price: req.body.price,
+        productOwner: req.user.id
     };
     // saving the listing to the database and logging
     new Listing(newListing)
