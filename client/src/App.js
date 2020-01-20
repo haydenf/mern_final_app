@@ -36,7 +36,7 @@ import CreateUserView from './components/CreateUserView'
     const { activeItem } = this.state
 
     return (
-      <div className="App">
+      <div className="App" data-test="component-app">
         <BrowserRouter>
         
           <Menu className="nav" inverted>
