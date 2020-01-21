@@ -5,7 +5,7 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 // import axios from "axios"
 // import {setUser} from "../actions/userAction"
 
-export default class LoginView extends Component {
+  class LoginView extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -65,7 +65,6 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
-  setUser: user => dispatch(setUser(user))
 })
 
 export default connect(

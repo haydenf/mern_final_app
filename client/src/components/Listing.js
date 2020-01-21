@@ -16,8 +16,7 @@ class Listing extends Component {
             title: "",
             description: "",
             image: "",
-            modalOpen: false,
-            jwt: ''
+            modalOpen: false
          }
    }
 
@@ -84,9 +83,6 @@ class Listing extends Component {
     // mounting the listings and user //
     componentDidMount() {
         this.grabListings();
-        // this.setUser();
-        this.jwt_token();
-        this.decode();
 }
 
     render() { 
