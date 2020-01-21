@@ -1,7 +1,8 @@
-import {NEW_LISTING, SET_LISTINGS, DELETE_LISTING} from '../actions/types'; 
+import {NEW_LISTING, SET_LISTINGS, DELETE_LISTING, USER_ID} from '../actions/types'; 
 
 const initialState = {
-    listings: []
+    listings: [],
+    user: []
 };
 
 const listingReducer = (state = initialState, action) => {
@@ -26,3 +27,12 @@ const listingReducer = (state = initialState, action) => {
         return newState;
 }
 export default listingReducer;
+
+const userId = (state = initialState, action) => {
+    let newState = {...state};
+    let userSet = {...newState.user}
+
+        if (action.type === USER_ID) {
+            userSet.push(action.val)
+        };
+}
