@@ -40,5 +40,9 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "http-proxy-middleware": "^0.20.0",
     "jest-enzyme": "^7.1.2"
+  },
+  "engines": {
+    "npm": "6.9.0",
+    "node": "10.16.3"
   }
 }
