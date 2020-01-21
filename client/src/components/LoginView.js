@@ -19,14 +19,14 @@ class LoginView extends Component {
     this.setUser();
   };
 
-  setUser = async () =>
+  setUser = async (req, res) =>
   {
-      let data = await axios('auth/user').then(res => res.json())
+      let data = await axios.get(`/auth/login`).then(res => res.json())
       console.log("THIS IS DATA ____---------_____", data)
       if (data.success)
       {
           this.setState(setUser(data.user))
-          console.log(data.user._id)
+          console.log(data.user.id)
       }
   }
 
