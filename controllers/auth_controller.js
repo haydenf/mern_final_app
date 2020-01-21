@@ -16,5 +16,6 @@ const logout = (req, res) => {
 
 module.exports = {
     loginSuccess,
-    logout
+    logout,
+    login
 }

@@ -1,13 +1,33 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { setUser } from '../actions/userAction'
+import axios from "axios"
+import {connect} from "react-redux";
 
-export default class LoginView extends Component {
+
+
+class LoginView extends Component {
   constructor(props){
     super(props)
     this.state = {
         email: "",
-        password: ""
+        password: "",
+        user: {}
     }
+  }
+  componentDidMount() {
+    this.setUser();
+  };
+
+  setUser = async () =>
+  {
+      let data = await axios('auth/user').then(res => res.json())
+      console.log("THIS IS DATA ____---------_____", data)
+      if (data.success)
+      {
+          this.setState(setUser(data.user))
+          console.log(data.user._id)
+      }
   }
 
     render(){
@@ -47,3 +67,14 @@ export default class LoginView extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user)),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginView)

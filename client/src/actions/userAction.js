@@ -1,5 +1,9 @@
-import {USER_ID} from './types'
+import {SET_USER, REMOVE_USER} from './types'
 
-export const userId = (user) => {
-    return {type: USER_ID, val: user}};
-    
+
+export const setUser = (data) => {
+    return {type: SET_USER,  val: data}};
+
+export const removeUser = () => {
+    return {type: REMOVE_USER}
+}

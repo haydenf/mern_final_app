@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
+import { Route, Link } from "react-router-dom";
 import axios from "axios"
-import {deletedListingHandler, listingHandler, } from "../actions/listingAction"
-// import { Model } from "mongoose";
+import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+// import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Listing extends Component {
         title: listings.title,
         description: listings.description,
         blurb: listings.blurb,
-        price: listings.price
+        price: listings.price,
      });
     };
     
@@ -41,6 +42,7 @@ class Listing extends Component {
         let res = await axios.get('/api/listing')
         let listings = res.data
         this.props.listingHandler(listings)
+        console.log(listings)
     }
 
     // editing function to edit the state and the backend //
@@ -76,6 +78,7 @@ class Listing extends Component {
             .then(() => {this.props.deletedListingHandler(listing._id)})
             .catch(err => console.log("this is the deletion function err " + err));
     };
+
 
     // mounting the listings //
     componentDidMount() {this.grabListings();}
@@ -145,9 +148,12 @@ class Listing extends Component {
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button className="button" icon='checkmark' onClick={this.editHandler}> 
-                                            edit 
-                                        </Button>  
+                                        <Button basic className="button" onClick={this.editHandler}> 
+                                            Edit 
+                                        </Button>
+                                        <Button className="button" as={Link} to='/seller'> 
+                                            Meet the Seller 
+                                        </Button>   
                                     </Modal.Actions>
                                 </Modal>
                                 <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
@@ -156,6 +162,7 @@ class Listing extends Component {
                         ))}
                     </Card.Group>
                 </Container>
+                {/* <Route exact path="/seller" component={SellerProfile} /> */}
             </div>
         </div>
         );

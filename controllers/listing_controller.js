@@ -24,7 +24,7 @@ async function create(req, res) {
         description: req.body.description,
         blurb: req.body.blurb,
         price: req.body.price,
-        productOwner: user._id
+        productOwner: req.user.id
     };
     // saving the listing to the database and logging
     new Listing(newListing)
