@@ -5,7 +5,7 @@ const loginSuccess = (req, res) => {
     var token = jwt.sign({ sub: req.user._id }, keys.googleClientSecret);
     console.log("..............", req.user._id);
     res.cookie("jwt", token);
-    res.redirect("http://localhost:3000/dashboard?token=" + token);
+    res.redirect("/dashboard?token=" + token);
 }
 
 const logout = (req, res) => {
