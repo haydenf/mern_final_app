@@ -6,14 +6,15 @@ import {connect} from "react-redux";
 
 import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
-import HomeView from "./components/HomeView"
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
-import CreateUserView from "./components/CreateUserView"
-import Listing from './components/Listing'
+import ProfileView from "./components/MyProfileView"
+import DashboardView from './components/DashboardView'
+import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
+import CreateUserView from './components/CreateUserView'
 
- class App extends Component {
+ export class App extends Component {
   state = {
     loggedIn: false,
     activeItem: 'Dashboard'
@@ -22,12 +23,6 @@ import NewProductForm from './components/NewProductForm'
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
-  }
-
-  logout = () => {
-    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    this.setState({loggedIn: false, activeItem: "Login"});
-    console.log("LOGOUT")
   }
 
   componentDidMount(){
@@ -41,7 +36,7 @@ import NewProductForm from './components/NewProductForm'
     const { activeItem } = this.state
 
     return (
-      <div className="App">
+      <div className="App" data-test="component-app">
         <BrowserRouter>
         
           <Menu className="nav" inverted>
@@ -65,7 +60,7 @@ import NewProductForm from './components/NewProductForm'
             </Menu.Item>
 
             <Menu.Item
-              as={Link} to='/users/:id'
+              as={Link} to='/users'
               name='My Profile'
               active={activeItem === 'Profile'}
               onClick={this.setLoggedIn}
@@ -74,15 +69,16 @@ import NewProductForm from './components/NewProductForm'
 
             <LoginSwitch 
               loggedIn={this.state.loggedIn} 
-              logout={this.logout} 
               setLoggedIn={this.setLoggedIn}/>
           </Menu>
 
-          <Route exact path="/dashboard" component={Listing} />
+          <Route exact path="/dashboard" component={DashboardView} />
           <Route exact path="/products" component={NewProductForm} />
+          <Route exact path="/seller" component={SellerProfile} />
           <Route exact path="/login" component={LoginView} />
+          <Route exact path="/users" component={ProfileView} />
+          <Route exact path="/" component={DashboardView} />
           <Route exact path="/users/new" component={CreateUserView} />
-          <Route exact path="/" component={HomeView} />
         </BrowserRouter>
        
       </div>

@@ -4,7 +4,7 @@ import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semanti
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
-// import SellerProfile from "./SellerProfile"
+import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
     constructor(props) {
@@ -162,7 +162,7 @@ class Listing extends Component {
                         ))}
                     </Card.Group>
                 </Container>
-                {/* <Route exact path="/seller" component={SellerProfile} /> */}
+                <Route exact path="/seller" component={SellerProfile} />
             </div>
         </div>
         );

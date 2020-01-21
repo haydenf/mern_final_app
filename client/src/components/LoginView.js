@@ -30,6 +30,13 @@ class LoginView extends Component {
       }
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+    console.log("You signed in!", e);
+    this.props.history.push('/')
+  }
+  
+
     render(){
         return (
             <Grid centered columns={2}>
@@ -52,7 +59,7 @@ class LoginView extends Component {
                       placeholder="Password"
                       type="password"
                     />
-                    <Button color="blue" fluid size="large">
+                    <Button color="blue" fluid size="large" onClick={this.onSubmit}>
                       Login
                     </Button>
                     <br></br>
@@ -60,7 +67,7 @@ class LoginView extends Component {
                   </Form>
                 </Segment>
                 <Message>
-                  Not registered yet? <a href="/users/new">Sign Up</a>
+                  Not registered yet? <a href="users/new">Sign Up</a>
                 </Message>
               </Grid.Column>
             </Grid>

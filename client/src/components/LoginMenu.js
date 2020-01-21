@@ -7,9 +7,6 @@ return <Menu.Item
     as={Link} to={"/login"}
     name={"Login"}
     active={props.activeItem === "Login"}
-    onClick={props.logout}
   > 
-    {/* {this.state.loggedIn ? "Logout" : <Link to="/login">Login</Link>} */}
-
   </ Menu.Item>
   }
