@@ -13,16 +13,26 @@ import DashboardView from './components/DashboardView'
 import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
 import CreateUserView from './components/CreateUserView'
+import Axios from 'axios';
 
  export class App extends Component {
   state = {
     loggedIn: false,
-    activeItem: 'Dashboard'
+    activeItem: 'Dashboard',
+    user: {}
   }
 
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
+    if (document.cookie.includes("jwt="))  {
+      Axios.get('/api/listing/getuser') 
+      .then(user => {
+        console.log("USER", user)
+        this.setState({user})
+      })
+      .catch(err => console.log(err))
+    }
   }
 
   componentDidMount(){
@@ -30,6 +40,8 @@ import CreateUserView from './components/CreateUserView'
       this.setState({loggedIn: false, activeItem: "Login"});
     }
   }
+
+
 
   render(){
     // Destructure activeItem and login status from state
