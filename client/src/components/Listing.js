@@ -4,9 +4,7 @@ import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semanti
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
-import {setUser} from "../actions/userAction"
 import SellerProfile from "./SellerProfile"
-import jwtDecode from 'jsonwebtoken';
 
 class Listing extends Component {
     constructor(props) {

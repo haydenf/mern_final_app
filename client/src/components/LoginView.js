@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
-// import axios from "axios"
-// import {setUser} from "../actions/userAction"
+import axios from "axios"
+import {setUser} from "../actions/userAction"
 
   class LoginView extends Component {
   constructor(props){
@@ -15,7 +15,23 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
     }
   }
 
-  
+  getUserData = () => {
+    if (document.cookie.includes("jwt="))  {
+      axios
+        .get('/api/listing/getuser') 
+        .then(user => {
+          console.log("USER", user)
+          this.props.setUser(user.data)
+          this.setState({
+            user: user.data
+          });
+          console.log('hello this is user', this.state.user)
+        })
+        .catch(err => console.log(err))
+        }
+       
+      }
+
 
   onSubmit = e => {
     e.preventDefault();
@@ -23,6 +39,10 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
     this.props.history.push('/')
   }
   
+  componentWillMount() {
+    this.getUserData();
+    console.log('checking the state of user', this.state.user)
+  }
 
     render(){
         return (
@@ -50,7 +70,7 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
                       Login
                     </Button>
                     <br></br>
-                    <Button color="blue" fluid size="large"><a href="/auth/google">Login with Google</a></Button>
+                    <Button color="blue" fluid size="large"><a href="/auth/google" onClick={this.getUserData}>Login with Google</a></Button>
                   </Form>
                 </Segment>
                 <Message>
@@ -60,11 +80,13 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
             </Grid>
         )
     }
-}
+  }
+
 const mapStateToProps = (state) => ({
   user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user))
 })
 
 export default connect(
