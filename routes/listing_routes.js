@@ -15,5 +15,6 @@ router.get("/", ListingController.edit);
 router.put("/", ListingController.update);
 
 router.delete("/", ListingController.destroy);
+router.get("/getuser", ListingController.getUser);
 
 module.exports = router;
