@@ -15,8 +15,7 @@ export default class LoginView extends Component {
     }
   }
 
-
-
+  
 
   onSubmit = e => {
     e.preventDefault();
@@ -62,16 +61,16 @@ export default class LoginView extends Component {
         )
     }
 }
-// const mapStateToProps = (state) => ({
-//   user: state.user
-// })
-// const mapDispatchToProps = (dispatch) => ({
-//   setUser: user => dispatch(setUser(user))
-// })
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user))
+})
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(LoginView)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginView)
 
 

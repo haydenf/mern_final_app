@@ -17,38 +17,9 @@ class Listing extends Component {
             description: "",
             image: "",
             modalOpen: false,
-            jwt: '',
-            user: {},
-            userId: ''
+            jwt: ''
          }
    }
-
-
-  
-   jwt_token = () => {
-    let jwt = document.cookie
-    this.setState({
-        jwt: jwt
-    })
-    console.log('I AM CONSOLE LOGGING THE JWT TOKEN FROM DOCUMENT.COOKIE', jwt)
-    }
-
-   decode = (jwt) => {
-    let token  = jwtDecode.decode(jwt)
-    this.setState({
-        user:  token 
-    })
-    console.log('THIS IS THE USER JWT DECODE', token)
-    }
-
-//   setUser = async () => {
-//       let data = user
-//       console.log("THIS IS DATA ____---------_____", data)
-//           this.setState(setUser(data))
-//           console.log(data.user.id)
-//       }
-  
-//    modal for edit function //
 
 
     handleOpen = listings => {this.setState({ 
@@ -207,12 +178,10 @@ class Listing extends Component {
 // mapping for redux state management //
 const mapStateToProps = (state) => ({
     listings: state.listings,
-    user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
     deletedListingHandler: id => dispatch(deletedListingHandler(id)),
-    setUser: userId => dispatch(setUser(userId))
 })
 
 export default connect(
