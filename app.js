@@ -60,9 +60,7 @@ app.use((req, res, next) => {
 
 app.use("/api/listing", listing);
 app.use("/users", user);
-app.get("/", (req, res) => {
-  res.send("HOME");
-});
+
 
 app.use("/api/users", user);
 
