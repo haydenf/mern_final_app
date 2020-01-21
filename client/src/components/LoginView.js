@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+// import axios from "axios"
+// import {setUser} from "../actions/userAction"
 
 export default class LoginView extends Component {
   constructor(props){
     super(props)
     this.state = {
         email: "",
-        password: ""
+        password: "",
+        user: {}
     }
   }
+
+
+
 
   onSubmit = e => {
     e.preventDefault();
@@ -54,3 +62,16 @@ export default class LoginView extends Component {
         )
     }
 }
+// const mapStateToProps = (state) => ({
+//   user: state.user
+// })
+// const mapDispatchToProps = (dispatch) => ({
+//   setUser: user => dispatch(setUser(user))
+// })
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(LoginView)
+
+

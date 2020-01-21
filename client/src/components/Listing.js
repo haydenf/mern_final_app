@@ -4,7 +4,9 @@ import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semanti
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+import {setUser} from "../actions/userAction"
 import SellerProfile from "./SellerProfile"
+import jwtDecode from 'jsonwebtoken';
 
 class Listing extends Component {
     constructor(props) {
@@ -14,11 +16,40 @@ class Listing extends Component {
             title: "",
             description: "",
             image: "",
-            modalOpen: false
+            modalOpen: false,
+            jwt: '',
+            user: {},
+            userId: ''
          }
    }
 
-   // modal for edit function //
+
+  
+   jwt_token = () => {
+    let jwt = document.cookie
+    this.setState({
+        jwt: jwt
+    })
+    console.log('I AM CONSOLE LOGGING THE JWT TOKEN FROM DOCUMENT.COOKIE', jwt)
+    }
+
+   decode = (jwt) => {
+    let token  = jwtDecode.decode(jwt)
+    this.setState({
+        user:  token 
+    })
+    console.log('THIS IS THE USER JWT DECODE', token)
+    }
+
+//   setUser = async () => {
+//       let data = user
+//       console.log("THIS IS DATA ____---------_____", data)
+//           this.setState(setUser(data))
+//           console.log(data.user.id)
+//       }
+  
+//    modal for edit function //
+
 
     handleOpen = listings => {this.setState({ 
         modalOpen: true,
@@ -79,8 +110,13 @@ class Listing extends Component {
     };
 
 
-    // mounting the listings //
-    componentDidMount() {this.grabListings();}
+    // mounting the listings and user //
+    componentDidMount() {
+        this.grabListings();
+        // this.setUser();
+        this.jwt_token();
+        this.decode();
+}
 
     render() { 
         const {listings} = this.props
@@ -170,11 +206,13 @@ class Listing extends Component {
  
 // mapping for redux state management //
 const mapStateToProps = (state) => ({
-    listings: state.listings
+    listings: state.listings,
+    user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
-    deletedListingHandler: id => dispatch(deletedListingHandler(id))
+    deletedListingHandler: id => dispatch(deletedListingHandler(id)),
+    setUser: userId => dispatch(setUser(userId))
 })
 
 export default connect(
