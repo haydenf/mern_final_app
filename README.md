@@ -97,11 +97,11 @@ Our target audience fall into two main groups of people:
 
 ## Screenshots of site
 
-<img src="./docs/screenshots/screen1">
+<img src="./docs/screenshots/screen1.png">
 
-<img src="./docs/screenshots/screen2">
+<img src="./docs/screenshots/screen2.png">
 
-<img src="./docs/screenshots/screen3">
+<img src="./docs/screenshots/screen3.png">
 
 ## Wireframes
 
