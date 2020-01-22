@@ -75,6 +75,7 @@ class Listing extends Component {
         axios
             .delete("/api/listing/delete", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
+            .then(() => {this.handleClose()})
             .catch(err => console.log("this is the deletion function err " + err));
     };
 
@@ -155,7 +156,13 @@ class Listing extends Component {
                                             <Button basic className="button" onClick={this.editHandler}> 
                                             Edit 
                                         </Button>
+<<<<<<< HEAD
                                         <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
+=======
+                                        <Button className="button" onClick={() => this.deletion(listing)}>
+                                            Delete
+                                        </Button>
+>>>>>>> 00e6bf94529d9f1fb8917d93ce77894abe771bf3
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>   
@@ -189,5 +196,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Listing)
-
-
