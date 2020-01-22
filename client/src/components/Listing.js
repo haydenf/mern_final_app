@@ -2,12 +2,9 @@ import React, {Component} from "react";
 import axios from "axios"
 import {connect} from "react-redux";
 import { Route, Link } from "react-router-dom";
-import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
 import {setUser} from "../actions/userAction"
 import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
-
-import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
