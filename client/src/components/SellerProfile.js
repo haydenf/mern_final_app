@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import {setUser} from "../actions/userAction"
 import axios from "axios"
 
-
-
 class SellerProfile extends Component {
     constructor(props){
       super(props)

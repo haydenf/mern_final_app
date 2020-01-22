@@ -137,7 +137,7 @@ class Listing extends Component {
                                     onClose={this.handleClose}
                                     dimmer='blurring'
                                     size='small'>
-                                    <Modal.Header>Edit information</Modal.Header>
+                                    <Modal.Header>{this.state.title}</Modal.Header>
                                     <Modal.Content image>
                                         <Image
                                             wrapped
