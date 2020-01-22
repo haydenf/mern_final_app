@@ -13,15 +13,13 @@ module.exports = function (passport){
     proxy: true
   },
   function(accessToken, refreshToken, profile, done) {
-        // console.log(accessToken);
-      // console.log(profile);
-      // use substring to end the photo at jpeg
       console.log("PROFILE", profile)
       const image = profile.photos[0].value.substring(
         0,
         profile.photos[0].value.indexOf("?")
       );
       console.log(image);
+      
       // create user with info coming from google profile
       const newUser = {
         googleID: profile.id,
@@ -69,12 +67,12 @@ module.exports = function (passport){
             return done(null, user);
          }
     ));
+  
+    passport.serializeUser(function(user, done) {
+    done(null, user);
+    });
+  
+    passport.deserializeUser(function(user, done) {
+    done(null, user);
+    });
 }
-
-  passport.serializeUser(function(user, done) {
-  done(null, user);
-  });
-
-  passport.deserializeUser(function(user, done) {
-  done(null, user);
-  });
