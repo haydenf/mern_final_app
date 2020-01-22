@@ -156,13 +156,9 @@ class Listing extends Component {
                                             <Button basic className="button" onClick={this.editHandler}> 
                                             Edit 
                                         </Button>
-<<<<<<< HEAD
-                                        <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
-=======
                                         <Button className="button" onClick={() => this.deletion(listing)}>
                                             Delete
                                         </Button>
->>>>>>> 00e6bf94529d9f1fb8917d93ce77894abe771bf3
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>   
