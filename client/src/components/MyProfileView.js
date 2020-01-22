@@ -1,7 +1,11 @@
 import React, {Component} from "react";
 import { Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
+import {connect} from "react-redux";
+import {setUser} from "../actions/userAction"
+import axios from "axios"
 
-export default class MyProfileView extends Component {
+
+class MyProfileView extends Component {
     constructor(props){
       super(props)
       this.state = {
@@ -11,7 +15,30 @@ export default class MyProfileView extends Component {
       }
     }
 
+    getUserData = async () => {
+      if (document.cookie.includes("jwt="))  {
+       await axios
+          .get('/api/listing/getuser') 
+          .then(user => {
+            console.log("USER", user.data)
+            this.props.setUser(user.data)
+            this.setState({
+              user: user.data
+            });
+          })
+          .catch(err => console.log(err))
+          }
+          console.log('hello this is user', this.state.user)
+        }
+        componentWillMount() {
+          this.getUserData();
+          console.log('checking the state of user', this.state.user)
+        }
+  
+
     render(){
+      const {user} = this.props
+      console.log('helllooooo', user)
         return(
           <div>
           <Container textAlign='justified'>
@@ -42,3 +69,16 @@ export default class MyProfileView extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyProfileView)
+
+
