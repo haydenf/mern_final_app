@@ -56,11 +56,15 @@ Our target audience fall into two main groups of people:
 - ExpressJS
 - React
 - NodeJS
-- Firebase
+- Heroku
 - Jest / Enzyme
 - Redux
 - Semantic UI
 - Middlewares
+- Git
+- Slack
+- Trello
+- Sketch
 
 ## Dataflow Diagram
 ![Dataflow Diagram](./docs/DataFlow_Diagram.png)
