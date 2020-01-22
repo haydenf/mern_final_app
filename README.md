@@ -170,3 +170,9 @@ ____
 
 16/01/2020
 ![Trello 09](./docs/Trello/trello_09.png)
+
+18/01/2020
+![Trello 10](./docs/Trello/trello_10.png)
+
+22/01/2020
+![Trello 10](./docs/Trello/trello_11.png)
