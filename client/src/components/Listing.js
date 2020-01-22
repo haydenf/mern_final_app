@@ -27,7 +27,6 @@ class Listing extends Component {
         .get('/api/listing/getuser') 
         .then(user => {
           this.props.setUser(user.data)
-          console.log('User has been set to state ', user)
           this.setState({ user: user.data });
         })
         .catch(err => console.log(err))
@@ -51,7 +50,7 @@ class Listing extends Component {
     // change logger //
     logChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("Logging change function console log " + this.state);
+        console.log("Logging change function console log ");
     };
     // Fetching the listings from backend //
     grabListings = async () => {
