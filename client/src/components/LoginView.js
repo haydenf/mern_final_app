@@ -21,11 +21,9 @@ import {setUser} from "../actions/userAction"
      await axios
         .get('/api/listing/getuser') 
         .then(user => {
-          console.log("USER", user.data)
           this.props.setUser(user.data)
-          this.setState({
-            user: user.data
-          });
+          console.log('User has been set to state')
+          this.setState({ user: user.data });
         })
         .catch(err => console.log(err))
         }

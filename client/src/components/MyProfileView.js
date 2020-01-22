@@ -22,6 +22,7 @@ class MyProfileView extends Component {
           .get('/api/listing/getuser') 
           .then(user => {
             this.props.setUser(user.data)
+            console.log('user has been set to state')
             this.setState({ user: user.data });
           })
           .catch(err => console.log(err))
