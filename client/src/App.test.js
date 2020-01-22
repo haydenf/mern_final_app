@@ -3,16 +3,17 @@ import * as types from './actions/types'
 
 import reducer from './reducers/reducer'
 
-// import React from 'react';
-// import App from './App';
-// import { configure, shallow } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { App } from './App';
+import DashboardView from './components/DashboardView'
 
 //-------------------------------------
 // Testing backend redux action creators
 //-------------------------------------
 
-  describe('listings actions', () => {
+  describe('Listings actions', () => {
     it('should create a new listing', () => {
       const listings = 'A new product'
       const expectedAction = {
@@ -45,7 +46,7 @@ import reducer from './reducers/reducer'
 // Testing backend redux reducers
 //-------------------------------------
 
-describe('listings reducer', () => {
+describe('Listings reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({"listings": []})
   })
@@ -173,21 +174,37 @@ describe('listings reducer', () => {
 // Testing frontend component rendering
 //-------------------------------------
 
-// configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() });
 
-// const setup = (props={}, state=null) => {
-//       return shallow(<App {...props} /> )
-//   }
+const setup = (component, props={}, state=null) => {
+    const CompName = component
+    return shallow(<CompName {...props} /> )
+  }
   
-//   const findByTestAttr = (wrapper, val) => {
-//       return wrapper.find(`[data-test="${val}"]`);
-//   }
+  const findByTestAttr = (wrapper, val) => {
+      return wrapper.find(`[data-test="${val}"]`);
+  }
 
-  // test('renders without crashing', () => {
-  //   //   const wrapper = shallow(<App />);
-  //   //   console.log(wrapper.debug())
-  //   //   expect(wrapper).toBeTruthy()
-  //       const wrapper = setup();
-  //       const appComponent = findByTestAttr(wrapper, 'component-app')
-  //       expect(appComponent.length).toBe(1)
-  //   });
+  describe('Components', () => {
+    describe('App', () => { 
+      it('should render without crashing', () => {
+            const wrapper = setup(App);
+            const appComponent = findByTestAttr(wrapper, 'component-app')
+            expect(appComponent.length).toBe(1)
+        });
+    })
+
+    describe('DashboardView', () => {
+      it('should render self and sub-components', () => {
+        const wrapper = setup(DashboardView);
+        var appComponent = findByTestAttr(wrapper, 'dashboard');
+        expect(appComponent.length).toBe(1);
+        var appComponent = findByTestAttr(wrapper, 'header');
+        expect(appComponent.length).toBe(1);
+        var appComponent = findByTestAttr(wrapper, 'dashText');
+        expect(appComponent.length).toBe(1);
+        var appComponent = findByTestAttr(wrapper, 'listing');
+        expect(appComponent.length).toBe(1);
+      })
+    })
+  })
