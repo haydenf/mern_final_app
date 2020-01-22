@@ -1,4 +1,3 @@
-
 import * as actions from './actions/listingAction'
 import * as types from './actions/types'
 
@@ -13,7 +12,7 @@ import reducer from './reducers/reducer'
 // Testing backend redux action creators
 //-------------------------------------
 
-  describe('actions', () => {
+  describe('listings actions', () => {
     it('should create a new listing', () => {
       const listings = 'A new product'
       const expectedAction = {
@@ -23,17 +22,8 @@ import reducer from './reducers/reducer'
       expect(actions.newListingHandler(listings)).toEqual(expectedAction)
     })
 
-    it('should edit listings', () => {
-      const listings = 'An edited product'
-      const expectedAction = {
-        type: types.SET_LISTINGS,
-        val: listings
-      }
-      expect(actions.listingHandler(listings)).toEqual(expectedAction)
-    })
-
-    it('should edit listings', () => {
-      const listings = 'An edited product'
+    it('should set listings', () => {
+      const listings = 'A set product'
       const expectedAction = {
         type: types.SET_LISTINGS,
         val: listings
@@ -55,7 +45,129 @@ import reducer from './reducers/reducer'
 // Testing backend redux reducers
 //-------------------------------------
 
+describe('listings reducer', () => {
+  it('should return the initial state', () => {
+    expect(reducer(undefined, {})).toEqual({"listings": []})
+  })
 
+  it('should handle NEW_LISTING', () => {
+    expect(
+      reducer([], {
+        type: types.NEW_LISTING,
+        text: 'New listing handled'
+      })
+    ).toEqual([
+      {
+        text: 'New listing handled',
+        id: 0
+      }
+    ])
+    expect(
+      reducer(
+        [
+          {
+            text: 'Pre-existing listing',
+            id: 0
+          }
+        ],
+        {
+          type: types.NEW_LISTING,
+          text: 'Additional listing'
+        }
+      )
+    ).toEqual([
+      {
+        text: 'Additional listing',
+        id: 1
+      },
+      {
+        text: 'Pre-existing listing',
+        id: 0
+      }
+    ])
+  })
+
+  it('should handle SET_LISTINGS', () => {
+    expect(
+      reducer([], {
+        type: types.SET_LISTINGS,
+        text: 'Listing set'
+      })
+    ).toEqual([
+      {
+        text: 'Listing set',
+        id: 0
+      }
+    ])
+    expect(
+      reducer([
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
+        type: types.SET_LISTINGS,
+        text: 'Set listing'
+      })
+    ).toEqual([
+      {
+        text: 'Set listing',
+        id: 0
+      }
+    ])
+    expect(
+      reducer([
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
+        type: types.SET_LISTINGS,
+        text: ''
+      })
+    ).toEqual([
+      {
+        text: '',
+        id: 0
+      }
+    ])
+  })
+
+  it('should handle DELETE_LISTING', () => {
+    expect(
+      reducer([
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
+        type: types.DELETE_LISTING,
+        text: 'Pre-existing listing'
+      })
+    ).toEqual([])
+    expect(
+      reducer([
+        {
+          text: 'Additional listing',
+          id: 1
+        },
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
+        type: types.DELETE_LISTING,
+        text: 'Additional listing'
+      })
+    ).toEqual([
+      {
+        text: 'Pre-existing listing',
+        id: 0
+      }
+    ])
+   
+  })
+})
 
 //-------------------------------------
 // Testing frontend component rendering

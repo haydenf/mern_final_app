@@ -1,23 +1,46 @@
 import React, {Component} from "react";
 import { Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
+import {connect} from "react-redux";
+import {setUser} from "../actions/userAction"
+import axios from "axios"
 
-export default class MyProfileView extends Component {
+
+class MyProfileView extends Component {
     constructor(props){
       super(props)
       this.state = {
           firstName: "",
           lastName: "",
-          email: ""
+          email: "",
+          user: {}
       }
     }
+    // getting user data from backend route then saving that to global state //
+    getUserData = async () => {
+      if (document.cookie.includes("jwt="))  {
+       await axios
+          .get('/api/listing/getuser') 
+          .then(user => {
+            this.props.setUser(user.data)
+            console.log('user has been set to state')
+            this.setState({ user: user.data });
+          })
+          .catch(err => console.log(err))
+          }}
+          // mounting func //
+        componentWillMount() {
+          this.getUserData();
+        }
+  
 
     render(){
+      const {user} = this.props
         return(
           <div>
           <Container textAlign='justified'>
             <Header as='h2'>
               <Image circular verticalAlign='middle' size='medium' src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' /> 
-              SpongeBob SquarePants
+              {user.firstName} {user.lastName}
             </Header>
             <Divider />
           </Container>
@@ -42,3 +65,18 @@ export default class MyProfileView extends Component {
         )
     }
 }
+// mapping for redux state management //
+
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyProfileView)
+
+
