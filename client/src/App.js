@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
   listings: state.listings,
   user: state.user
 })
-
+// exporting, needs null because it expects a dispatch export but not using //
 export default connect(
   mapStateToProps,
   null
