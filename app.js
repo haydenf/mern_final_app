@@ -50,8 +50,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", auth);
-app.use(passport.authenticate('jwt', { session: false }))
 
+<<<<<<< HEAD
 app.use((req, res, next) => {
   console.log("LOGGED IN USER", req.user)
   res.locals.user = req.user || null;
@@ -61,8 +61,14 @@ app.use((req, res, next) => {
 app.use("/api/listing", listing);
 app.use("/users", user);
 
+=======
+app.use("/api/listing", passport.authenticate('jwt', { session: false }), listing);
+app.use("/api/users", passport.authenticate('jwt', { session: false }), user);
+app.get("/", (req, res) => {
+  res.send("HOME");
+});
+>>>>>>> 7290f6ee7f62435d7eed34bc55e26bc1fe8452a6
 
-app.use("/api/users", user);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
