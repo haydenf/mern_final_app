@@ -30,16 +30,6 @@ class SellerProfile extends Component {
         }
       }
 
-  // on submit function fetching from backend route ///
-  onSubmit = e => {
-    e.preventDefault();
-    axios.get('/users/login', {
-      email: this.state.email,
-      password: this.state.password
-    })
-    console.log("You signed in!");
-    
-  }
   
   // mounting func //
   componentWillMount() {
