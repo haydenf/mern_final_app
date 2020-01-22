@@ -53,9 +53,6 @@ app.use("/auth", auth);
 
 app.use("/api/listing", passport.authenticate('jwt', { session: false }), listing);
 app.use("/api/users", passport.authenticate('jwt', { session: false }), user);
-app.get("/", (req, res) => {
-  res.send("HOME");
-});
 
 
 if (process.env.NODE_ENV === "production") {

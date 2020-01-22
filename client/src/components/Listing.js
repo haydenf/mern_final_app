@@ -4,6 +4,7 @@ import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semanti
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -18,7 +19,6 @@ class Listing extends Component {
          }
    }
 
-   // modal for edit function //
 
     handleOpen = listings => {this.setState({ 
         modalOpen: true,
@@ -79,11 +79,15 @@ class Listing extends Component {
     };
 
 
-    // mounting the listings //
-    componentDidMount() {this.grabListings();}
+    // mounting the listings and user //
+    componentDidMount() {
+        this.grabListings();
+}
 
     render() { 
         const {listings} = this.props
+        const {user} = this.props
+        console.log('hellloooo this is suserser', user)
         return ( 
             <div>
                 <div className="card">
@@ -171,7 +175,8 @@ class Listing extends Component {
  
 // mapping for redux state management //
 const mapStateToProps = (state) => ({
-    listings: state.listings
+    listings: state.listings,
+    user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
