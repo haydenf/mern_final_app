@@ -9,9 +9,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers/reducer';
 import 'semantic-ui-css/semantic.min.css';
 
+// this is for redux extension in chrome //
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-//store handles both the state and reducers that update the state
+//store handles both the state and reducers that update the state //
 const store = createStore(reducer, composeEnhancers(
     applyMiddleware()
   ));

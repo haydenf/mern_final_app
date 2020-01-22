@@ -1,12 +1,13 @@
 import React, {Component} from "react";
+import axios from "axios"
 import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
 import {setUser} from "../actions/userAction"
+import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 
-
+import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -47,7 +48,7 @@ class Listing extends Component {
         productOwner: listing.productOwner
      });
     };
-    
+    // handling close by setting state to false //
     handleClose = () => this.setState({ modalOpen: false })
 
     // change logger //
@@ -79,7 +80,7 @@ class Listing extends Component {
                     if (listing._id === res.data._id) {
                         return res.data;
                     }
-                    console.log(res.data)
+                    console.log('listing has been edited')
                     return listing
                 });
                     this.handleClose();
@@ -88,7 +89,7 @@ class Listing extends Component {
                     .catch(err => console.log("this is an updated error " + err));
     };
 
-    // deleting function handling delete on state and for the backend
+    // deleting function handling delete on state and for the backend //
     deletion = (listing) => {
         axios
             .delete("/api/listing/delete", { data: listing })
@@ -120,6 +121,7 @@ class Listing extends Component {
 }
 
     render() { 
+       // setting variables // 
         const {listings} = this.props
         return ( 
             <div>
@@ -146,7 +148,7 @@ class Listing extends Component {
                                             size="small"
                                             src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
                                         />
-                                    <Modal.Description>
+                                     <Modal.Description>
                                         <Form method="POST">
                                             <Modal.Header>Product Title</Modal.Header>
                                             <Form.Input
@@ -185,6 +187,7 @@ class Listing extends Component {
                                     </Modal.Content>
                                     <Modal.Actions>
                                         {this.showEditDelete(listing)}
+
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>  
@@ -210,6 +213,7 @@ const mapStateToProps = (state) => ({
     listings: state.listings,
     user: state.user
 })
+// dispatching to store state changes //
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
     deletedListingHandler: id => dispatch(deletedListingHandler(id)),

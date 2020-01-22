@@ -15,7 +15,7 @@ import {setUser} from "../actions/userAction"
     }
   }
 
-  // fetches user data and updates global state
+  // fetches user data and updates global state //
   getUserData = async () => {
     if (document.cookie.includes("jwt="))  {
      await axios
@@ -29,7 +29,7 @@ import {setUser} from "../actions/userAction"
         }
       }
 
-
+  // on submit function fetching from backend route ///
   onSubmit = e => {
     e.preventDefault();
     axios.get('/users/login', {
@@ -40,7 +40,7 @@ import {setUser} from "../actions/userAction"
     
   }
   
-  // mounting func
+  // mounting func //
   componentWillMount() {
     this.getUserData();
   }

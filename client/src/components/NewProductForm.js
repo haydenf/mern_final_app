@@ -30,7 +30,6 @@ class Forms extends Component{
             price: this.state.price
         })
         .then((res) => {
-            console.log(res)
             this.props.newListingHandler(res.data)
             this.props.history.push('/')
         })
