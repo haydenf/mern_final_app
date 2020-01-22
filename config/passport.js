@@ -10,12 +10,14 @@ const passport = require('passport');
 //  passport function for auth //
 module.exports = function (passport) {
   passport.use(new GoogleStrategy({
+
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: "/auth/google/callback",
     proxy: true
   },
   function(accessToken, refreshToken, profile, done) {
+
       console.log("PROFILE", profile)
       const image = profile.photos[0].value.substring(
         0,
