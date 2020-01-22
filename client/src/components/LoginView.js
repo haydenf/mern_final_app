@@ -15,21 +15,20 @@ import {setUser} from "../actions/userAction"
     }
   }
 
-  getUserData = () => {
+  getUserData = async () => {
     if (document.cookie.includes("jwt="))  {
-      axios
+     await axios
         .get('/api/listing/getuser') 
         .then(user => {
-          console.log("USER", user)
+          console.log("USER", user.data)
           this.props.setUser(user.data)
           this.setState({
             user: user.data
           });
-          console.log('hello this is user', this.state.user)
         })
         .catch(err => console.log(err))
         }
-       
+        console.log('hello this is user', this.state.user)
       }
 
 
@@ -82,15 +81,16 @@ import {setUser} from "../actions/userAction"
     }
   }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
+
+// const mapDispatchToProps = (dispatch) => ({
+//   setUser: user => dispatch(setUser(user))
+// })
 const mapDispatchToProps = (dispatch) => ({
   setUser: user => dispatch(setUser(user))
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(LoginView)
 

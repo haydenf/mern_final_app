@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    console.log("REDUCER", action.val)
      // copied state //
     let newState = {...state};
     let newListings = [...newState.listings]
@@ -24,11 +25,13 @@ const reducer = (state = initialState, action) => {
             newListings = listings;
         }
         if (action.type === SET_USER) {
+            console.log('checking action.val', action.val)
             userSet = action.val
             }
         // setting new state after an action has occured //
         newState.listings = newListings;
         newState.user = userSet
+        console.log('newstate---------', newState)
 
         return newState;
 }
