@@ -4,7 +4,6 @@ import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from "react-redux";
 
-import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
@@ -17,24 +16,25 @@ import CreateUserView from './components/CreateUserView'
  export class App extends Component {
   state = {
     loggedIn: false,
-    activeItem: 'Dashboard'
-  }
-
+    activeItem: 'Dashboard',
+    userid: {}
+  };
+  // setting loggin in state if cookie includes jwt //
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
-  }
+    };
+  
 
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: false, activeItem: "Login"});
-    }
-  }
+      this.setState({loggedIn: true, activeItem: "Login"});
+    }};
+
 
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
-
     return (
       <div className="App" data-test="component-app">
         <BrowserRouter>
@@ -85,16 +85,14 @@ import CreateUserView from './components/CreateUserView'
     )
   }
 }
+// mapping for redux state management //
 
 const mapStateToProps = (state) => ({
-  listings: state.listings
+  listings: state.listings,
+  user: state.user
 })
-const mapDispatchToProps = (dispatch) => ({
-  listingHandler: listings => dispatch(listingHandler(listings)),
-  deletedListingHandler: id => dispatch(deletedListingHandler(id))
-})
-
+// exporting, needs null because it expects a dispatch export but not using //
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(App)

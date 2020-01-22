@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
-import { Route, Link } from "react-router-dom";
 import axios from "axios"
+import {connect} from "react-redux";
+import { Route, Link } from "react-router-dom";
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+import {setUser} from "../actions/userAction"
+import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -14,22 +15,37 @@ class Listing extends Component {
             title: "",
             description: "",
             image: "",
-            modalOpen: false
+            modalOpen: false,
+            productOwner: "",
+            price: ""
          }
    }
+   // fetches user data and updates global state
+  getUserData = async () => {
+    if (document.cookie.includes("jwt="))  {
+     await axios
+        .get('/api/listing/getuser') 
+        .then(user => {
+          this.props.setUser(user.data)
+          console.log('User has been set to state ', user)
+          this.setState({ user: user.data });
+        })
+        .catch(err => console.log(err))
+        }
+      }
 
-   // modal for edit function //
 
-    handleOpen = listings => {this.setState({ 
+    handleOpen = listing => {this.setState({ 
         modalOpen: true,
-        _id: listings._id,
-        title: listings.title,
-        description: listings.description,
-        blurb: listings.blurb,
-        price: listings.price
+        _id: listing._id,
+        title: listing.title,
+        description: listing.description,
+        blurb: listing.blurb,
+        price: listing.price,
+        productOwner: listing.productOwner
      });
     };
-    
+    // handling close by setting state to false //
     handleClose = () => this.setState({ modalOpen: false })
 
     // change logger //
@@ -39,7 +55,7 @@ class Listing extends Component {
     };
     // Fetching the listings from backend //
     grabListings = async () => {
-        let res = await axios.get('/api/listing')
+        let res = await axios.get('/api/listing/show')
         let listings = res.data
         this.props.listingHandler(listings)
     }
@@ -55,13 +71,13 @@ class Listing extends Component {
             price: this.state.price
         };
         axios
-            .put("/api/listing", listing)
+            .put("/api/listing/update", listing)
             .then(res => {
                 const updateListings = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {
                         return res.data;
                     }
-                    console.log(res.data)
+                    console.log('listing has been edited')
                     return listing
                 });
                     this.handleClose();
@@ -70,19 +86,39 @@ class Listing extends Component {
                     .catch(err => console.log("this is an updated error " + err));
     };
 
-    // deleting function handling delete on state and for the backend
+    // deleting function handling delete on state and for the backend //
     deletion = (listing) => {
         axios
-            .delete("/api/listing", { data: listing })
+            .delete("/api/listing/delete", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
+            .then(() => {this.handleClose()})
             .catch(err => console.log("this is the deletion function err " + err));
     };
 
+    showEditDelete = (listing) =>{
+        if(this.props.user._id === this.state.productOwner){
+            return (
+            <div>
+                <Button basic className="button" floated='left' onClick={this.editHandler}> 
+                    Edit
+                </Button>
+                <Button className="button" floated='left' onClick={() => this.deletion(listing)}>
+                    Delete
+                </Button>
+            </div>
+            )} else {
+                return null
+            }
+        }
 
-    // mounting the listings //
-    componentDidMount() {this.grabListings();}
+    // mounting the listings and user //
+    componentDidMount() {
+        this.grabListings();
+        this.getUserData();
+}
 
     render() { 
+       // setting variables // 
         const {listings} = this.props
         return ( 
             <div>
@@ -97,7 +133,7 @@ class Listing extends Component {
                             <Card.Header>{listing.title}</Card.Header>
                             <Card.Description>{listing.blurb}</Card.Description>
                                 <Modal
-                                    trigger={<Button className="button" basic onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    trigger={<Button className="button" basic fluid onClick={() => this.handleOpen(listing)}>Take a closer look</Button>}
                                     open={this.state.modalOpen}
                                     onClose={this.handleClose}
                                     dimmer='blurring'
@@ -109,7 +145,7 @@ class Listing extends Component {
                                             size="small"
                                             src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
                                         />
-                                    <Modal.Description>
+                                     <Modal.Description>
                                         <Form method="POST">
                                             <Modal.Header>Product Title</Modal.Header>
                                             <Form.Input
@@ -130,7 +166,6 @@ class Listing extends Component {
                                             />
                                             <Modal.Header>Product Description</Modal.Header>
                                             <Form.TextArea
-                                                fluid 
                                                 placeholder="Product description"
                                                 name="description"
                                                 value={this.state.description}
@@ -148,15 +183,15 @@ class Listing extends Component {
                                         </Modal.Description>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button basic className="button" onClick={this.editHandler}> 
-                                            Edit 
-                                        </Button>
+                                        {this.showEditDelete(listing)}
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
-                                        </Button>   
+                                        </Button>  
+                                        <Button className="button" onClick={() => this.handleClose()}>
+                                            Close
+                                        </Button> 
                                     </Modal.Actions>
                                 </Modal>
-                                <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                             </Card.Content>
                         </Responsive>
                         ))}
@@ -171,16 +206,18 @@ class Listing extends Component {
  
 // mapping for redux state management //
 const mapStateToProps = (state) => ({
-    listings: state.listings
+    listings: state.listings,
+    user: state.user
 })
+// dispatching to store state changes //
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
-    deletedListingHandler: id => dispatch(deletedListingHandler(id))
+    deletedListingHandler: id => dispatch(deletedListingHandler(id)),
+    setUser: user => dispatch(setUser(user))
+
 })
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Listing)
-
-

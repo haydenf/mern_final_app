@@ -15,6 +15,7 @@ export default class CreateUserView extends Component {
   }
 
   //---------------------------------------------------------------------------------
+  // onsubmit function that posts users to the backend based on whats in the state
   onSubmit = e => {
     e.preventDefault();
     console.log("You hit submit", e);
@@ -33,11 +34,12 @@ export default class CreateUserView extends Component {
     })
   }
 
+  // logs change 
   logChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
     
-    
+  
   handleSubmit = e => {
      e.preventDefault();
      console.log("form submitted successfully");

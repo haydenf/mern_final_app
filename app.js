@@ -19,7 +19,7 @@ const user = require("./routes/user_routes");
 const keys = require("./config/keys");
 
 mongoose.Promise = global.Promise;
-// mongoose connect
+// mongoose connect //
 mongoose
   .connect(
     keys.mongoURI,
@@ -49,12 +49,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// routes //
 app.use("/auth", auth);
-
 app.use("/api/listing", passport.authenticate('jwt', { session: false }), listing);
 app.use("/api/users", passport.authenticate('jwt', { session: false }), user);
 
 
+// for production build //
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   const path = require("path");

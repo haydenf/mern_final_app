@@ -1,5 +1,13 @@
 # Start-up Again
 
+[GitHub](https://github.com/haydenf/mern_final_app)
+
+[Deployment](https://startupagain-mern.herokuapp.com/)
+
+[Trello](https://trello.com/b/xCccFJK4/mern-stack)
+
+[Presentation](https://docs.google.com/presentation/d/1ptLJij68MdJEWTuSj7f8yiRdHofpYz5cEzQJfwS_5qg/edit?usp=sharing)
+
 ## Website Description
 
 StartUp Again is a website bringing entrepreneurs and products/ideas together.
@@ -48,11 +56,15 @@ Our target audience fall into two main groups of people:
 - ExpressJS
 - React
 - NodeJS
-- Firebase
+- Heroku
 - Jest / Enzyme
 - Redux
 - Semantic UI
 - Middlewares
+- Git
+- Slack
+- Trello
+- Sketch
 
 ## Dataflow Diagram
 ![Dataflow Diagram](./docs/DataFlow_Diagram.png)
@@ -82,6 +94,14 @@ Our target audience fall into two main groups of people:
   - As Reggie, I want the ability to leave comments and start conversations so I can see what other people think.
   - As Reggie, I want the option to buy or bid on a product so I can see the likelihood of a successful purchase.
   - As Natalia, I want to be able to search by category so I can easily see relevant and interesting technologies.
+
+## Screenshots of site
+
+<img src="./docs/screenshots/screen1.png">
+
+<img src="./docs/screenshots/screen2.png">
+
+<img src="./docs/screenshots/screen3.png">
 
 ## Wireframes
 
@@ -146,6 +166,7 @@ ____
 ![single products](./docs/WireFrames/single products.png)
 
 ## Trello
+[Live version](https://trello.com/b/xCccFJK4/mern-stack)
 
 27/11/2019
 ![Trello 01](./docs/Trello/trello_01.png)
