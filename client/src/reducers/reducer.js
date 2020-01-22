@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    console.log("REDUCER", action.val)
      // copied state //
     let newState = {...state};
     let newListings = [...newState.listings]
