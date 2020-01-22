@@ -10,10 +10,12 @@ import {setUser} from "../actions/userAction"
     super(props)
     this.state = {
         email: "",
-        password: ""
+        password: "",
+        user: {}
     }
   }
 
+  // fetches user data and updates global state
   getUserData = async () => {
     if (document.cookie.includes("jwt="))  {
      await axios
@@ -27,7 +29,6 @@ import {setUser} from "../actions/userAction"
         })
         .catch(err => console.log(err))
         }
-        console.log('hello this is user', this.state.user)
       }
 
 
@@ -37,9 +38,9 @@ import {setUser} from "../actions/userAction"
     this.props.history.push('/')
   }
   
+  // mounting func
   componentWillMount() {
     this.getUserData();
-    console.log('checking the state of user', this.state.user)
   }
 
     render(){
@@ -81,9 +82,7 @@ import {setUser} from "../actions/userAction"
   }
 
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setUser: user => dispatch(setUser(user))
-// })
+// mapping user to props
 const mapDispatchToProps = (dispatch) => ({
   setUser: user => dispatch(setUser(user))
 })

@@ -24,23 +24,13 @@ const reducer = (state = initialState, action) => {
             listings.splice(index, 1);
             newListings = listings;
         }
+        // set user with action value of user
         if (action.type === SET_USER) {
-            console.log('checking action.val', action.val)
             userSet = action.val
             }
         // setting new state after an action has occured //
         newState.listings = newListings;
         newState.user = userSet
-        console.log('newstate---------', newState)
-
         return newState;
 }
-
-// const userReducer = (state = initialState, action) => {
-//     let newState = {...state};
-   
-   
-//         return newState
-//     };
-
         export default reducer;

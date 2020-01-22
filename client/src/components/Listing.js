@@ -87,7 +87,6 @@ class Listing extends Component {
     render() { 
         const {listings} = this.props
         const {user} = this.props
-        console.log('hellloooo this is suserser', user)
         return ( 
             <div>
                 <div className="card">

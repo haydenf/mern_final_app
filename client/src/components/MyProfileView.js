@@ -11,7 +11,8 @@ class MyProfileView extends Component {
       this.state = {
           firstName: "",
           lastName: "",
-          email: ""
+          email: "",
+          user: {}
       }
     }
 
@@ -20,25 +21,19 @@ class MyProfileView extends Component {
        await axios
           .get('/api/listing/getuser') 
           .then(user => {
-            console.log("USER", user.data)
             this.props.setUser(user.data)
-            this.setState({
-              user: user.data
-            });
+            this.setState({ user: user.data });
           })
           .catch(err => console.log(err))
-          }
-          console.log('hello this is user', this.state.user)
-        }
+          }}
+
         componentWillMount() {
           this.getUserData();
-          console.log('checking the state of user', this.state.user)
         }
   
 
     render(){
       const {user} = this.props
-      console.log('helllooooo', user)
         return(
           <div>
           <Container textAlign='justified'>

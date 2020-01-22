@@ -1,10 +1,5 @@
-import {SET_USER, REMOVE_USER} from './types'
+import {SET_USER} from './types'
 
-
+//setting user action with a value of user
 export const setUser = (user) => {
-    console.log('hello this is useraction', user)
     return {type: SET_USER,  val: user}};
-
-export const removeUser = () => {
-    return {type: REMOVE_USER}
-}

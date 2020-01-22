@@ -19,32 +19,23 @@ import CreateUserView from './components/CreateUserView'
     loggedIn: false,
     activeItem: 'Dashboard',
     userid: {}
-  }
+  };
 
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
-    }
+    };
   
 
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
       this.setState({loggedIn: false, activeItem: "Login"});
-    }
-    this.setState({
-      userid: this.props.user._id
-    })
-    console.log(this.state.userid, '')
-
-
-  }
+    }};
 
 
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
-    console.log(this.props.user, '-=-=-=-=-=-=-=-=-=-=-')
-
     return (
       <div className="App" data-test="component-app">
         <BrowserRouter>
