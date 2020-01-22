@@ -1,5 +1,13 @@
 # Start-up Again
 
+[GitHub](https://github.com/haydenf/mern_final_app)
+
+[Deployment](https://startupagain-mern.herokuapp.com/)
+
+[Trello](https://trello.com/b/xCccFJK4/mern-stack)
+
+[Presentation](https://docs.google.com/presentation/d/1ptLJij68MdJEWTuSj7f8yiRdHofpYz5cEzQJfwS_5qg/edit?usp=sharing)
+
 ## Website Description
 
 StartUp Again is a website bringing entrepreneurs and products/ideas together.
@@ -146,6 +154,7 @@ ____
 ![single products](./docs/WireFrames/single products.png)
 
 ## Trello
+[Live version](https://trello.com/b/xCccFJK4/mern-stack)
 
 27/11/2019
 ![Trello 01](./docs/Trello/trello_01.png)

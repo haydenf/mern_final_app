@@ -4,6 +4,7 @@ import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semanti
 import { Route, Link } from "react-router-dom";
 import axios from "axios"
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -18,7 +19,6 @@ class Listing extends Component {
          }
    }
 
-   // modal for edit function //
 
     handleOpen = listings => {this.setState({ 
         modalOpen: true,
@@ -39,7 +39,7 @@ class Listing extends Component {
     };
     // Fetching the listings from backend //
     grabListings = async () => {
-        let res = await axios.get('/api/listing')
+        let res = await axios.get('/api/listing/show')
         let listings = res.data
         this.props.listingHandler(listings)
     }
@@ -55,7 +55,7 @@ class Listing extends Component {
             price: this.state.price
         };
         axios
-            .put("/api/listing", listing)
+            .put("/api/listing/update", listing)
             .then(res => {
                 const updateListings = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {
@@ -73,18 +73,21 @@ class Listing extends Component {
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
-            .delete("/api/listing", { data: listing })
+            .delete("/api/listing/delete", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
             .then(() => {this.handleClose()})
             .catch(err => console.log("this is the deletion function err " + err));
     };
 
 
-    // mounting the listings //
-    componentDidMount() {this.grabListings();}
+    // mounting the listings and user //
+    componentDidMount() {
+        this.grabListings();
+}
 
     render() { 
         const {listings} = this.props
+        const {user} = this.props
         return ( 
             <div>
                 <div className="card">
@@ -125,6 +128,7 @@ class Listing extends Component {
                                                 fluid
                                                 placeholder="Product blurb"
                                                 name="blurb"
+                                                maxLength={30}
                                                 value={this.state.blurb}
                                                 onChange={this.logChange}
                                             />
@@ -174,7 +178,8 @@ class Listing extends Component {
  
 // mapping for redux state management //
 const mapStateToProps = (state) => ({
-    listings: state.listings
+    listings: state.listings,
+    user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
