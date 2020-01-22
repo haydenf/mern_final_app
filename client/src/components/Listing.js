@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
-import { Route, Link } from "react-router-dom";
 import axios from "axios"
-import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+import {connect} from "react-redux";
+import { Route, Link } from "react-router-dom";
+import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 
+import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -19,7 +19,7 @@ class Listing extends Component {
          }
    }
 
-
+   // handle open modal with setting state to true, when opened will set the state from listings backend //
     handleOpen = listings => {this.setState({ 
         modalOpen: true,
         _id: listings._id,
@@ -29,7 +29,7 @@ class Listing extends Component {
         price: listings.price
      });
     };
-    
+    // handling close by setting state to false //
     handleClose = () => this.setState({ modalOpen: false })
 
     // change logger //
@@ -61,7 +61,7 @@ class Listing extends Component {
                     if (listing._id === res.data._id) {
                         return res.data;
                     }
-                    console.log(res.data)
+                    console.log('listing has been edited')
                     return listing
                 });
                     this.handleClose();
@@ -70,7 +70,7 @@ class Listing extends Component {
                     .catch(err => console.log("this is an updated error " + err));
     };
 
-    // deleting function handling delete on state and for the backend
+    // deleting function handling delete on state and for the backend //
     deletion = (listing) => {
         axios
             .delete("/api/listing/delete", { data: listing })
@@ -85,6 +85,7 @@ class Listing extends Component {
 }
 
     render() { 
+       // setting variables // 
         const {listings} = this.props
         const {user} = this.props
         return ( 
@@ -112,7 +113,7 @@ class Listing extends Component {
                                             size="small"
                                             src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
                                         />
-                                    <Modal.Description>
+                                     <Modal.Description>
                                         <Form method="POST">
                                             <Modal.Header>Product Title</Modal.Header>
                                             <Form.Input
@@ -149,17 +150,18 @@ class Listing extends Component {
                                             />
                                         </Form>
                                         </Modal.Description>
-                                    </Modal.Content>
-                                    <Modal.Actions>
-                                        <Button basic className="button" onClick={this.editHandler}> 
+                                        </Modal.Content>
+                                        <Modal.Actions>
+                                            <Button basic className="button" onClick={this.editHandler}> 
                                             Edit 
                                         </Button>
+                                        <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>   
                                     </Modal.Actions>
                                 </Modal>
-                                <Button className="button" onClick={() => this.deletion(listing)}>Delete</Button>
+                                
                             </Card.Content>
                         </Responsive>
                         ))}
@@ -177,6 +179,7 @@ const mapStateToProps = (state) => ({
     listings: state.listings,
     user: state.user
 })
+// dispatching to store state changes //
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
     deletedListingHandler: id => dispatch(deletedListingHandler(id))

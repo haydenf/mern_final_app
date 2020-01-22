@@ -4,7 +4,6 @@ import { Menu } from "semantic-ui-react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from "react-redux";
 
-import {deletedListingHandler, listingHandler} from "./actions/listingAction"
 
 import LoginView from "./components/LoginView"
 import LoginSwitch from "./components/LoginSwitch"
@@ -20,7 +19,7 @@ import CreateUserView from './components/CreateUserView'
     activeItem: 'Dashboard',
     userid: {}
   };
-
+  // setting loggin in state if cookie includes jwt //
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
@@ -29,7 +28,7 @@ import CreateUserView from './components/CreateUserView'
 
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
-      this.setState({loggedIn: false, activeItem: "Login"});
+      this.setState({loggedIn: true, activeItem: "Login"});
     }};
 
 
@@ -86,17 +85,14 @@ import CreateUserView from './components/CreateUserView'
     )
   }
 }
+// mapping for redux state management //
 
 const mapStateToProps = (state) => ({
   listings: state.listings,
   user: state.user
 })
-const mapDispatchToProps = (dispatch) => ({
-  listingHandler: listings => dispatch(listingHandler(listings)),
-  deletedListingHandler: id => dispatch(deletedListingHandler(id))
-})
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(App)

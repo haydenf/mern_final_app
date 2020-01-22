@@ -15,7 +15,7 @@ class MyProfileView extends Component {
           user: {}
       }
     }
-
+    // getting user data from backend route then saving that to global state //
     getUserData = async () => {
       if (document.cookie.includes("jwt="))  {
        await axios
@@ -27,7 +27,7 @@ class MyProfileView extends Component {
           })
           .catch(err => console.log(err))
           }}
-
+          // mounting func //
         componentWillMount() {
           this.getUserData();
         }
@@ -65,6 +65,8 @@ class MyProfileView extends Component {
         )
     }
 }
+// mapping for redux state management //
+
 const mapStateToProps = (state) => ({
   user: state.user
 })
