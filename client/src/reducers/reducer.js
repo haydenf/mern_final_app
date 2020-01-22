@@ -1,13 +1,15 @@
-import {NEW_LISTING, SET_LISTINGS, DELETE_LISTING} from '../actions/types'; 
+import {NEW_LISTING, SET_LISTINGS, DELETE_LISTING, SET_USER} from '../actions/types'; 
 
 const initialState = {
-    listings: []
+    listings: [],
+    user: {}
 };
 
-const listingReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
      // copied state //
     let newState = {...state};
     let newListings = [...newState.listings]
+    let userSet = {...newState.user}
     // new listing action //
         if (action.type === NEW_LISTING) {
             newListings.push(action.val)};
@@ -21,8 +23,13 @@ const listingReducer = (state = initialState, action) => {
             listings.splice(index, 1);
             newListings = listings;
         }
+        // set user with action value of user
+        if (action.type === SET_USER) {
+            userSet = action.val
+            }
         // setting new state after an action has occured //
         newState.listings = newListings;
+        newState.user = userSet
         return newState;
 }
-export default listingReducer;
+        export default reducer;

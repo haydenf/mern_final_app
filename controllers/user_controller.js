@@ -74,6 +74,10 @@ const destroy = async (req, res) => {
     res.redirect('/users');
 }
 
+const getUser = async (req, res) => {
+    console.log('get user-------')
+    // res.json(req.user)
+}
 
 module.exports = {
     index,
@@ -82,5 +86,6 @@ module.exports = {
     show,
     edit,
     update,
-    destroy
+    destroy,
+    getUser
 }
