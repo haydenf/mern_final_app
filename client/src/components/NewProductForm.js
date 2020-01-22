@@ -23,7 +23,7 @@ class Forms extends Component{
     }
    onSubmit = e => {
        e.preventDefault()
-         axios.post('/api/listing', {
+         axios.post('/api/listing/new', {
             title: this.state.title,
             description: this.state.description,
             blurb: this.state.blurb,

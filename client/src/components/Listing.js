@@ -39,7 +39,7 @@ class Listing extends Component {
     };
     // Fetching the listings from backend //
     grabListings = async () => {
-        let res = await axios.get('/api/listing')
+        let res = await axios.get('/api/listing/show')
         let listings = res.data
         this.props.listingHandler(listings)
     }
@@ -55,7 +55,7 @@ class Listing extends Component {
             price: this.state.price
         };
         axios
-            .put("/api/listing", listing)
+            .put("/api/listing/update", listing)
             .then(res => {
                 const updateListings = this.props.listings.map(listing => {
                     if (listing._id === res.data._id) {
@@ -73,7 +73,7 @@ class Listing extends Component {
     // deleting function handling delete on state and for the backend
     deletion = (listing) => {
         axios
-            .delete("/api/listing", { data: listing })
+            .delete("/api/listing/delete", { data: listing })
             .then(() => {this.props.deletedListingHandler(listing._id)})
             .catch(err => console.log("this is the deletion function err " + err));
     };

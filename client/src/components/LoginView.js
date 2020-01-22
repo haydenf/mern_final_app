@@ -21,11 +21,9 @@ import {setUser} from "../actions/userAction"
      await axios
         .get('/api/listing/getuser') 
         .then(user => {
-          console.log("USER", user.data)
           this.props.setUser(user.data)
-          this.setState({
-            user: user.data
-          });
+          console.log('User has been set to state')
+          this.setState({ user: user.data });
         })
         .catch(err => console.log(err))
         }
@@ -34,8 +32,12 @@ import {setUser} from "../actions/userAction"
 
   onSubmit = e => {
     e.preventDefault();
-    console.log("You signed in!", e);
-    this.props.history.push('/')
+    axios.get('/users/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
+    console.log("You signed in!");
+    
   }
   
   // mounting func
@@ -57,6 +59,8 @@ import {setUser} from "../actions/userAction"
                       icon="user"
                       iconPosition="left"
                       placeholder="Email address"
+                      name="email"
+                      onChange={this.onChange}
                     />
                     <Form.Input
                       fluid
@@ -64,8 +68,14 @@ import {setUser} from "../actions/userAction"
                       iconPosition="left"
                       placeholder="Password"
                       type="password"
+                      name="password"
+                      onChange={this.onChange}
                     />
-                    <Button color="blue" fluid size="large" onClick={this.onSubmit}>
+                    <Button 
+                    color="blue"
+                    fluid size="large"
+                    onClick={this.onSubmit}
+                    type='submit'>
                       Login
                     </Button>
                     <br></br>

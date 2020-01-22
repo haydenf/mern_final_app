@@ -8,6 +8,7 @@ router.get("/", UserController.index);
 
 router.post("/", UserController.create);
 
+
 router.get("/new", UserController.make);
 
 router.get("/:id", passport.authenticate('jwt', {session: false}), UserController.show);

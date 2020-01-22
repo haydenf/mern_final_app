@@ -11,10 +11,6 @@ async function index(req, res) {
         .catch(err => console.log(err))
 }
 
-//shows form to make new listing
-function make(req, res) {
-    res.render("CreateListingView");
-}
 
 //create and save to db a new listing
 async function create(req, res) {
@@ -82,7 +78,6 @@ const getUser = async (req, res) => {
   module.exports = {
     index,
     create,
-    make,
     show,
     edit,
     update,
