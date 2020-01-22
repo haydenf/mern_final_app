@@ -128,6 +128,7 @@ class Listing extends Component {
                                                 fluid
                                                 placeholder="Product blurb"
                                                 name="blurb"
+                                                maxLength={30}
                                                 value={this.state.blurb}
                                                 onChange={this.logChange}
                                             />
