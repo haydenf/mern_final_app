@@ -6,14 +6,14 @@ export default class DashboardView extends Component {
     render(){
         return(
             <div>
-                <Container textAlign='center'>
-                    <Header as='h2'>
+                <Container textAlign='center' data-test="dashboard">
+                    <Header as='h2' data-test="header">
                         Start-up Again
                     </Header>
                     <Divider />
                     <Grid columns={1} className="dashGrid">
                         <Image className="lightBulb" floated='right' src={require("../images/lightbulb.png")}/>
-                        <Grid.Column className="dashText">
+                        <Grid.Column className="dashText" data-test="dashText">
                             <h4>Are you an <span>entrepreneur</span> without an idea?</h4>
                             <h4>Do you have a business idea but <span>need a partner</span>?</h4>
                             <h4>Did you have a business idea that never quite got off the ground?</h4>
@@ -24,7 +24,7 @@ export default class DashboardView extends Component {
                     </Grid>
                     <Divider />
                 </Container>
-                <Listing />
+                <Listing data-test="listing"/>
             </div>
         )
     }
