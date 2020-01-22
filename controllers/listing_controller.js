@@ -7,8 +7,7 @@ const Listing = mongoose.model("listings")
 //showing a list of all listings
 async function index(req, res) {
     Listing.find()
-        .then(listings => {console.log(listings);
-            res.json(listings)})
+        .then(listings => res.json(listings))
         .catch(err => console.log(err))
 }
 
@@ -19,7 +18,8 @@ async function create(req, res) {
         title: req.body.title,
         description: req.body.description,
         blurb: req.body.blurb,
-        price: req.body.price
+        price: req.body.price,
+        productOwner: req.user.id
     };
     // saving the listing to the database and logging
     new Listing(newListing)
@@ -69,11 +69,18 @@ const destroy = async (req, res) => {
     .catch(err => console.log("Error with deleting from db is" +err));
 }
 
+const getUser = async (req, res) => {
+    console.log('get user-------', req.user)
+    res.json(req.user)
+
+    // res.json(req.user)
+}
   module.exports = {
     index,
     create,
     show,
     edit,
     update,
-    destroy
+    destroy,
+    getUser
 }

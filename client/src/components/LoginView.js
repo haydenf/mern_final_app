@@ -1,21 +1,36 @@
 import React, {Component} from 'react';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
-import axios from 'axios';
+import {connect} from "react-redux";
 
-export default class LoginView extends Component {
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import axios from "axios"
+import {setUser} from "../actions/userAction"
+
+  class LoginView extends Component {
   constructor(props){
     super(props)
     this.state = {
         email: "",
-        password: ""
+        password: "",
+        user: {}
     }
   }
 
-  onChange = e => {
-    this.setState({
-        [e.target.name]: e.target.value
-    })
-  }
+  // fetches user data and updates global state
+  getUserData = async () => {
+    if (document.cookie.includes("jwt="))  {
+     await axios
+        .get('/api/listing/getuser') 
+        .then(user => {
+          console.log("USER", user.data)
+          this.props.setUser(user.data)
+          this.setState({
+            user: user.data
+          });
+        })
+        .catch(err => console.log(err))
+        }
+      }
+
 
   onSubmit = e => {
     e.preventDefault();
@@ -25,6 +40,11 @@ export default class LoginView extends Component {
     })
     console.log("You signed in!");
     
+  }
+  
+  // mounting func
+  componentWillMount() {
+    this.getUserData();
   }
 
     render(){
@@ -61,7 +81,7 @@ export default class LoginView extends Component {
                       Login
                     </Button>
                     <br></br>
-                    <Button color="blue" fluid size="large"><a href="/auth/google">Login with Google</a></Button>
+                    <Button color="blue" fluid size="large"><a href="/auth/google" onClick={this.getUserData}>Login with Google</a></Button>
                   </Form>
                 </Segment>
                 <Message>
@@ -71,4 +91,17 @@ export default class LoginView extends Component {
             </Grid>
         )
     }
-}
+  }
+
+
+// mapping user to props
+const mapDispatchToProps = (dispatch) => ({
+  setUser: user => dispatch(setUser(user))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginView)
+
+

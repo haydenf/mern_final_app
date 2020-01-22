@@ -56,6 +56,7 @@ class Forms extends Component{
                   fluid
                   placeholder="Product blurb"
                   name="blurb"
+                  maxLength={30}
                   onChange={this.onChange}
                 />
                 <Form.Input

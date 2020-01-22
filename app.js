@@ -49,19 +49,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  res.locals.user = req.user || null;
-  next();
-});
-
-app.use("/api/listing", listing);
 app.use("/auth", auth);
-app.use("/users", user);
-app.get("/", (req, res) => {
-  res.send("HOME");
-});
 
-app.use("/api/users", user);
+app.use("/api/listing", passport.authenticate('jwt', { session: false }), listing);
+app.use("/api/users", passport.authenticate('jwt', { session: false }), user);
+
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

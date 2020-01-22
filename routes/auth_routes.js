@@ -23,6 +23,11 @@ router.get(
 );
 
 router.get(
+  "/login",
+  AuthenticationController.login
+)
+
+router.get(
   "/logout",
   AuthenticationController.logout
 )
