@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
 import {connect} from "react-redux";
 import {setUser} from "../actions/userAction"
+import axios from "axios"
 
 
 
