@@ -14,29 +14,30 @@ import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
 import CreateUserView from './components/CreateUserView'
 
- class App extends Component {
+ export class App extends Component {
   state = {
     loggedIn: false,
-    activeItem: 'Dashboard'
-  }
+    activeItem: 'Dashboard',
+    userid: {}
+  };
 
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
-  }
+    };
+  
 
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
       this.setState({loggedIn: false, activeItem: "Login"});
-    }
-  }
+    }};
+
 
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
-
     return (
-      <div className="App">
+      <div className="App" data-test="component-app">
         <BrowserRouter>
         
           <Menu className="nav" inverted>
@@ -87,7 +88,8 @@ import CreateUserView from './components/CreateUserView'
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings
+  listings: state.listings,
+  user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
   listingHandler: listings => dispatch(listingHandler(listings)),
