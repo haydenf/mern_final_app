@@ -1,15 +1,50 @@
 import React, {Component} from "react";
 import { Grid, Header, Container, Image, Divider, List } from 'semantic-ui-react';
+import {connect} from "react-redux";
+import {setUser} from "../actions/userAction"
 
-export default class ProfileView extends Component {
+
+
+class SellerProfile extends Component {
     constructor(props){
       super(props)
       this.state = {
           firstName: "",
           lastName: "",
-          email: ""
+          email: "",
+          user: {}
       }
     }
+
+  // fetches user data and updates global state //
+  getUserData = async () => {
+    if (document.cookie.includes("jwt="))  {
+     await axios
+        .get('/api/listing/getuser') 
+        .then(user => {
+          this.props.setUser(user.data)
+          console.log('User has been set to state')
+          this.setState({ user: user.data });
+        })
+        .catch(err => console.log(err))
+        }
+      }
+
+  // on submit function fetching from backend route ///
+  onSubmit = e => {
+    e.preventDefault();
+    axios.get('/users/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
+    console.log("You signed in!");
+    
+  }
+  
+  // mounting func //
+  componentWillMount() {
+    this.getUserData();
+  }
 
     render(){
         return(
@@ -51,5 +86,17 @@ export default class ProfileView extends Component {
            </Container>
           </div>
         )
-    }
-}
+    }}
+
+    const mapStateToProps = (state) => ({
+      user: state.user
+    })
+    const mapDispatchToProps = (dispatch) => ({
+      setUser: user => dispatch(setUser(user))
+    })
+    
+    export default connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(SellerProfile)
+    
