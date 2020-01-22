@@ -51,23 +51,11 @@ app.use(passport.session());
 
 app.use("/auth", auth);
 
-<<<<<<< HEAD
-app.use((req, res, next) => {
-  console.log("LOGGED IN USER", req.user)
-  res.locals.user = req.user || null;
-  next();
-});
-
-app.use("/api/listing", listing);
-app.use("/users", user);
-
-=======
 app.use("/api/listing", passport.authenticate('jwt', { session: false }), listing);
 app.use("/api/users", passport.authenticate('jwt', { session: false }), user);
 app.get("/", (req, res) => {
   res.send("HOME");
 });
->>>>>>> 7290f6ee7f62435d7eed34bc55e26bc1fe8452a6
 
 
 if (process.env.NODE_ENV === "production") {
