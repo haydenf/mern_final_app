@@ -187,7 +187,6 @@ class Listing extends Component {
                                     </Modal.Content>
                                     <Modal.Actions>
                                         {this.showEditDelete(listing)}
-
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
                                         </Button>  
