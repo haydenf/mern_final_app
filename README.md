@@ -1,8 +1,11 @@
 # Start-up Again
 
 [GitHub](https://github.com/haydenf/mern_final_app)
+
 [Deployment](https://startupagain-mern.herokuapp.com/)
+
 [Trello](https://trello.com/b/xCccFJK4/mern-stack)
+
 [Presentation](https://docs.google.com/presentation/d/1ptLJij68MdJEWTuSj7f8yiRdHofpYz5cEzQJfwS_5qg/edit?usp=sharing)
 
 ## Website Description
@@ -179,6 +182,3 @@ ____
 
 18/01/2020
 ![Trello 10](./docs/Trello/trello_10.png)
-
-22/01/2020
-![Trello 10](./docs/Trello/trello_11.png)
