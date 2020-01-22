@@ -135,16 +135,37 @@ describe('listings reducer', () => {
 
   it('should handle DELETE_LISTING', () => {
     expect(
-      reducer([], {
+      reducer([
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
         type: types.DELETE_LISTING,
-        text: 'Listing set'
+        text: 'Pre-existing listing'
+      })
+    ).toEqual([])
+    expect(
+      reducer([
+        {
+          text: 'Additional listing',
+          id: 1
+        },
+        {
+          text: 'Pre-existing listing',
+          id: 0
+        }
+      ], {
+        type: types.DELETE_LISTING,
+        text: 'Additional listing'
       })
     ).toEqual([
       {
-        text: 'Listing set',
+        text: 'Pre-existing listing',
         id: 0
       }
     ])
+   
   })
 })
 
