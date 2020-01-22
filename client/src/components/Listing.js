@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import axios from "axios"
 import {connect} from "react-redux";
 import { Route, Link } from "react-router-dom";
-import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
-
 import {deletedListingHandler, listingHandler} from "../actions/listingAction" 
+import {setUser} from "../actions/userAction"
+import { Card, Image, Button, Modal, Form, Container, Responsive } from 'semantic-ui-react'
 import SellerProfile from "./SellerProfile"
 
 class Listing extends Component {
@@ -15,18 +15,34 @@ class Listing extends Component {
             title: "",
             description: "",
             image: "",
-            modalOpen: false
+            modalOpen: false,
+            productOwner: "",
+            price: ""
          }
    }
+   // fetches user data and updates global state
+  getUserData = async () => {
+    if (document.cookie.includes("jwt="))  {
+     await axios
+        .get('/api/listing/getuser') 
+        .then(user => {
+          this.props.setUser(user.data)
+          console.log('User has been set to state ', user)
+          this.setState({ user: user.data });
+        })
+        .catch(err => console.log(err))
+        }
+      }
 
-   // handle open modal with setting state to true, when opened will set the state from listings backend //
-    handleOpen = listings => {this.setState({ 
+
+    handleOpen = listing => {this.setState({ 
         modalOpen: true,
-        _id: listings._id,
-        title: listings.title,
-        description: listings.description,
-        blurb: listings.blurb,
-        price: listings.price
+        _id: listing._id,
+        title: listing.title,
+        description: listing.description,
+        blurb: listing.blurb,
+        price: listing.price,
+        productOwner: listing.productOwner
      });
     };
     // handling close by setting state to false //
@@ -79,16 +95,31 @@ class Listing extends Component {
             .catch(err => console.log("this is the deletion function err " + err));
     };
 
+    showEditDelete = (listing) =>{
+        if(this.props.user._id === this.state.productOwner){
+            return (
+            <div>
+                <Button basic className="button" floated='left' onClick={this.editHandler}> 
+                    Edit
+                </Button>
+                <Button className="button" floated='left' onClick={() => this.deletion(listing)}>
+                    Delete
+                </Button>
+            </div>
+            )} else {
+                return null
+            }
+        }
 
     // mounting the listings and user //
     componentDidMount() {
         this.grabListings();
+        this.getUserData();
 }
 
     render() { 
        // setting variables // 
         const {listings} = this.props
-        const {user} = this.props
         return ( 
             <div>
                 <div className="card">
@@ -102,7 +133,7 @@ class Listing extends Component {
                             <Card.Header>{listing.title}</Card.Header>
                             <Card.Description>{listing.blurb}</Card.Description>
                                 <Modal
-                                    trigger={<Button className="button" basic onClick={() => this.handleOpen(listing)}>Edit</Button>}
+                                    trigger={<Button className="button" basic fluid onClick={() => this.handleOpen(listing)}>Take a closer look</Button>}
                                     open={this.state.modalOpen}
                                     onClose={this.handleClose}
                                     dimmer='blurring'
@@ -135,7 +166,6 @@ class Listing extends Component {
                                             />
                                             <Modal.Header>Product Description</Modal.Header>
                                             <Form.TextArea
-                                                fluid 
                                                 placeholder="Product description"
                                                 name="description"
                                                 value={this.state.description}
@@ -151,20 +181,17 @@ class Listing extends Component {
                                             />
                                         </Form>
                                         </Modal.Description>
-                                        </Modal.Content>
-                                        <Modal.Actions>
-                                            <Button basic className="button" onClick={this.editHandler}> 
-                                            Edit 
-                                        </Button>
-                                        <Button className="button" onClick={() => this.deletion(listing)}>
-                                            Delete
-                                        </Button>
+                                    </Modal.Content>
+                                    <Modal.Actions>
+                                        {this.showEditDelete(listing)}
                                         <Button className="button" as={Link} to='/seller'> 
                                             Meet the Seller 
-                                        </Button>   
+                                        </Button>  
+                                        <Button className="button" onClick={() => this.handleClose()}>
+                                            Close
+                                        </Button> 
                                     </Modal.Actions>
                                 </Modal>
-                                
                             </Card.Content>
                         </Responsive>
                         ))}
@@ -185,7 +212,9 @@ const mapStateToProps = (state) => ({
 // dispatching to store state changes //
 const mapDispatchToProps = (dispatch) => ({
     listingHandler: listings => dispatch(listingHandler(listings)),
-    deletedListingHandler: id => dispatch(deletedListingHandler(id))
+    deletedListingHandler: id => dispatch(deletedListingHandler(id)),
+    setUser: user => dispatch(setUser(user))
+
 })
 
 export default connect(
