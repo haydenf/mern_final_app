@@ -10,8 +10,7 @@ import {setUser} from "../actions/userAction"
     super(props)
     this.state = {
         email: "",
-        password: "",
-        user: {}
+        password: ""
     }
   }
 

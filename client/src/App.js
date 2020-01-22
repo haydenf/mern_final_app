@@ -13,39 +13,37 @@ import DashboardView from './components/DashboardView'
 import SellerProfile from './components/SellerProfile'
 import NewProductForm from './components/NewProductForm'
 import CreateUserView from './components/CreateUserView'
-import Axios from 'axios';
 
  export class App extends Component {
   state = {
     loggedIn: false,
     activeItem: 'Dashboard',
-    user: {}
+    userid: {}
   }
 
   setLoggedIn = (e, { name }) => {
     this.setState({activeItem: name})
     document.cookie.includes("jwt=") ? this.setState({loggedIn: true}) : this.setState({loggedIn: false})
-    if (document.cookie.includes("jwt="))  {
-      Axios.get('/api/listing/getuser') 
-      .then(user => {
-        console.log("USER", user)
-        this.setState({user})
-      })
-      .catch(err => console.log(err))
     }
-  }
+  
 
   componentDidMount(){
     if (document.cookie.includes("jwt=")){
       this.setState({loggedIn: false, activeItem: "Login"});
     }
-  }
+    this.setState({
+      userid: this.props.user._id
+    })
+    console.log(this.state.userid, '')
 
+
+  }
 
 
   render(){
     // Destructure activeItem and login status from state
     const { activeItem } = this.state
+    console.log(this.props.user, '-=-=-=-=-=-=-=-=-=-=-')
 
     return (
       <div className="App" data-test="component-app">
@@ -99,7 +97,8 @@ import Axios from 'axios';
 }
 
 const mapStateToProps = (state) => ({
-  listings: state.listings
+  listings: state.listings,
+  user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
   listingHandler: listings => dispatch(listingHandler(listings)),
