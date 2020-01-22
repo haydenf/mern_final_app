@@ -39,7 +39,7 @@ class MyProfileView extends Component {
           <Container textAlign='justified'>
             <Header as='h2'>
               <Image circular verticalAlign='middle' size='medium' src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' /> 
-              SpongeBob SquarePants
+              {user.firstName} {user.lastName}
             </Header>
             <Divider />
           </Container>
